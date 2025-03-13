@@ -48,6 +48,9 @@
             transition: transform 0.2s, box-shadow 0.2s;
             background: #3498db;
             color: white;
+            text-decoration: none;
+            display: block;
+            text-align: center;
         }
         .btn:hover {
             transform: translateY(-2px);
@@ -91,6 +94,11 @@
         .container {
             animation: fadeIn 1s ease-in;
         }
+        .excel-note {
+            margin: 15px 0;
+            font-style: italic;
+            color: #2c3e50;
+        }
     </style>
 </head>
 <body>
@@ -100,39 +108,47 @@
             <p>Yezreel Valley College 🏫</p>
         </header>
 
+        <div class="excel-note">
+            This is the concentrated Excel containing the course notes. It will be updated after each lecture. Enjoy! 📈
+        </div>
+        <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Course%20Notes%20-%20YVC%20Fin%20A%20-%202025%20B.xlsx" class="btn" style="background: #f1c40f">Course Notes (Excel) 📊</a>
+
         <div class="button-grid">
-            <button class="btn" onclick="alert('Opening syllabus...')">
-                Syllabus 📜
+            <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Financial%20Accounting%20A%20-%20Syllabus.pdf" class="btn">Syllabus 📜</a>
+            <button class="btn" style="background: #e67e22" onclick="alert('Stay tuned!')">
+                Assignments (Stay tuned) ✍️
             </button>
-            <button class="btn" style="background: #e67e22" onclick="alert('Loading assignments...')">
-                Assignments ✍️
+            <button class="btn" style="background: #9b59b6" onclick="alert('Stay tuned!')">
+                Grades (Stay tuned) ⭐
             </button>
-            <button class="btn" style="background: #9b59b6" onclick="alert('Accessing grades...')">
-                Grades ⭐
-            </button>
-            <button class="btn" style="background: #e74c3c" onclick="alert('Opening resources...')">
-                Resources 📚
+            <button class="btn" style="background: #e74c3c" onclick="alert('Stay tuned!')">
+                Resources (Stay tuned) 📚
             </button>
         </div>
 
         <div class="category">
             <h2>Course Overview 🔍</h2>
-            <p>Welcome to Financial Accounting A! This course covers fundamental accounting principles, financial statements, and basic analysis techniques. Perfect for beginners and aspiring financial experts! 💰</p>
+            <p>Welcome to Financial Accounting A! Led by the brilliant Dr. Shay Tsaban, this course offers an exceptional journey into the world of accounting. Prepare to master the essentials with an inspiring and dedicated teacher! 💰</p>
         </div>
 
         <div class="category">
-            <h2>Key Topics 📋</h2>
+            <h2>Key Topics (From Syllabus) 📋</h2>
             <ul>
-                <li>Balance Sheets 📑</li>
-                <li>Income Statements 💸</li>
-                <li>Cash Flow Analysis 💧</li>
-                <li>Accounting Principles ⚖️</li>
+                <li>IAS 16 - Property, Plant and Equipment 🏢</li>
+                <li>IAS 36 - Impairment of Assets 📉</li>
+                <li>IAS 8 - Accounting Policies, Changes in Estimates and Errors ⚙️</li>
+                <li>IAS 10 - Events After the Reporting Period ⏳</li>
             </ul>
+        </div>
+
+        <div class="category">
+            <h2>Recordings 🎥</h2>
+            <p>Stay tuned for lecture recordings! Coming soon to enhance your learning experience.</p>
         </div>
 
         <div class="lecturer-info">
             <h2>Lecturer 👨‍🏫</h2>
-            <p>Dr. Shay Tsaban</p>
+            <p>Dr. Shay Tsaban - An extraordinary educator and expert in financial accounting!</p>
             <p>Email: <a href="mailto:shay.tsaban@gmail.com" style="color: #fff; text-decoration: underline;">shay.tsaban@gmail.com</a> ✉️</p>
         </div>
 
@@ -146,13 +162,26 @@
     </footer>
 
     <script>
-        // Simple visit counter
-        let visits = localStorage.getItem('visitCount') || 0;
-        visits++;
-        localStorage.setItem('visitCount', visits);
-        document.getElementById('visitCount').textContent = visits;
+        // Improved visit counter with session handling
+        function updateVisitCount() {
+            let visits = parseInt(sessionStorage.getItem('visitCount')) || 0;
+            if (!sessionStorage.getItem('visited')) {
+                visits++;
+                sessionStorage.setItem('visitCount', visits);
+                sessionStorage.setItem('visited', 'true');
+            }
+            document.getElementById('visitCount').textContent = visits;
+        }
 
-        // Add button click animations
+        // Reset visited flag on page unload to count new sessions
+        window.addEventListener('unload', () => {
+            sessionStorage.removeItem('visited');
+        });
+
+        // Update counter on page load
+        window.onload = updateVisitCount;
+
+        // Button click animations
         const buttons = document.querySelectorAll('.btn');
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
