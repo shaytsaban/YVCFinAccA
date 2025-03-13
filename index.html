@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Accounting A - Yezreel Valley College 📚</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px 10px 0 0;
+            margin: -30px -30px 30px -30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .btn {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background: #3498db;
+            color: white;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .category {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            transition: background 0.3s;
+        }
+        .category:hover {
+            background: #dfe6e9;
+        }
+        .lecturer-info {
+            background: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .counter {
+            text-align: center;
+            padding: 15px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .container {
+            animation: fadeIn 1s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Financial Accounting A 📊</h1>
+            <p>Yezreel Valley College 🏫</p>
+        </header>
+
+        <div class="button-grid">
+            <button class="btn" onclick="alert('Opening syllabus...')">
+                Syllabus 📜
+            </button>
+            <button class="btn" style="background: #e67e22" onclick="alert('Loading assignments...')">
+                Assignments ✍️
+            </button>
+            <button class="btn" style="background: #9b59b6" onclick="alert('Accessing grades...')">
+                Grades ⭐
+            </button>
+            <button class="btn" style="background: #e74c3c" onclick="alert('Opening resources...')">
+                Resources 📚
+            </button>
+        </div>
+
+        <div class="category">
+            <h2>Course Overview 🔍</h2>
+            <p>Welcome to Financial Accounting A! This course covers fundamental accounting principles, financial statements, and basic analysis techniques. Perfect for beginners and aspiring financial experts! 💰</p>
+        </div>
+
+        <div class="category">
+            <h2>Key Topics 📋</h2>
+            <ul>
+                <li>Balance Sheets 📑</li>
+                <li>Income Statements 💸</li>
+                <li>Cash Flow Analysis 💧</li>
+                <li>Accounting Principles ⚖️</li>
+            </ul>
+        </div>
+
+        <div class="lecturer-info">
+            <h2>Lecturer 👨‍🏫</h2>
+            <p>Dr. Shay Tsaban</p>
+            <p>Email: <a href="mailto:shay.tsaban@gmail.com" style="color: #fff; text-decoration: underline;">shay.tsaban@gmail.com</a> ✉️</p>
+        </div>
+
+        <div class="counter">
+            <p>Visitors: <span id="visitCount">0</span> 👀</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Yezreel Valley College | Financial Accounting A | Last Updated: March 13, 2025 🕒</p>
+    </footer>
+
+    <script>
+        // Simple visit counter
+        let visits = localStorage.getItem('visitCount') || 0;
+        visits++;
+        localStorage.setItem('visitCount', visits);
+        document.getElementById('visitCount').textContent = visits;
+
+        // Add button click animations
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
