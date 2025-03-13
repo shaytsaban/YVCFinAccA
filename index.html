@@ -56,6 +56,23 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
+        .highlight-btn {
+            padding: 25px;
+            font-size: 1.8em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #f1c40f, #f39c12);
+            border: 3px solid #e67e22;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(241, 196, 15, 0.7);
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .highlight-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(241, 196, 15, 0.9);
+        }
         .category {
             background: #ecf0f1;
             padding: 20px;
@@ -98,6 +115,8 @@
             margin: 15px 0;
             font-style: italic;
             color: #2c3e50;
+            font-size: 1.2em;
+            text-align: center;
         }
     </style>
 </head>
@@ -111,7 +130,7 @@
         <div class="excel-note">
             This is the concentrated Excel containing the course notes. It will be updated after each lecture. Enjoy! 📈
         </div>
-        <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Course%20Notes%20-%20YVC%20Fin%20A%20-%202025%20B.xlsx" class="btn" style="background: #f1c40f">Course Notes (Excel) 📊</a>
+        <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Course%20Notes%20-%20YVC%20Fin%20A%20-%202025%20B.xlsx" class="btn highlight-btn">Course Notes (Excel) 📊</a>
 
         <div class="button-grid">
             <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Financial%20Accounting%20A%20-%20Syllabus.pdf" class="btn">Syllabus 📜</a>
