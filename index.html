@@ -11,6 +11,7 @@
             margin: 0;
             padding: 20px;
             color: #333;
+            overflow-x: hidden;
         }
         .container {
             max-width: 1000px;
@@ -19,6 +20,7 @@
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
             padding: 30px;
+            position: relative;
         }
         header {
             text-align: center;
@@ -27,6 +29,10 @@
             color: white;
             border-radius: 10px 10px 0 0;
             margin: -30px -30px 30px -30px;
+            transition: box-shadow 0.3s ease;
+        }
+        header:hover {
+            box-shadow: 0 0 20px rgba(44,62,80,0.8);
         }
         h1 {
             margin: 0;
@@ -45,43 +51,65 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 1.1em;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s ease;
             background: #3498db;
             color: white;
             text-decoration: none;
             display: block;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         .btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) rotate(2deg);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+        .btn:hover::after {
+            width: 200%;
+            height: 200%;
         }
         .highlight-btn {
             padding: 25px;
             font-size: 1.8em;
             font-weight: bold;
-            background: linear-gradient(45deg, #f1c40f, #f39c12);
-            border: 3px solid #e67e22;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb); /* Enhanced gradient */
+            border: 3px solid #ff9f43;
             border-radius: 12px;
-            box-shadow: 0 0 15px rgba(241, 196, 15, 0.7);
-            margin: 20px 0;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+            margin: 20px auto; /* Centered */
+            max-width: 500px; /* Limits width for better centering */
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
+            display: block;
+            text-align: center;
         }
         .highlight-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(241, 196, 15, 0.9);
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 0 25px rgba(255, 107, 107, 0.9);
         }
         .category {
             background: #ecf0f1;
             padding: 20px;
             border-radius: 10px;
             margin: 15px 0;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
         .category:hover {
             background: #dfe6e9;
+            transform: translateX(5px);
         }
         .lecturer-info {
             background: #27ae60;
@@ -89,6 +117,10 @@
             padding: 15px;
             border-radius: 10px;
             margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .lecturer-info:hover {
+            box-shadow: 0 0 15px rgba(39, 174, 96, 0.7);
         }
         .counter {
             text-align: center;
@@ -98,15 +130,31 @@
             border-radius: 10px;
             margin-top: 20px;
             font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+        .counter:hover {
+            transform: scale(1.05);
         }
         footer {
             text-align: center;
             margin-top: 30px;
             color: #777;
+            transition: all 0.3s ease;
+        }
+        footer:hover {
+            color: #555;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         .container {
             animation: fadeIn 1s ease-in;
@@ -117,13 +165,21 @@
             color: #2c3e50;
             font-size: 1.2em;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+        .excel-note:hover {
+            color: #1abc9c;
         }
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             margin-top: 15px;
+            transition: transform 0.3s ease;
+        }
+        .video-container:hover {
+            transform: scale(1.02);
         }
         .video-container iframe {
             position: absolute;
@@ -132,6 +188,7 @@
             width: 100%;
             height: 100%;
             border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -182,6 +239,11 @@
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/DMWg-SrPpmc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+            <p><strong>Lecture 2 - 20.3.2025 - Property and IAS 16 - salvage value, improvements, depreciation methods</strong></p>
+            <p>Dive into the details of IAS 16 with this engaging lecture!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/LKuo5WRTrh8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
 
         <div class="lecturer-info">
@@ -196,7 +258,7 @@
     </div>
 
     <footer>
-        <p>© 2025 Yezreel Valley College | Financial Accounting A | Last Updated: March 13, 2025 🕒</p>
+        <p>© 2025 Yezreel Valley College | Financial Accounting A | Last Updated: March 20, 2025 🕒</p>
     </footer>
 
     <script>
@@ -219,11 +281,11 @@
         // Update counter on page load
         window.onload = updateVisitCount;
 
-        // Button click animations
+        // Enhanced button animations
         const buttons = document.querySelectorAll('.btn');
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
-                btn.style.transform = 'scale(0.95)';
+                btn.style.transform = 'scale(0.95) rotate(2deg)';
                 setTimeout(() => {
                     btn.style.transform = 'scale(1)';
                 }, 100);
