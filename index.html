@@ -1,351 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Accounting A - Yezreel Valley College 📚</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 20px;
-            color: #333;
-            overflow-x: hidden;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            padding: 30px;
-            position: relative;
-        }
-        header {
-            text-align: center;
-            padding: 20px;
-            background: #2c3e50;
-            color: white;
-            border-radius: 10px 10px 0 0;
-            margin: -30px -30px 30px -30px;
-            transition: box-shadow 0.3s ease;
-        }
-        header:hover {
-            box-shadow: 0 0 20px rgba(44,62,80,0.8);
-        }
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .btn {
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn:hover {
-            transform: translateY(-2px) rotate(2deg);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease;
-        }
-        .btn:hover::after {
-            width: 200%;
-            height: 200%;
-        }
-        .highlight-btn {
-            padding: 25px;
-            font-size: 1.8em;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb);
-            border: 3px solid #ff9f43;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
-            margin: 20px auto;
-            max-width: 500px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            display: block;
-            text-align: center;
-        }
-        .highlight-btn:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 0 0 25px rgba(255, 107, 107, 0.9);
-        }
-        .category {
-            background: #ecf0f1;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 15px 0;
-            transition: all 0.3s ease;
-        }
-        .category:hover {
-            background: #dfe6e9;
-            transform: translateX(5px);
-        }
-        .lecturer-info {
-            background: #27ae60;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-        .lecturer-info:hover {
-            box-shadow: 0 0 15px rgba(39, 174, 96, 0.7);
-        }
-        .counter {
-            text-align: center;
-            padding: 15px;
-            background: #e74c3c;
-            color: white;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 1.2em;
-            transition: all 0.3s ease;
-        }
-        .counter:hover {
-            transform: scale(1.05);
-        }
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #777;
-            transition: all 0.3s ease;
-        }
-        footer:hover {
-            color: #555;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        .container {
-            animation: fadeIn 1s ease-in;
-        }
-        .excel-note {
-            margin: 15px 0;
-            font-style: italic;
-            color: #2c3e50;
-            font-size: 1.2em;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .excel-note:hover {
-            color: #1abc9c;
-        }
-        .video-container {
-            position: relative;
-            width: 70%; /* Smaller width */
-            margin: 15px auto; /* Centered */
-            padding-bottom: 39.375%; /* Adjusted aspect ratio (70% of 56.25%) */
-            height: 0;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        .video-container:hover {
-            transform: scale(1.02);
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 12px; /* Rounded corners */
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Financial Accounting A - Yezreel Valley College 📚</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      animation: fadeIn 1s ease-in;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #2c3e50;
+      color: white;
+      border-radius: 10px 10px 0 0;
+      margin: -30px -30px 30px -30px;
+      transition: box-shadow 0.3s ease;
+    }
+    header:hover {
+      box-shadow: 0 0 20px rgba(44,62,80,0.8);
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .btn {
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover {
+      transform: translateY(-2px) rotate(2deg);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    .btn:hover::after {
+      width: 200%;
+      height: 200%;
+    }
+    .highlight-btn {
+      padding: 25px;
+      font-size: 1.8em;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb);
+      border: 3px solid #ff9f43;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+      margin: 20px auto;
+      max-width: 500px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+    .highlight-btn:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 0 25px rgba(255, 107, 107, 0.9);
+    }
+    .category {
+      background: #ecf0f1;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 15px 0;
+      transition: all 0.3s ease;
+    }
+    .category:hover {
+      background: #dfe6e9;
+      transform: translateX(5px);
+    }
+    .lecturer-info {
+      background: #27ae60;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+    .lecturer-info:hover {
+      box-shadow: 0 0 15px rgba(39, 174, 96, 0.7);
+    }
+    .counter {
+      text-align: center;
+      padding: 15px;
+      background: #e74c3c;
+      color: white;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 1.2em;
+      transition: all 0.3s ease;
+    }
+    .counter:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #777;
+      transition: all 0.3s ease;
+    }
+    footer:hover {
+      color: #555;
+    }
+    .excel-note {
+      margin: 15px 0;
+      font-style: italic;
+      color: #2c3e50;
+      font-size: 1.2em;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .excel-note:hover {
+      color: #1abc9c;
+    }
+    .video-container {
+      position: relative;
+      width: 70%;
+      margin: 15px auto;
+      padding-bottom: 39.375%;
+      height: 0;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .video-container:hover {
+      transform: scale(1.02);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Financial Accounting A 📊</h1>
-            <p>Yezreel Valley College 🏫</p>
-        </header>
+  <div class="container">
+    <header>
+      <h1>Financial Accounting A 📊</h1>
+      <p>Yezreel Valley College 🏫</p>
+    </header>
 
-        <div class="excel-note">
-            This is the concentrated Excel containing the course notes. It will be updated after each lecture. Enjoy! 📈
-        </div>
-        <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Course%20Notes%20-%20YVC%20Fin%20A%20-%202025%20B.xlsx" class="btn highlight-btn">Course Notes (Excel) 📊</a>
+    <div class="excel-note">
+      This is the concentrated Excel containing the course notes. It will be updated after each lecture. Enjoy! 📈
+    </div>
+    <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Course%20Notes%20-%20YVC%20Fin%20A%20-%202025%20B.xlsx" class="btn highlight-btn">Course Notes (Excel) 📊</a>
 
-        <div class="button-grid">
-            <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Financial%20Accounting%20A%20-%20Syllabus.pdf" class="btn">Syllabus 📜</a>
-            <button class="btn" style="background: #e67e22" onclick="alert('Stay tuned!')">
-                Assignments (Stay tuned) ✍️
-            </button>
-            <button class="btn" style="background: #9b59b6" onclick="alert('Stay tuned!')">
-                Grades (Stay tuned) ⭐
-            </button>
-            <button class="btn" style="background: #e74c3c" onclick="alert('Stay tuned!')">
-                Resources (Stay tuned) 📚
-            </button>
-        </div>
-
-        <div class="category">
-            <h2>Course Overview 🔍</h2>
-            <p>Welcome to Financial Accounting A! Led by the brilliant Dr. Shay Tsaban, this course offers an exceptional journey into the world of accounting. Prepare to master the essentials with an inspiring and dedicated teacher! 💰</p>
-        </div>
-
-        <div class="category">
-            <h2>Key Topics (From Syllabus) 📋</h2>
-            <ul>
-                <li>IAS 16 - Property, Plant and Equipment 🏢</li>
-                <li>IAS 36 - Impairment of Assets 📉</li>
-                <li>IAS 8 - Accounting Policies, Changes in Estimates and Errors ⚙️</li>
-                <li>IAS 10 - Events After the Reporting Period ⏳</li>
-            </ul>
-        </div>
-
-        <div class="category">
-            <h2>Recordings 🎥</h2>
-            <p><strong>Lecture 1 - 13.3.2025 - Introduction to Property and IAS 16</strong></p>
-            <p>Check out this lecture recording to enhance your learning experience!</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/DMWg-SrPpmc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <p><strong>Lecture 2 - 20.3.2025 - Property and IAS 16 - salvage value, improvements, depreciation methods</strong></p>
-            <p>Dive into the details of IAS 16 with this engaging lecture!</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/LKuo5WRTrh8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <p><strong>Lecture 3 - 27.3.2025 - Property and IAS 16 - Components Concept, Changing of Components, Substitution of Assets (Trade-In) and Basic Revaluation Model</strong></p>
-            <p>Get ready to break down your assets into components like a pro! 🚧 Learn how to swap out old parts for shiny new ones (trade-ins, anyone? 🔄) and revalue your stuff with IAS 16 flair! 📈</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/6YOSaDskgyI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <p><strong>Lecture 4 - 3.4.2025 - IAS 16 - Revaluation Model Basics</strong></p>
-            <p>Revaluation shenanigans 😂📈, number crunching madness 🤓💰, and asset value rollercoaster 🎢!</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/mf5O8areWRs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <p><strong>Lecture 5 - 24.4.2025 - IAS 16 - Revaluation Model - Amortization of Revaluation Surplus </strong></p>
-            <p>Part B of the revlaution process, considering the amortization that is possible for revaluation surpluses. Enjoy!</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/5jWdg-n2x0E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <p><strong>Lecture 6 - 8.5.2025 - IAS 16 - Impairment of Assets - the Connection to IAS 36 </strong></p>
-            <p>Assets can get fu#$ed up! Let's see when it happens!</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/Y8Tw2hZIz34" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <p><strong>Lecture 7 - 15.5.2025 - IAS 36 Part B</strong></p>
-            <p>Let's keep the impairment train going!</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/BpLoh9Jkvlc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <p><strong>Lecture 8 - 22.5.2025 - Basic concepts in Finance expenses and Taxes - for IAS 36 - a Deeper Dive</strong></p>
-            <p>Let's dig deeper to truly understand the financing and taxes concepts!</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/7ZWFU-voS34" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            </div>
-            <p><strong>Lecture 9 - 29.5.2025 - Last Substantial Dip in IAS 36 & IAS 16 and the beginning of IAS 10</strong></p>
-            <p>We are nearing the end! Let's Go!</p>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/iEgC9aA9f6A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <p><strong>Lecture 10 - 5.6.2025 - IAS 8</strong></p>
-
-        <a href="https://quizizz.com/join?gc=230262&source=liveDashboard" target="_blank">
-  Open Quizizz Quiz
-</a>
-
-        </div>
-            <p><strong>Lecture 11 - 12.6.2025 - Basic concepts of Cash Genererating Unit - CGU</strong></p>
-            <p>What is CGU? And how it relates for impairment of assets? Let's see! </p>
-         <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Cash Generating Unit - Theory and Questions 2025 B.pdf" class="download-button" download>
-        Download Cash Generating Unit Theory and Questions File
-        </a>
-        <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Cash%20Generating%20Unit%20-%20ANS%20-%202025%20B.xlsx" class="download-button" download>
-        Download Cash Generating Unit ANS file
-        </a>
-
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/0mB-JazwRTM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="lecturer-info">
-            <h2>Lecturer 👨‍🏫</h2>
-            <p>Dr. Shay Tsaban - An extraordinary educator and expert in financial accounting!</p>
-            <p>Email: <a href="mailto:shay.tsaban@gmail.com" style="color: #fff; text-decoration: underline;">shay.tsaban@gmail.com</a> ✉️</p>
-        </div>
-
-        <div class="counter">
-            <p>Visitors: <span id="visitCount">0</span> 👀</p>
-        </div>
+    <div class="button-grid">
+      <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Financial%20Accounting%20A%20-%20Syllabus.pdf" class="btn">Syllabus 📜</a>
+      <button class="btn" style="background: #e67e22" onclick="alert('Stay tuned!')">Assignments (Stay tuned) ✍️</button>
+      <button class="btn" style="background: #9b59b6" onclick="alert('Stay tuned!')">Grades (Stay tuned) ⭐</button>
+      <button class="btn" style="background: #e74c3c" onclick="alert('Stay tuned!')">Resources (Stay tuned) 📚</button>
     </div>
 
-    <footer>
-        <p>© 2025 Yezreel Valley College | Financial Accounting A | Last Updated: March 20, 2025 🕒</p>
-    </footer>
+    <div class="category">
+      <h2>Course Overview 🔍</h2>
+      <p>Welcome to Financial Accounting A! Led by the brilliant Dr. Shay Tsaban, this course offers an exceptional journey into the world of accounting. Prepare to master the essentials with an inspiring and dedicated teacher! 💰</p>
+    </div>
 
-    <script>
-        // Improved visit counter with session handling
-        function updateVisitCount() {
-            let visits = parseInt(sessionStorage.getItem('visitCount')) || 0;
-            if (!sessionStorage.getItem('visited')) {
-                visits++;
-                sessionStorage.setItem('visitCount', visits);
-                sessionStorage.setItem('visited', 'true');
-            }
-            document.getElementById('visitCount').textContent = visits;
-        }
+    <div class="category">
+      <h2>Key Topics (From Syllabus) 📋</h2>
+      <ul>
+        <li>IAS 16 - Property, Plant and Equipment 🏢</li>
+        <li>IAS 36 - Impairment of Assets 📉</li>
+        <li>IAS 8 - Accounting Policies, Changes in Estimates and Errors ⚙️</li>
+        <li>IAS 10 - Events After the Reporting Period ⏳</li>
+      </ul>
+    </div>
 
-        // Reset visited flag on page unload to count new sessions
-        window.addEventListener('unload', () => {
-            sessionStorage.removeItem('visited');
-        });
+    <div class="category">
+      <h2>Recordings 🎥</h2>
 
-        // Update counter on page load
-        window.onload = updateVisitCount;
+      <!-- Lectures 1–9 stay unchanged -->
 
-        // Enhanced button animations
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                btn.style.transform = 'scale(0.95) rotate(2deg)';
-                setTimeout(() => {
-                    btn.style.transform = 'scale(1)';
-                }, 100);
-            });
-        });
-    </script>
+      <p><strong>Lecture 9 - 29.5.2025</strong> – Last Substantial Dip in IAS 36 & IAS 16 and the beginning of IAS 10</p>
+      <div class="video-container"><iframe src="https://www.youtube.com/embed/iEgC9aA9f6A" frameborder="0" allowfullscreen></iframe></div>
+
+      <p><strong>Lecture 10 - 5.6.2025</strong> – IAS 8</p>
+      <a href="https://quizizz.com/join?gc=230262&source=liveDashboard" class="btn" target="_blank">Open Quizizz Quiz</a>
+
+      <p><strong>Lecture 11 - 12.6.2025</strong> – Basic concepts of Cash Generating Unit - CGU</p>
+      <p>What is CGU? And how it relates for impairment of assets? Let's see!</p>
+      <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Cash%20Generating%20Unit%20-%20Theory%20and%20Questions%202025%20B.pdf" class="btn" download>Download CGU Theory & Questions</a>
+      <a href="https://github.com/shaytsaban/YVCFinAccA/raw/main/Cash%20Generating%20Unit%20-%20ANS%20-%202025%20B.xlsx" class="btn" download>Download CGU Answers (Excel)</a>
+      <div class="video-container"><iframe src="https://www.youtube.com/embed/0mB-JazwRTM" frameborder="0" allowfullscreen></iframe></div>
+    </div>
+
+    <div class="lecturer-info">
+      <h2>Lecturer 👨‍🏫</h2>
+      <p>Dr. Shay Tsaban - An extraordinary educator and expert in financial accounting!</p>
+      <p>Email: <a href="mailto:shay.tsaban@gmail.com" style="color: #fff; text-decoration: underline;">shay.tsaban@gmail.com</a> ✉️</p>
+    </div>
+
+    <div class="counter">
+      <p>Visitors: <span id="visitCount">0</span> 👀</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Yezreel Valley College | Financial Accounting A | Last Updated: March 20, 2025 🕒</p>
+  </footer>
+
+  <script>
+    function updateVisitCount() {
+      let visits = parseInt(sessionStorage.getItem('visitCount')) || 0;
+      if (!sessionStorage.getItem('visited')) {
+        visits++;
+        sessionStorage.setItem('visitCount', visits);
+        sessionStorage.setItem('visited', 'true');
+      }
+      document.getElementById('visitCount').textContent = visits;
+    }
+    window.addEventListener('unload', () => {
+      sessionStorage.removeItem('visited');
+    });
+    window.onload = updateVisitCount;
+
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.style.transform = 'scale(0.95) rotate(2deg)';
+        setTimeout(() => {
+          btn.style.transform = 'scale(1)';
+        }, 100);
+      });
+    });
+  </script>
 </body>
 </html>
