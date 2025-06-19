@@ -178,6 +178,46 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    /* New styles for the large, bold, animated button */
+    .live-lectures-button-container {
+      margin-top: 20px; /* Add some space below the title */
+      text-align: center;
+    }
+
+    .live-lectures-button {
+      display: inline-block;
+      padding: 40px 80px; /* Very large padding */
+      font-size: 3em; /* Very large font size */
+      font-weight: 900; /* Very bold */
+      background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Vibrant red-orange gradient */
+      color: white;
+      border: 6px solid #d93d5c; /* Thicker, darker border */
+      border-radius: 25px; /* More rounded corners */
+      text-decoration: none;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Larger, more prominent shadow */
+      transition: all 0.4s cubic-bezier(.25,.8,.25,1); /* Smooth and more animated transition */
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      animation: pulsate 1.5s infinite alternate; /* Pulsating animation */
+    }
+
+    .live-lectures-button:hover {
+      transform: translateY(-8px) scale(1.03); /* More pronounced lift and scale on hover */
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); /* Even larger shadow on hover */
+      background: linear-gradient(45deg, #ff4b2b, #ff416c); /* Subtle gradient shift on hover */
+    }
+
+    @keyframes pulsate {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      }
+      100% {
+        transform: scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      }
+    }
   </style>
 </head>
 <body>
@@ -185,6 +225,9 @@
     <header>
       <h1>Financial Accounting A 📊</h1>
       <p>Yezreel Valley College 🏫</p>
+      <div class="live-lectures-button-container">
+        <a href="https://yvc-ac-il.zoom.us/j/6302238641?omn=84966431290" class="live-lectures-button" target="_blank">ACCESS LIVE LECTURES HERE!</a>
+      </div>
     </header>
 
     <div class="excel-note">
