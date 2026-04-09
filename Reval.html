@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך למידה מקיף: מודל הערכה מחדש לפי IAS 16</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap');
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .quote-box {
+            border-right: 4px solid #3b82f6;
+            background: linear-gradient(90deg, #eff6ff 0%, #ffffff 100%);
+        }
+        .rationale-box {
+            border-right: 4px solid #8b5cf6;
+            background-color: #f5f3ff;
+        }
+        .users-box {
+            border-right: 4px solid #10b981;
+            background-color: #ecfdf5;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-link:hover {
+            color: #2563eb;
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900">
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white py-12 shadow-lg relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <polygon fill="currentColor" points="0,100 100,0 100,100"/>
+            </svg>
+        </div>
+        <div class="container mx-auto px-4 lg:px-8 relative z-10">
+            <h1 class="text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">מדריך למידה מקיף: <span class="text-blue-400">מודל הערכה מחדש</span></h1>
+            <p class="text-xl text-slate-300 font-light flex items-center">
+                <i class="fas fa-book-open ml-3 text-blue-400"></i>
+                תקן חשבונאות בינלאומי IAS 16 – רכוש קבוע
+            </p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 lg:px-8 py-10 flex flex-col lg:flex-row gap-8">
+        
+        <!-- Sidebar / TOC -->
+        <aside class="w-full lg:w-1/4">
+            <div class="bg-white rounded-xl shadow-md p-6 sticky top-6 border border-slate-100">
+                <h3 class="text-xl font-bold mb-4 text-slate-800 border-b pb-2"><i class="fas fa-list-ul ml-2 text-blue-500"></i> תוכן עניינים</h3>
+                <nav class="flex flex-col space-y-3">
+                    <a href="#intro" class="nav-link text-slate-600 font-medium">מבוא למודל</a>
+                    <a href="#section-31" class="nav-link text-slate-600 font-medium">סעיפים 31, 34: תדירות ואמינות המדידה</a>
+                    <a href="#section-36" class="nav-link text-slate-600 font-medium">סעיף 36: החלה על קבוצת נכסים שלמה</a>
+                    <a href="#section-35" class="nav-link text-slate-600 font-medium">סעיף 35: הטיפול בפחת נצבר</a>
+                    <a href="#section-39-40" class="nav-link text-slate-600 font-medium">סעיפים 39-40: רישום עליות וירידות ערך</a>
+                    <a href="#section-41" class="nav-link text-slate-600 font-medium">סעיף 41: מימוש עודף הערכה מחדש</a>
+                    <a href="#summary" class="nav-link text-slate-600 font-medium">סיכום היתרונות לקוראי הדוחות</a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="w-full lg:w-3/4 space-y-12">
+
+            <!-- Intro -->
+            <section id="intro" class="bg-white rounded-xl shadow-md p-8 border border-slate-100">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4 flex items-center">
+                    <i class="fas fa-info-circle ml-3 text-blue-500"></i> מבוא: מהו מודל ההערכה מחדש?
+                </h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-4">
+                    תקן IAS 16 מאפשר לישות לבחור בין שני מודלים למדידת רכוש קבוע לאחר ההכרה הראשונית: <strong>מודל העלות</strong> (Cost Model) המסורתי, או <strong>מודל ההערכה מחדש</strong> (Revaluation Model). 
+                </p>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    תחת מודל ההערכה מחדש, נכס שמחירו ההוגן ניתן למדידה מהימנה, יוצג בסכום הערכתו מחדש (השווי ההוגן למועד ההערכה), בניכוי פחת נצבר והפסדים מירידת ערך שנצברו לאחר מכן. מודל זה מביא את המאזן לשקף ערכים כלכליים עדכניים במקום "עלויות היסטוריות" שקעו.
+                </p>
+                <div class="mt-6 bg-blue-50 border-r-4 border-blue-500 p-5 rounded-l-lg shadow-sm">
+                    <h4 class="font-bold text-blue-800 mb-3 text-lg"><i class="fas fa-lightbulb ml-2"></i> למה חברות בוחרות במודל זה? (העמקה)</h4>
+                    <ul class="list-disc list-inside text-slate-700 text-sm space-y-3">
+                        <li><strong>סביבה אינפלציונית או עליית מחירי נדל"ן:</strong> חברות המחזיקות מקרקעין ומבנים שנקנו לפני עשרות שנים (למשל, קרקע במרכז תל אביב) יציגו לפי מודל העלות הון עצמי נמוך משמעותית מערכו האמיתי. מודל ההערכה מחדש מאפשר "לחשוף" למשקיעים את הערך הכלכלי העדכני.</li>
+                        <li><strong>שיפור יחסים פיננסיים:</strong> הגדלת סך הנכסים וההון העצמי משפרת יחסים קריטיים כמו "מנוף פיננסי" (יחס חוב להון), מה שיכול להוזיל משמעותית את עלויות האשראי של החברה מול הבנקים.</li>
+                        <li><strong>קשר לתקן IFRS 13:</strong> חשוב לציין ש-IAS 16 קובע <em>מתי</em> ו<em>איך</em> לרשום את ההערכה מחדש (הטיפול החשבונאי), אך האופן שבו מחושב השווי ההוגן עצמו - הטכניקה השמאית - מוגדרת בתקן IFRS 13 (לרוב באמצעות "גישת השוק" - השוואה לעסקאות דומות, או "גישת ההכנסות" - היוון תזרימי מזומנים עתידיים מהנכס).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 31 & 34 -->
+            <section id="section-31" class="bg-white rounded-xl shadow-md p-8 border border-slate-100">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">סעיפים 31 ו-34: דרישת השווי ההוגן ותדירות ההערכה</h2>
+                
+                <div class="quote-box p-5 rounded-l-lg mb-6 shadow-sm">
+                    <h4 class="text-blue-800 font-bold mb-2"><i class="fas fa-quote-right ml-2"></i>לשון התקן (תמצית סעיפים 31, 34):</h4>
+                    <p class="text-slate-700 italic">
+                        "לאחר הכרה כנכס, פריט רכוש קבוע ששוויו ההוגן ניתן למדידה מהימנה, יוצג בסכום הערכתו מחדש... הערכות מחדש ייעשו בתדירות מספקת כדי להבטיח שהערך בספרים אינו שונה באופן מהותי מזה שהיה נקבע תוך שימוש בשווי ההוגן לתום תקופת הדיווח."
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">הסבר מפורט</h4>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            התקן לא דורש הערכה מחדש כל שנה בדיוק. התדירות תלויה בתנודתיות של הנכס. אם מדובר בנכס שערכו משתנה בחדות (כמו נדל"ן באזורי ביקוש שיא), תידרש הערכה שנתית. לעומת זאת, לנכסים שערכם יציב (כמו ציוד תעשייתי כבד מסוים), מספיקה הערכה אחת ל-3 עד 5 שנים. התנאי המקדמי הוא יכולת למדוד מהימנות - ללא שוק פעיל או טכניקת הערכה מבוססת, לא ניתן להשתמש במודל.
+                        </p>
+                        <div class="mt-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <h5 class="font-bold text-gray-800 mb-2 text-sm"><i class="fas fa-chart-line ml-1"></i> דוגמאות מהשטח לתדירות הערכה:</h5>
+                            <ul class="list-none text-sm text-gray-700 space-y-2">
+                                <li><i class="fas fa-bolt text-yellow-500 ml-2"></i> <strong>נכס תנודתי (הערכה שנתית):</strong> בניין משרדים באזור היי-טק בו מחירי השכירות משתנים דרסטית מדי שנה. אם החברה לא תעריך אותו מדי שנה, המאזן שלה יהפוך מהר מאוד ללא רלוונטי.</li>
+                                <li><i class="fas fa-anchor text-slate-500 ml-2"></i> <strong>נכס יציב (הערכה כל 3-5 שנים):</strong> מתקן התפלת מים או קו ייצור גדול במפעל כימיקלים בפריפריה, אשר מחירו נגזר מעלויות ברזל וטכנולוגיה שאינן קופצות בעשרות אחוזים בשנה אחת.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="rationale-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-purple-800 font-bold mb-1 flex items-center"><i class="fas fa-brain ml-2"></i>הרציונל החשבונאי</h4>
+                            <p class="text-sm text-slate-700">עלות מול תועלת (Cost-Benefit). ביצוע הערכות שווי עולה כסף (שמאים, מומחים). התקן חוסך לחברות הוצאות מיותרות כשהערך לא השתנה מהותית, אך מונע עיוות בספרים כשיש תנודתיות גבוהה.</p>
+                        </div>
+                        
+                        <div class="users-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-emerald-800 font-bold mb-1 flex items-center"><i class="fas fa-user-chart ml-2"></i>הערך לקוראי הדוחות</h4>
+                            <p class="text-sm text-slate-700">משקיעים רוצים לדעת את "השווי הכלכלי האמיתי" של החברה היום, ולא כמה היא שילמה על הנכס לפני 10 שנים. תדירות מספקת מבטיחה שהמאזן תמיד "טרי" ורלוונטי (Relevance) לקבלת החלטות השקעה.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 36 -->
+            <section id="section-36" class="bg-white rounded-xl shadow-md p-8 border border-slate-100">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">סעיף 36: החלה על קבוצת נכסים שלמה (איסור "קטיף דובדבנים")</h2>
+                
+                <div class="quote-box p-5 rounded-l-lg mb-6 shadow-sm">
+                    <h4 class="text-blue-800 font-bold mb-2"><i class="fas fa-quote-right ml-2"></i>לשון התקן:</h4>
+                    <p class="text-slate-700 italic">
+                        "אם פריט של רכוש קבוע מוערך מחדש, יש להעריך מחדש את קבוצת הרכוש הקבוע כולה, שאליה שייך אותו נכס." (קבוצה היא, לדוגמה: קרקע, מבנים, מכונות, כלי רכב).
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">הסבר מפורט</h4>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            ישות אינה יכולה לבחור להעריך מחדש בניין משרדים אחד בתל אביב (שערכו עלה) ולהשאיר בניין משרדים אחר בפריפריה (שערכו ירד) לפי מודל העלות. אם החברה בחרה מודל הערכה מחדש ל"מבנים", כל המבנים של החברה חייבים להיות מוערכים מחדש בו זמנית וכל הזמן.
+                        </p>
+                        <div class="mt-4 bg-red-50 p-5 rounded-lg border border-red-200">
+                            <h5 class="font-bold text-red-800 mb-2 text-sm"><i class="fas fa-exclamation-triangle ml-1"></i> דוגמה מספרית: למה אוסרים "קטיף דובדבנים"?</h5>
+                            <p class="text-sm text-red-900 leading-relaxed">
+                                נניח שלחברת מלונאות יש שני מבנים, כל אחד בעלות בספרים של <strong>100 מיליון ש"ח</strong> (סה"כ 200). 
+                                עקב שינויים בשוק התיירות, שווי מלון א' (באילת) זינק ל-<strong>150 מיליון</strong>, ושווי מלון ב' (בטבריה) צנח ל-<strong>60 מיליון</strong>.<br><br>
+                                <strong>אילו "קטיף דובדבנים" היה מותר:</strong> החברה הייתה מעריכה מחדש רק את מלון א', מגדילה את ההון ב-50, ומשאירה את מלון ב' על 100 (מודל העלות השמרני). כך היא הייתה מציגה נכסים בסך <strong>250</strong> - מצג שווא לחלוטין!<br>
+                                <strong>המציאות תחת התקן:</strong> התקן מחייב הערכת הקבוצה כולה: מלון א' יעלה ל-150, מלון ב' ירד ל-60. סך הנכסים שיוצג יהיה <strong>210</strong>, המשקף נכונה את השווי הכלכלי הטהור של קבוצת המלונות במלואה, מבלי לאפשר להנהלה להסתיר הפסדים.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="rationale-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-purple-800 font-bold mb-1 flex items-center"><i class="fas fa-brain ml-2"></i>הרציונל החשבונאי</h4>
+                            <p class="text-sm text-slate-700">מניעת מניפולציות. החשש היה שהנהלות יבצעו "Cherry Picking" (קטיף דובדבנים) - יעריכו רק נכסים רווחיים כדי לנפח את ההון העצמי, ויסתירו הפסדים כלכליים בנכסים אחרים מאותה קבוצה תחת מודל העלות.</p>
+                        </div>
+                        
+                        <div class="users-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-emerald-800 font-bold mb-1 flex items-center"><i class="fas fa-user-chart ml-2"></i>הערך לקוראי הדוחות</h4>
+                            <p class="text-sm text-slate-700">מבטיח עקביות והשוואתיות (Comparability). קורא הדוחות מקבל תמונה מלאה ומהימנה של שווי כל מערך המבנים או המכונות של החברה, מה שמאפשר לו להעריך נכונה את סיכוני הנדל"ן/ציוד הכוללים של הישות, ללא הטיות.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 35 -->
+            <section id="section-35" class="bg-white rounded-xl shadow-md p-8 border border-slate-100">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">סעיף 35: הטיפול בפחת נצבר במועד ההערכה</h2>
+                
+                <div class="quote-box p-5 rounded-l-lg mb-6 shadow-sm">
+                    <h4 class="text-blue-800 font-bold mb-2"><i class="fas fa-quote-right ml-2"></i>לשון התקן (תמצית):</h4>
+                    <p class="text-slate-700 italic">
+                        "כאשר פריט רכוש קבוע מוערך מחדש... הפחת הנצבר במועד ההערכה מחדש: (א) יוצג מחדש באופן יחסי לשינוי בערך בספרים ברוטו של הנכס; או (ב) יבוטל כנגד הערך בספרים ברוטו של הנכס והסכום נטו יוצג מחדש לסכום ההערכה מחדש של הנכס."
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">הסבר מפורט</h4>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            כאשר נכס ששוויו בספרים הוא 80 (עלות 100 פחות פחת נצבר 20) מוערך כעת ל-120. יש שתי דרכים לרשום זאת:
+                            <br><strong>שיטת הנטו (Elimination):</strong> מאפסים את הפחת הנצבר (מחייבים פחת נצבר 20, ומזכים את הנכס ב-20). הנכס כעת עומד על 80. אז, מגדילים את הנכס ב-40 ל-120 כנגד קרן הון. (הנפוץ ביותר).
+                            <br><strong>שיטת הברוטו (Proportionate):</strong> מגדילים את העלות והפחת באותו יחס, כך שהנטו יהיה 120 (למשל הכפלה פי 1.5 של גם העלות וגם הפחת).
+                        </p>
+                        <div class="mt-4 bg-slate-50 p-5 rounded-lg border border-slate-200">
+                            <h5 class="font-bold text-slate-800 mb-3 text-sm font-sans"><i class="fas fa-calculator ml-2"></i> המחשה חשבונאית (פקודות יומן):</h5>
+                            <div class="text-sm text-slate-700 font-mono text-right direction-rtl">
+                                <p class="mb-2 bg-slate-200 p-2 rounded"><strong>נתוני פתיחה:</strong> עלות היסטורית: 1,000 | פחת נצבר: 200 | נטו בספרים: 800.<br>השמאי קבע שווי הוגן חדש: 1,200.</p>
+                                
+                                <p class="font-bold text-blue-700 mt-4 mb-1">אופציה א': שיטת הנטו (המומלצת והנפוצה פרקטית)</p>
+                                <p class="pr-4 border-r-2 border-blue-300">
+                                    <em>שלב 1 (איפוס):</em> חובה פחת נצבר 200 / זכות נכס 200<br>
+                                    (הנכס כעת מאופס קילומטראז', עומד על 800 גם בעלות וגם בנטו)<br>
+                                    <em>שלב 2 (שערוך):</em> חובה נכס 400 / זכות קרן הערכה מחדש (OCI) 400<br>
+                                    (הנכס עלה מ-800 ל-1,200)
+                                </p>
+
+                                <p class="font-bold text-purple-700 mt-4 mb-1">אופציה ב': שיטת הברוטו (פרופורציונלית)</p>
+                                <p class="pr-4 border-r-2 border-purple-300">
+                                    <em>חישוב היחס:</em> השווי החדש (1,200) חלקי השווי הישן (800) = <strong>1.5</strong><br>
+                                    עלות חדשה: 1,000 * 1.5 = 1,500. <br>
+                                    פחת נצבר חדש: 200 * 1.5 = 300. <br>
+                                    (הנטו החדש הוא 1,200, בדיוק הערכת השמאי).<br>
+                                    <em>הפקודה:</em> חובה נכס 500 / זכות פחת נצבר 100 / זכות קרן הערכה מחדש 400.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="rationale-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-purple-800 font-bold mb-1 flex items-center"><i class="fas fa-brain ml-2"></i>הרציונל החשבונאי</h4>
+                            <p class="text-sm text-slate-700">התאמה מתמטית הכרחית. ברגע שיש שווי הוגן חדש, סכום "הברוטו" ההיסטורי והפחת ההיסטורי כבר לא רלוונטיים. שיטת הנטו בעצם מתייחסת לנכס כאילו נרכש מחדש באותו רגע בשוויו ההוגן (מתאפס ה"קילומטראז'" החשבונאי).</p>
+                        </div>
+                        
+                        <div class="users-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-emerald-800 font-bold mb-1 flex items-center"><i class="fas fa-user-chart ml-2"></i>הערך לקוראי הדוחות</h4>
+                            <p class="text-sm text-slate-700">מונע בלבול. קורא הדוח רואה בבאורים את הערך בספרים כנגזרת ישירה של הערכת השמאי העדכנית (בגישת הנטו), ויודע שהפחת מחושב מעתה והלאה על בסיס השווי הכלכלי האמיתי של הנכס הקיים.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sections 39 & 40 -->
+            <section id="section-39-40" class="bg-white rounded-xl shadow-md p-8 border border-slate-100">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">סעיפים 39-40: אסימטריה ברישום עליות וירידות ערך</h2>
+                
+                <div class="quote-box p-5 rounded-l-lg mb-6 shadow-sm">
+                    <h4 class="text-blue-800 font-bold mb-2"><i class="fas fa-quote-right ml-2"></i>לשון התקן:</h4>
+                    <p class="text-slate-700 italic">
+                        <strong>סעיף 39 (עלייה):</strong> "אם הערך בספרים גדל... הגידול יוכר ברווח כולל אחר (OCI) וייצבר בהון תחת הסעיף 'עודף הערכה מחדש'. עם זאת, הגידול יוכר ברווח או הפסד למידה שהוא מבטל ירידה בערכו של אותו נכס שהוכרה בעבר ברווח או הפסד."<br><br>
+                        <strong>סעיף 40 (ירידה):</strong> "אם הערך בספרים קטן... הקיטון יוכר ברווח או הפסד (P&L). עם זאת, הקיטון יוכר ברווח כולל אחר למידה שקיימת יתרת זכות בעודף ההערכה מחדש בגין אותו נכס."
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">הסבר מפורט</h4>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            יש כאן כלל אסימטרי ברור: <br>
+                            📈 <strong>עליית ערך:</strong> לא נכנסת לדוח רווח והפסד, אלא עוקפת אותו ישר להון העצמי (לקרן מיוחדת). <br>
+                            📉 <strong>ירידת ערך:</strong> פוגעת מיד בדוח רווח והפסד ומקטינה את הרווח הנקי.<br>
+                            היוצא מן הכלל הוא "היפוך" - אם בעבר רשמתי הפסד ברווח והפסד ועכשיו הנכס עולה, מותר לי לרשום רווח ברווח והפסד (אך ורק עד גובה ההפסד שרשמתי בעבר). ולהיפך בירידה מול קרן קיימת.
+                        </p>
+                        <div class="mt-4 bg-orange-50 p-5 rounded-lg border border-orange-200">
+                            <h5 class="font-bold text-orange-800 mb-3 text-sm"><i class="fas fa-history ml-2"></i> דוגמה לתרחיש רב-שנתי מורכב (כיצד מבצעים היפוכים):</h5>
+                            <div class="text-sm text-orange-900 space-y-3 relative">
+                                <div class="border-r-4 border-green-500 pr-3">
+                                    <p><strong>שנה 1 (גאות בשוק):</strong> נכס נרכש ב-100 והשמאי העריך אותו ב-150.<br>
+                                    <span class="text-slate-600 bg-white px-2 py-1 rounded inline-block mt-1 border border-slate-200"><strong>הרישום:</strong> עלייה של 50 נרשמת כולה ל"רווח כולל אחר" (OCI) ונצברת בקרן הון. דוח רווח והפסד נקי מהשפעה. יתרת הקרן כעת: 50.</span></p>
+                                </div>
+                                
+                                <div class="border-r-4 border-red-500 pr-3">
+                                    <p><strong>שנה 2 (משבר קשה):</strong> הנכס צנח לשווי של 70 בלבד (כלומר, ספג ירידה כוללת של 80 לעומת השנה הקודמת).<br>
+                                    <span class="text-slate-600 bg-white px-2 py-1 rounded inline-block mt-1 border border-slate-200"><strong>הרישום:</strong> קודם כל מנצלים את כרית הביטחון שיצרנו - ה-50 הראשונים של הירידה יקטינו את הקרן עד לאיפוסה (פקודה כנגד OCI). ה-30 הנותרים נרשמים באופן מיידי כ<strong>הוצאה בדוח רווח והפסד</strong> (P&L).</span></p>
+                                </div>
+                                
+                                <div class="border-r-4 border-blue-500 pr-3">
+                                    <p><strong>שנה 3 (התאוששות):</strong> הנכס התאושש ועלה בחזרה לשווי 120 (עלייה של 50).<br>
+                                    <span class="text-slate-600 bg-white px-2 py-1 rounded inline-block mt-1 border border-slate-200"><strong>הרישום:</strong> בגלל שבעבר "הענשנו" את דוח רווח והפסד ב-30, התקן מרשה לנו עכשיו קודם כל "לפצות" אותו. ה-30 הראשונים מהעלייה יירשמו כ<strong>הכנסה בדוח רווח והפסד</strong> (ביטול הפסד העבר). ה-20 הנותרים יופנו בחזרה להקמת קרן הון (OCI) חדשה.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="rationale-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-purple-800 font-bold mb-1 flex items-center"><i class="fas fa-brain ml-2"></i>הרציונל החשבונאי</h4>
+                            <p class="text-sm text-slate-700"><strong>עקרון השמרנות החשבונאית (Conservatism/Prudence).</strong> רווח מנכס שטרם נמכר הוא רווח "על הנייר" (לא ממומש). התקן אוסר לנפח איתו את הרווח הנקי מתוך חשש שהוא יחולק כדיבידנד וירוקן את החברה מקופתה. הפסד, לעומת זאת, הוא מוחשי ומסוכן, ויש להזהיר את המשקיעים מיד דרך שורת הרווח.</p>
+                        </div>
+                        
+                        <div class="users-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-emerald-800 font-bold mb-1 flex items-center"><i class="fas fa-user-chart ml-2"></i>הערך לקוראי הדוחות</h4>
+                            <p class="text-sm text-slate-700">הגנה על נושים ומשקיעים. הכלל מונע חלוקת "דיבידנדים פיקטיביים" מרווחי נייר. משקיע שקורא את הדוח יודע שהרווח הנקי כולל רק רווחים תפעוליים שניתנים לחלוקה, בעוד שקרן ההערכה מחדש מציגה לו את פוטנציאל ההון החבוי בנכסים ללא סכנת משיכה על ידי בעלי המניות.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 41 -->
+            <section id="section-41" class="bg-white rounded-xl shadow-md p-8 border border-slate-100">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">סעיף 41: מימוש עודף ההערכה מחדש (העברה לעודפים)</h2>
+                
+                <div class="quote-box p-5 rounded-l-lg mb-6 shadow-sm">
+                    <h4 class="text-blue-800 font-bold mb-2"><i class="fas fa-quote-right ml-2"></i>לשון התקן:</h4>
+                    <p class="text-slate-700 italic">
+                        "עודף ההערכה מחדש הכלול בהון עשוי להיות מועבר במישרין לעודפים כאשר העודף ממומש. העודף כולו עשוי להיות ממומש עם פרישת הנכס... עם זאת, חלק מן העודף עשוי להיות ממומש ככל שהנכס נמצא בשימוש... הסכום שמועבר הוא ההפרש בין הפחת המבוסס על הערך בספרים... לבין הפחת המבוסס על העלות המקורית."
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-2">הסבר מפורט</h4>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            כאשר נכס מוערך כלפי מעלה, הוצאות הפחת שלו גדלות (כי הן מחושבות על סכום גבוה יותר). הוצאת הפחת המוגדלת מקטינה את הרווח הנקי השוטף ובהתאם מקטינה את העודפים (Retained Earnings). התקן מאפשר "לפצות" את העודפים על ידי העברה חודשית/שנתית מתוך 'קרן הערכה מחדש' ישירות אל ה'עודפים', בגובה תוספת הפחת שנוצרה בגלל ההערכה. (העברה זו נעשית בהון, בלי לעבור ברווח והפסד). בנוסף, כשמוכרים את הנכס, כל מה שנשאר בקרן עובר סופית לעודפים.
+                        </p>
+                        <div class="mt-4 bg-teal-50 p-5 rounded-lg border border-teal-200">
+                            <h5 class="font-bold text-teal-800 mb-3 text-sm"><i class="fas fa-coins ml-2"></i> המחשת מנגנון "פיצוי העודפים" (העברת הפחת העודף):</h5>
+                            <div class="text-sm text-teal-900 space-y-2 bg-white p-4 rounded border border-teal-100">
+                                <p><strong>1. מצב בסיס:</strong> מכונה נרכשה ב-100 ל-10 שנים. הוצאת הפחת הרגילה היא <strong>10 בשנה</strong>.</p>
+                                <p><strong>2. ההערכה:</strong> בתום השנה הראשונה הנכס הופחת ל-90, ואז השמאי העריך אותו ב-180. נוצרה לנו 'קרן הערכה מחדש' בהון בגובה 90.</p>
+                                <p><strong>3. הפחת החדש:</strong> כעת הנכס שווה 180 ונשארו לו 9 שנות חיים. הפחת מהשנה השנייה והלאה יהיה 180 חלקי 9 = <strong>20 בשנה</strong>.</p>
+                                <p><strong>הבעיה והפתרון:</strong> ההנהלה מתלוננת שדוח רווח והפסד נחנק כעת מעוד 10 ש"ח של הוצאות פחת בכל שנה (20 לעומת 10 במקור). לכן, התקן מתיר לבצע בכל סוף שנה את הפקודה הבאה <u>בתוך ההון העצמי בלבד</u>:</p>
+                                <div class="font-mono bg-teal-100 px-3 py-2 rounded text-center my-2 text-teal-800 font-bold">
+                                    חובה: קרן הערכה מחדש 10  <span class="mx-2">|</span>  זכות: יתרת עודפים (Retained Earnings) 10
+                                </div>
+                                <p>בדרך זו הקרן נשחקת לאט לאט על פני חיי המכונה, והעודפים מתמלאים בחזרה באותו סכום שנגרע מהם בגין תוספת הפחת, כך שהיכולת לחלק דיבידנד בפועל לא נפגעת!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="rationale-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-purple-800 font-bold mb-1 flex items-center"><i class="fas fa-brain ml-2"></i>הרציונל החשבונאי</h4>
+                            <p class="text-sm text-slate-700"><strong>עקרון ההקבלה והמימוש.</strong> ככל שהחברה משתמשת בנכס כדי לייצר הכנסות לאורך השנים, רווח הנייר שנוצר בעת ההערכה מחדש "ממומש" בפועל. לכן, הגיוני שהון שהיה נעול בקרן, ישתחרר בהדרגה לטובת העודפים (משם ניתן לחלק דיבידנד).</p>
+                        </div>
+                        
+                        <div class="users-box p-4 rounded-l-lg shadow-sm">
+                            <h4 class="text-emerald-800 font-bold mb-1 flex items-center"><i class="fas fa-user-chart ml-2"></i>הערך לקוראי הדוחות</h4>
+                            <p class="text-sm text-slate-700">מציג תמונה אמיתית של היכולת לחלק דיבידנד (Distributable reserves). זה מתקן את ה"עיוות" שבו חברה מרוויחה יותר בגלל נכסים טובים, אבל הרווח הנקי שלה קטן בגלל פחת מוגדל. זה מאפשר למשקיעים לראות כיצד השווי ההוגן הופך לערך ריאלי למשקיעים על פני חיי הנכס.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section id="summary" class="bg-slate-800 rounded-xl shadow-lg p-8 text-white">
+                <h2 class="text-3xl font-bold mb-6 flex items-center text-blue-300">
+                    <i class="fas fa-check-circle ml-3"></i> סיכום: המבט המקיף על IAS 16
+                </h2>
+                <p class="text-slate-300 leading-relaxed mb-6">
+                    מודל ההערכה מחדש ב-IAS 16 מהווה פשרה מבריקה בעולם החשבונאות בין <strong>רלוונטיות</strong> (הצגת השווי הכלכלי העדכני במאזן) לבין <strong>מהימנות ושמרנות</strong> (חסימת מימוש רווחי הנייר דרך חלוקת דיבידנד פזיזה). 
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mt-8">
+                    <div class="bg-slate-700 p-6 rounded-lg border-t-4 border-blue-400">
+                        <i class="fas fa-search-dollar text-4xl text-blue-400 mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">למשקיעים</h4>
+                        <p class="text-sm text-slate-400">מאפשר הערכת שווי (Valuation) מדויקת יותר של נכסי החברה ותשואה אמיתית על ההון (ROE).</p>
+                    </div>
+                    <div class="bg-slate-700 p-6 rounded-lg border-t-4 border-purple-400">
+                        <i class="fas fa-shield-alt text-4xl text-purple-400 mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">לנושים ולבנקים</h4>
+                        <p class="text-sm text-slate-400">מספק ביטחון שההון העצמי הניתן לחלוקה אינו מנופח מתנודות שוק זמניות שלא מומשו למזומן.</p>
+                    </div>
+                    <div class="bg-slate-700 p-6 rounded-lg border-t-4 border-emerald-400">
+                        <i class="fas fa-balance-scale text-4xl text-emerald-400 mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">להנהלה</h4>
+                        <p class="text-sm text-slate-400">מאפשר להציג למשק את העוצמה הפיננסית של החברה והגידול בשווי נכסיה בסביבה אינפלציונית.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="bg-slate-900 text-center py-6 mt-12 text-slate-400 border-t border-slate-800">
+        <p>נוצר לצורך למידה והעשרה - תקני דיווח כספי בינלאומיים (IFRS / IAS) • כל הזכויות שמורות לידע הציבורי</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
