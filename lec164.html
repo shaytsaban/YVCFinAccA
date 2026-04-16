@@ -146,20 +146,20 @@
     }
 
     /* ═══════════ SUMMARY TABLE ═══════════ */
-    function SummaryTable({columns,rows, show}){
+    function SummaryTable({columns,rows, show=true, title="📊 טבלת ביניים — ערכים מצטברים"}){
       if(!show) return null;
       return(
-        <div style={{overflowX:"auto",marginTop:20,marginBottom:16, animation:"fadeIn 0.8s ease"}}>
-          <div style={{fontSize:14,fontWeight:700,color:C.blue,marginBottom:8}}>📊 טבלת סיכום — יתרות מאזניות ותוצאתיות</div>
-          <table style={{width:"100%",borderCollapse:"collapse",fontSize:12,minWidth:700}}>
+        <div style={{overflowX:"auto",marginTop:20,marginBottom:10, animation:"fadeIn 0.5s ease", background:"#f8fafc", padding:14, borderRadius:10, border:`1px solid ${C.bdr}`}}>
+          <div style={{fontSize:13,fontWeight:700,color:C.blue,marginBottom:8}}>{title}</div>
+          <table style={{width:"100%",borderCollapse:"collapse",fontSize:12,minWidth:Math.max(400, columns.length * 70)}}>
             <thead><tr style={{background:C.blue}}>
-              <th style={{padding:"8px 10px",color:"#fff",textAlign:"right",fontWeight:600,position:"sticky",right:0,background:C.blue,zIndex:1}}>סעיף</th>
-              {columns.map((col,i)=><th key={i} style={{padding:"8px 6px",color:"#fff",textAlign:"center",fontWeight:500,fontSize:11,whiteSpace:"nowrap"}}>{col}</th>)}
+              <th style={{padding:"6px 8px",color:"#fff",textAlign:"right",fontWeight:600,position:"sticky",right:0,background:C.blue,zIndex:1}}>סעיף</th>
+              {columns.map((col,i)=><th key={i} style={{padding:"6px 6px",color:"#fff",textAlign:"center",fontWeight:500,fontSize:11,whiteSpace:"pre-wrap"}}>{col}</th>)}
             </tr></thead>
             <tbody>{rows.map((row,ri)=>(
               <tr key={ri} style={{borderBottom:`1px solid ${C.bdr}`,background:row.bold?"#f0f4ff":"#fff"}}>
-                <td style={{padding:"6px 10px",fontWeight:row.bold?700:400,color:row.bold?C.blue:C.txt,position:"sticky",right:0,background:row.bold?"#f0f4ff":"#fff",zIndex:1,whiteSpace:"nowrap"}}>{row.label}</td>
-                {row.values.map((v,vi)=><td key={vi} style={{padding:"6px 6px",textAlign:"center",fontFamily:"'Rubik',sans-serif",fontSize:12,color:v<0?C.red:C.txt}}>{v!=null?fm(v):""}</td>)}
+                <td style={{padding:"6px 8px",fontWeight:row.bold?700:400,color:row.bold?C.blue:C.txt,position:"sticky",right:0,background:row.bold?"#f0f4ff":"#fff",zIndex:1,whiteSpace:"nowrap"}}>{row.label}</td>
+                {row.values.map((v,vi)=><td key={vi} style={{padding:"6px 6px",textAlign:"center",fontFamily:"'Rubik',sans-serif",fontSize:12,color:v<0?C.red:C.txt, direction:"ltr"}}>{v!=null?fm(v):""}</td>)}
               </tr>
             ))}</tbody>
           </table>
@@ -176,6 +176,18 @@
       const mark=(k)=>setSolved(p=>({...p,[k]:true}));
       const ok=k=>solved[k];
       const allOk=(...keys)=>keys.every(k=>solved[k]);
+
+      // Data for Summary Tables
+      const cols = ["1.1.16","31.12.16\nטרם","31.12.16\nאחרי","31.12.17\nטרם","31.12.17\nאחרי","31.12.18\nטרם","31.12.18\nאחרי","31.12.19\nטרם","31.12.19\nאחרי","31.12.20\nטרם","31.12.20\nאחרי","30.6.21\nמכירה"];
+      const rows = [
+        {label:"מכונה (ברוטו)",values:[805624,805624,1050000,1050000,758560,758560,738598,738598,780000,780000,1000000,1000000],bold:false},
+        {label:"פחת נצבר",values:[0,-20141,0,-26923,0,-19962,0,-19962,0,-21667,0,-14286]},
+        {label:"הפרשה לי״ע",values:[0,0,0,0,-158560,-154387,-318598,-309987,0,0,0,0]},
+        {label:"ערך ספרים",values:[805624,785483,1050000,1023077,600000,584211,420000,408649,780000,758333,1000000,985714],bold:true},
+        {label:"הוצאות פחת",values:[null,20141,null,26923,null,15789,null,11351,null,21667,null,14286]},
+        {label:"יתרת קרן",values:[0,0,264517,264517,0,0,0,0,61364,61364,303031,0],bold:true},
+      ];
+      const Tbl = ({lim, title}) => <SummaryTable columns={cols.slice(0,lim)} rows={rows.map(r=>({...r,values:r.values.slice(0,lim)}))} title={title||"📊 טבלת ביניים — ערכים מצטברים"} />;
 
       return(<div>
         <div style={{background:C.ambL,borderRadius:14,padding:20,marginBottom:24,borderRight:`5px solid ${C.amb}`}}>
@@ -201,6 +213,7 @@
           <Reveal show={allOk("1a","1b")}>
             <Info type="ok">עלות כוללת: <b>805,624</b>. מתוכה — 725,624 כהתחייבות (PV), ו-80,000 במזומן.</Info>
             <JE date="1.1.2016" title="פקודת רכישה" entries={[{a:"מכונה לחימום נקניק",d:805624},{a:"מזומן (תיווך + משפטיות)",c:80000},{a:"התחייבות (זכאים) — לפי PV",c:725624}]}/>
+            <Tbl lim={1} />
           </Reveal>
         </Step>
 
@@ -216,6 +229,7 @@
           <F label="יתרת התחייבות תום 2016:" expected={761904.76} onSolve={()=>mark("3b")} explanation="יתרת פתיחה (725,624) + הוצאות מימון (36,281) = 761,905. ההוצאות לא משולמות — הן מגדילות את ההתחייבות." />
           <Reveal show={allOk("3a","3b")}>
             <JE date="31.12.2016" title="הוצאות מימון" entries={[{a:"הוצאות מימון",d:36281},{a:"התחייבות (זכאים)",c:36281}]}/>
+            <Tbl lim={2} />
           </Reveal>
         </Step>
 
@@ -226,6 +240,7 @@
             <Info type="std"><b>IAS 16.39:</b> עליית ערך תוכר ברווח כולל אחר ותצטבר בהון — אלא אם מבטלת ירידה קודמת.</Info>
             <JE date="31.12.2016" title="איפוס פחת נצבר" entries={[{a:"פחת נצבר",d:20141},{a:"מכונה",c:20141}]}/>
             <JE title="שערוך — עליית ערך" entries={[{a:"מכונה",d:264517},{a:"קרן הערכה מחדש (OCI)",c:264517}]}/>
+            <Tbl lim={3} />
           </Reveal>
         </Step>
 
@@ -245,6 +260,7 @@
             <JE date="31.12.2017" title="איפוס פח״נ" entries={[{a:"פחת נצבר",d:26923},{a:"מכונה",c:26923}]}/>
             <JE title="שלב 1: כנגד קרן הערכה" entries={[{a:"קרן הערכה מחדש (OCI)",d:264517},{a:"מכונה",c:264517}]}/>
             <JE title="שלב 2: הפסד ברוו״ה" entries={[{a:"הפסד מירידת ערך",d:158560},{a:"הפרשה לירידת ערך",c:158560}]}/>
+            <Tbl lim={5} />
           </Reveal>
         </Step>
 
@@ -260,6 +276,7 @@
           <Reveal show={allOk("6c","6d")}>
             <JE date="31.12.2018" title="איפוס פח״נ" entries={[{a:"פחת נצבר",d:19962},{a:"מכונה",c:19962}]}/>
             <JE title="ירידת ערך נוספת" entries={[{a:"הפסד מירידת ערך",d:164211},{a:"הפרשה לירידת ערך",c:164211}]}/>
+            <Tbl lim={7} />
           </Reveal>
         </Step>
 
@@ -273,6 +290,7 @@
           <Reveal show={allOk("7d","7e","7f")}>
             <JE date="31.12.2019" title="ביטול הפרשה → רווח" entries={[{a:"הפרשה לירידת ערך",d:309987},{a:"רווח מעליית ערך (רוו״ה)",c:309987}]}/>
             <JE title="יתרה → קרן" entries={[{a:"מכונה",d:61364},{a:"קרן הערכה מחדש (OCI)",c:61364}]}/>
+            <Tbl lim={9} />
           </Reveal>
         </Step>
 
@@ -282,6 +300,7 @@
           <F label="עליית ערך → קרן:" expected={241666.67} onSolve={()=>mark("8c")} explanation="1,000,000 − 758,333 = 241,667." />
           <Reveal show={allOk("8a","8b","8c")}>
             <JE title="שערוך כלפי מעלה" entries={[{a:"מכונה",d:241667},{a:"קרן הערכה מחדש (OCI)",c:241667}]}/>
+            <Tbl lim={11} />
           </Reveal>
         </Step>
 
@@ -300,19 +319,7 @@
           </Reveal>
         </Step>
 
-        <SummaryTable
-          show={ok("9f")}
-          columns={["1.1.16","31.12.16\nטרם","31.12.16\nאחרי","31.12.17\nטרם","31.12.17\nאחרי","31.12.18\nטרם","31.12.18\nאחרי","31.12.19\nטרם","31.12.19\nאחרי","31.12.20\nטרם","31.12.20\nאחרי","30.6.21\nערב מכירה"]}
-          rows={[
-            {label:"מכונה (ברוטו)",values:[805624,805624,1050000,1050000,758560,758560,738598,738598,780000,780000,1000000,1000000],bold:false},
-            {label:"פחת נצבר",values:[0,-20141,0,-26923,0,-19962,0,-19962,0,-21667,0,-14286]},
-            {label:"הפרשה לי״ע",values:[0,0,0,0,-158560,-154387,-318598,-309987,0,0,0,0]},
-            {label:"ערך ספרים",values:[805624,785483,1050000,1023077,600000,584211,420000,408649,780000,758333,1000000,985714],bold:true},
-            {label:" ",values:[]},
-            {label:"הוצאות פחת",values:[null,20141,null,26923,null,15789,null,11351,null,21667,null,14286]},
-            {label:"יתרת קרן",values:[0,0,264517,264517,0,0,0,0,61364,61364,303031,0],bold:true},
-          ]}
-        />
+        <Tbl lim={12} title="📊 טבלת סיכום סופית" show={ok("9f")} />
       </div>);
     }
 
@@ -325,6 +332,17 @@
       const mark=k=>setSolved(p=>({...p,[k]:true}));
       const ok=k=>solved[k];
       const allOk=(...keys)=>keys.every(k=>solved[k]);
+
+      const cols = ["1.1.15","31.12.15\nאחרי","31.12.16\nאחרי","31.12.17\nאחרי","31.12.18\nאחרי","31.12.19\nאחרי","31.12.20\nאחרי","1.4.21\nמכירה"];
+      const rows = [
+        {label:"ברוטו",values:[120000,160000,175000,115000,70000,50000,120000,0]},
+        {label:"פח״נ",values:[0,0,0,0,0,0,0,0]},
+        {label:"הפרשה",values:[0,0,0,0,-25697,-41140,0,0]},
+        {label:"ערך ספרים",values:[120000,160000,175000,115000,70000,50000,120000,0],bold:true},
+        {label:"הוצאות פחת",values:[null,4800,6667,7609,5227,3333,2500,1579]},
+        {label:"יתרת קרן",values:[0,44800,66467,14075,0,0,33417,0],bold:true},
+      ];
+      const Tbl = ({lim, title, show=true}) => <SummaryTable columns={cols.slice(0,lim)} rows={rows.map(r=>({...r,values:r.values.slice(0,lim)}))} title={title||"📊 טבלת ביניים — ערכים מצטברים"} show={show} />;
 
       return(<div>
         <div style={{background:C.blueL,borderRadius:14,padding:20,marginBottom:24,borderRight:`5px solid ${C.blueM}`}}>
@@ -345,6 +363,7 @@
           <Reveal show={allOk("1a","1b","1c")}>
             <JE date="31.12.2015" entries={[{a:"הוצאות פחת",d:4800},{a:"פחת נצבר",c:4800}]}/>
             <JE title="שערוך" entries={[{a:"מכונה",d:44800},{a:"קרן הערכה מחדש",c:44800}]}/>
+            <Tbl lim={2} />
           </Reveal>
         </Step>
 
@@ -355,6 +374,7 @@
           <Reveal show={allOk("2a","2b","2c")}>
             <JE date="31.12.2016" entries={[{a:"הוצאות פחת",d:6667},{a:"פחת נצבר",c:6667}]}/>
             <JE title="שערוך" entries={[{a:"מכונה",d:21667},{a:"קרן הערכה מחדש",c:21667}]}/>
+            <Tbl lim={3} />
           </Reveal>
         </Step>
 
@@ -365,6 +385,7 @@
           <Reveal show={allOk("3a","3b","3c")}>
             <JE date="31.12.2017" entries={[{a:"הוצאות פחת",d:7609},{a:"פחת נצבר",c:7609}]}/>
             <JE title="ירידת ערך — כנגד קרן בלבד" entries={[{a:"קרן הערכה מחדש",d:52391},{a:"מכונה",c:52391}]}/>
+            <Tbl lim={4} />
           </Reveal>
         </Step>
 
@@ -377,6 +398,7 @@
           <Reveal show={allOk("4a","4b","4c","4d","4e")}>
             <JE date="31.12.2018" entries={[{a:"הוצאות פחת",d:5227},{a:"פחת נצבר",c:5227}]}/>
             <JE title="שלב 2" entries={[{a:"הפסד מירידת ערך",d:25697},{a:"הפרשה לירידת ערך",c:25697}]}/>
+            <Tbl lim={5} />
           </Reveal>
         </Step>
 
@@ -387,8 +409,8 @@
           <F label="ירידת ערך → הפסד + הפרשה:" expected={16666.67} onSolve={()=>mark("5d")} explanation="66,667 − 50,000 = 16,667. אין קרן → כולה הפסד."/>
           <Reveal show={allOk("5a","5b","5c","5d")}>
             <JE date="31.12.2019" entries={[{a:"הוצאות פחת",d:3333},{a:"פחת נצבר",c:3333}]}/>
-            <JE title="הפחתת הפרשה" entries={[{a:"הפרשה לי״ע",d:1224},{a:"פחת נצבר",c:1224}]}/>
             <JE title="ירידת ערך" entries={[{a:"הפסד מירידת ערך",d:16667},{a:"הפרשה לי״ע",c:16667}]}/>
+            <Tbl lim={6} />
           </Reveal>
         </Step>
 
@@ -402,6 +424,7 @@
           <Reveal show={allOk("6d","6e","6f")}>
             <JE date="31.12.2020" entries={[{a:"הפרשה לי״ע",d:39083},{a:"רווח מעליית ערך",c:39083}]}/>
             <JE title="שלב 2" entries={[{a:"מכונה",d:33417},{a:"קרן הערכה מחדש",c:33417}]}/>
+            <Tbl lim={7} />
           </Reveal>
         </Step>
 
@@ -417,19 +440,7 @@
           </Reveal>
         </Step>
 
-        <SummaryTable
-          show={ok("7c")}
-          columns={["1.1.15","31.12.15\nאחרי","31.12.16\nאחרי","31.12.17\nאחרי","31.12.18\nאחרי","31.12.19\nאחרי","31.12.20\nאחרי","1.4.21\nמכירה"]}
-          rows={[
-            {label:"ברוטו",values:[120000,160000,175000,115000,70000,50000,120000,0]},
-            {label:"פח״נ",values:[0,0,0,0,0,0,0,0]},
-            {label:"הפרשה",values:[0,0,0,0,-25697,-41140,0,0]},
-            {label:"ערך ספרים",values:[120000,160000,175000,115000,70000,50000,120000,0],bold:true},
-            {label:" ",values:[]},
-            {label:"הוצאות פחת",values:[null,4800,6667,7609,5227,3333,2500,1579]},
-            {label:"יתרת קרן",values:[0,44800,66467,14075,0,0,33417,0],bold:true},
-          ]}
-        />
+        <Tbl lim={8} title="📊 טבלת סיכום סופית" show={ok("7c")} />
       </div>);
     }
 
@@ -442,6 +453,16 @@
       const mark=k=>setSolved(p=>({...p,[k]:true}));
       const ok=k=>solved[k];
       const allOk=(...keys)=>keys.every(k=>solved[k]);
+
+      const cols = ["1.1.15","31.12.16\nאחרי","31.12.18\nאחרי","31.12.20\nאחרי","1.1.21\nמכירה"];
+      const rows = [
+        {label:"ערך ספרים (נטו)",values:[50000,70000,30000,80000,0],bold:true},
+        {label:"הוצאות פחת (שנתיות)",values:[null,2500,3889,1875,0]},
+        {label:"הפסד/רווח מי״ע (ברוו״ה)",values:[null,null,10000,-8750,null]},
+        {label:"הפסד הון",values:[null,null,null,null,47000]},
+        {label:"יתרת קרן (מצטברת)",values:[0,25000,0,45000,0],bold:true},
+      ];
+      const Tbl = ({lim, title, show=true}) => <SummaryTable columns={cols.slice(0,lim)} rows={rows.map(r=>({...r,values:r.values.slice(0,lim)}))} title={title||"📊 טבלת ביניים — ערכים מצטברים"} show={show} />;
 
       return(<div>
         <div style={{background:C.purL,borderRadius:14,padding:20,marginBottom:24,borderRight:`5px solid ${C.pur}`}}>
@@ -469,7 +490,7 @@
               {a:"פחת נצבר (איפוס שנתיים)",d:5000},{a:"מכונה",c:5000}
             ]}/>
             <JE entries={[{a:"מכונה",d:25000},{a:"קרן הערכה מחדש",c:25000}]}/>
-            <Info type="ok">ערך ספרים חדש: <b>70,000</b> | יתרת קרן: <b>25,000</b> | יתרת חיים: 18 שנים.</Info>
+            <Tbl lim={2} />
           </Reveal>
         </Step>
 
@@ -496,7 +517,7 @@
             <JE entries={[
               {a:"הפסד מירידת ערך (רוו״ה)",d:10000},{a:"הפרשה לירידת ערך",c:10000}
             ]}/>
-            <Info type="ok">ערך ספרים חדש: <b>30,000</b> | קרן: <b>0</b> | הפרשה: <b>10,000</b> | יתרת חיים: 16 שנים.</Info>
+            <Tbl lim={3} />
           </Reveal>
         </Step>
 
@@ -523,7 +544,7 @@
             <JE entries={[
               {a:"מכונה",d:45000},{a:"קרן הערכה מחדש",c:45000}
             ]}/>
-            <Info type="ok">ערך ספרים חדש: <b>80,000</b> | הפרשה: <b>0</b> | קרן מחדש: <b>45,000</b> | יתרת חיים: 14 שנים.</Info>
+            <Tbl lim={4} />
           </Reveal>
         </Step>
 
@@ -541,17 +562,7 @@
           </Reveal>
         </Step>
 
-        <SummaryTable
-          show={ok("4c")}
-          columns={["1.1.15","31.12.16\nאחרי","31.12.18\nאחרי","31.12.20\nאחרי","1.1.21\nמכירה"]}
-          rows={[
-            {label:"ערך ספרים (נטו)",values:[50000,70000,30000,80000,0],bold:true},
-            {label:"הוצאות פחת (שנתיות אחרונות)",values:[null,2500,3889,1875,0]},
-            {label:"הפסד/רווח מי״ע (ברוו״ה)",values:[null,null,10000,-8750,null]},
-            {label:"הפסד הון",values:[null,null,null,null,47000]},
-            {label:"יתרת קרן (מצטברת)",values:[0,25000,0,45000,0],bold:true},
-          ]}
-        />
+        <Tbl lim={5} title="📊 טבלת סיכום סופית" show={ok("4c")} />
       </div>);
     }
 
@@ -564,6 +575,16 @@
       const mark=k=>setSolved(p=>({...p,[k]:true}));
       const ok=k=>solved[k];
       const allOk=(...keys)=>keys.every(k=>solved[k]);
+
+      const cols = ["1.1.20","31.12.20\nאחרי","31.12.21\nאחרי","31.12.22\nאחרי","31.12.23\nאחרי","1.1.24\nמכירה"];
+      const rows = [
+        {label:"ערך ספרים (נטו)",values:[400000,400000,380000,260000,310000,0],bold:true},
+        {label:"הוצאות פחת",values:[null,40000,44444,47500,37143,0]},
+        {label:"הפסד/רווח מי״ע (ברוו״ה)",values:[null,null,null,20000,-17143,null]},
+        {label:"רווח הון",values:[null,null,null,null,null,8000]},
+        {label:"יתרת קרן (מצטברת)",values:[0,40000,60000,0,70000,0],bold:true},
+      ];
+      const Tbl = ({lim, title, show=true}) => <SummaryTable columns={cols.slice(0,lim)} rows={rows.map(r=>({...r,values:r.values.slice(0,lim)}))} title={title||"📊 טבלת ביניים — ערכים מצטברים"} show={show} />;
 
       return(<div>
         <div style={{background:C.grnL,borderRadius:14,padding:20,marginBottom:24,borderRight:`5px solid ${C.grn}`}}>
@@ -589,6 +610,7 @@
             <JE date="31.12.2020" entries={[
               {a:"מכונה",d:40000},{a:"קרן הערכה מחדש",c:40000}
             ]}/>
+            <Tbl lim={2} />
           </Reveal>
         </Step>
 
@@ -601,7 +623,7 @@
             <JE date="31.12.2021" title="הפחתת הקרן" entries={[
               {a:"קרן הערכה מחדש",d:4444},{a:"עודפים",c:4444}
             ]}/>
-            <Info type="ok">יתרת קרן חדשה: קודמת (40,000) − הופחת (4,444) + עלייה (24,444) = <b>60,000</b>. יתרת חיים: 8 שנים.</Info>
+            <Tbl lim={3} />
           </Reveal>
         </Step>
 
@@ -615,6 +637,7 @@
             <JE date="31.12.2022" title="ירידת הערך" entries={[
               {a:"קרן הערכה מחדש",d:52500},{a:"הפסד מירידת ערך",d:20000},{a:"מכונה (הפרשה ואפס פח״נ)",c:72500}
             ]}/>
+            <Tbl lim={4} />
           </Reveal>
         </Step>
 
@@ -625,7 +648,7 @@
           <F label="עליית ערך כוללת:" expected={87142.86} onSolve={()=>mark("4d")} explanation="שווי הוגן (310,000) − ערך ספרים (222,857) = 87,143."/>
           <F label="עליית ערך → קרן הערכה:" expected={70000} onSolve={()=>mark("4e")} explanation="עלייה כוללת (87,143) פחות ביטול הפרשה לרוו״ה (17,143) = 70,000."/>
           <Reveal show={allOk("4a","4b","4c","4d","4e")}>
-            <Info type="ok">יתרת קרן חדשה: <b>70,000</b>. יתרת חיים: 6 שנים.</Info>
+            <Tbl lim={5} />
           </Reveal>
         </Step>
 
@@ -639,17 +662,7 @@
           </Reveal>
         </Step>
 
-        <SummaryTable
-          show={ok("5b")}
-          columns={["1.1.20","31.12.20\nאחרי","31.12.21\nאחרי","31.12.22\nאחרי","31.12.23\nאחרי","1.1.24\nמכירה"]}
-          rows={[
-            {label:"ערך ספרים (נטו)",values:[400000,400000,380000,260000,310000,0],bold:true},
-            {label:"הוצאות פחת",values:[null,40000,44444,47500,37143,0]},
-            {label:"הפסד/רווח מי״ע (ברוו״ה)",values:[null,null,null,20000,-17143,null]},
-            {label:"רווח הון",values:[null,null,null,null,null,8000]},
-            {label:"יתרת קרן (מצטברת)",values:[0,40000,60000,0,70000,0],bold:true},
-          ]}
-        />
+        <Tbl lim={6} title="📊 טבלת סיכום סופית" show={ok("5b")} />
       </div>);
     }
 
@@ -666,7 +679,7 @@
       ];
       
       return(
-        <div dir="rtl" style={{fontFamily:"'Heebo',sans-serif",background:C.bg,minHeight:"100vh"}}>
+        <div dir="rtl" style={{fontFamily:"'Heebo',sans-serif",background:C.bg,minHeight:"100vh", paddingBottom: 60}}>
           <div style={{background:"#fff",borderBottom:`1px solid ${C.bdr}`,padding:"16px 20px",position:"sticky",top:0,zIndex:10}}>
             <div style={{maxWidth:920,margin:"0 auto"}}>
               <div style={{fontSize:10,color:C.txtL,letterSpacing:2,fontWeight:600}}>IAS 16 — REVALUATION MODEL</div>
@@ -691,7 +704,7 @@
             3. אם טעיתם, יופיע כפתור שיציג לכם את <b>דרך החישוב המלאה</b>, ולאחר 3 ניסיונות תוכלו גם לגלות את התשובה הסופית.
           </Info>
           
-          {ex===1&&<Ex1/>}
+            {ex===1&&<Ex1/>}
             {ex===2&&<Ex2/>}
             {ex===3&&<Ex3/>}
             {ex===4&&<Ex4/>}
