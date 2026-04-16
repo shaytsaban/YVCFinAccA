@@ -1,0 +1,543 @@
+import { useState, useCallback } from "react";
+
+/* ═══════════ COLORS & UTILS ═══════════ */
+const C = {
+  bg:"#f5f6fa",card:"#fff",bdr:"#e2e8f0",
+  blue:"#1e40af",blueL:"#dbeafe",blueM:"#3b82f6",
+  grn:"#059669",grnL:"#d1fae5",
+  red:"#dc2626",redL:"#fee2e2",
+  amb:"#b45309",ambL:"#fef3c7",
+  pur:"#6d28d9",purL:"#ede9fe",
+  txt:"#1e293b",txtM:"#475569",txtL:"#94a3b8",
+  pink:"#be185d"
+};
+const fm = n => {
+  if(n==null) return "—";
+  const a=Math.abs(Math.round(n));
+  return (n<0?"(":"")+a.toLocaleString("en-US")+(n<0?")":"");
+};
+
+/* ═══════════ FIELD: hidden solution, reveal on solve ═══════════ */
+function F({label,expected,onSolve,explanation,tolerance=2}){
+  const [v,setV]=useState("");
+  const [st,setSt]=useState(null);
+  const [att,setAtt]=useState(0);
+  const [showExp,setShowExp]=useState(false);
+  const abs=Math.abs(expected);
+  const check=()=>{
+    const n=parseFloat(v.replace(/,/g,""));
+    if(isNaN(n)){setSt("w");setAtt(a=>a+1);return;}
+    if(Math.abs(n-abs)<=tolerance){setSt("ok");if(onSolve)onSolve();}
+    else{setSt("w");setAtt(a=>a+1);}
+  };
+  return(
+    <div style={{marginBottom:14}}>
+      <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
+        <span style={{fontSize:14,color:C.txtM,minWidth:80}}>{label}</span>
+        <input type="text" value={v} onChange={e=>{setV(e.target.value);setSt(null);}}
+          onKeyDown={e=>e.key==="Enter"&&check()} disabled={st==="ok"}
+          style={{width:150,padding:"8px 12px",border:`2px solid ${st==="ok"?C.grn:st==="w"?C.red:C.bdr}`,borderRadius:8,fontSize:15,fontFamily:"'Rubik',sans-serif",background:st==="ok"?C.grnL:st==="w"?C.redL:"#fff",textAlign:"left",direction:"ltr",outline:"none"}}
+          placeholder="?" />
+        <button onClick={check} disabled={st==="ok"} style={{padding:"7px 14px",borderRadius:8,border:"none",background:st==="ok"?C.grn:C.blueM,color:"#fff",fontSize:13,cursor:"pointer",fontWeight:600,fontFamily:"'Heebo',sans-serif"}}>{st==="ok"?"✓":"בדוק"}</button>
+        {st==="ok"&&<span style={{color:C.grn,fontSize:13,fontWeight:600}}>✓ {fm(expected)}</span>}
+        {st==="w"&&<span style={{color:C.red,fontSize:12}}>✗ לא מדויק, נסה שוב</span>}
+      </div>
+      {st==="w"&&att>=2&&explanation&&<div style={{marginTop:6,padding:"8px 14px",background:C.ambL,borderRadius:8,fontSize:13,lineHeight:1.9,color:C.amb,borderRight:`3px solid ${C.amb}`,cursor:"pointer"}} onClick={()=>setShowExp(!showExp)}>{showExp?explanation:"💡 לחץ לרמז"}</div>}
+      {st==="w"&&att>=4&&<div style={{marginTop:4,padding:"6px 14px",background:C.purL,borderRadius:8,fontSize:13,color:C.pur}}>📖 התשובה: <b>{fm(expected)}</b></div>}
+    </div>
+  );
+}
+
+/* ═══════════ JOURNAL ENTRY (can be hidden) ═══════════ */
+function JE({entries,title,date}){
+  return(
+    <div style={{background:"#f8fafc",border:`1px solid ${C.bdr}`,borderRadius:10,padding:14,marginBottom:12,marginTop:8}}>
+      {date&&<div style={{fontSize:11,color:C.txtL}}>{date}</div>}
+      {title&&<div style={{fontSize:13,fontWeight:700,color:C.blue,marginBottom:8}}>{title}</div>}
+      <table style={{width:"100%",borderCollapse:"collapse",fontSize:13}}>
+        <thead><tr style={{borderBottom:`2px solid ${C.bdr}`}}>
+          <th style={{textAlign:"right",padding:"3px 6px",color:C.txtL,fontWeight:500}}>חשבון</th>
+          <th style={{textAlign:"center",padding:"3px 6px",color:C.txtL,fontWeight:500,width:90}}>ח׳</th>
+          <th style={{textAlign:"center",padding:"3px 6px",color:C.txtL,fontWeight:500,width:90}}>ז׳</th>
+        </tr></thead>
+        <tbody>{entries.map((e,i)=>(
+          <tr key={i} style={{borderBottom:`1px solid ${C.bdr}`}}>
+            <td style={{padding:"5px 6px"}}>{e.a}</td>
+            <td style={{padding:"5px 6px",textAlign:"center",color:C.blue,fontFamily:"'Rubik',sans-serif"}}>{e.d?fm(e.d):""}</td>
+            <td style={{padding:"5px 6px",textAlign:"center",color:C.grn,fontFamily:"'Rubik',sans-serif"}}>{e.c?fm(e.c):""}</td>
+          </tr>
+        ))}</tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ═══════════ REVEAL WRAPPER: hidden until unlocked ═══════════ */
+function Reveal({show,children}){
+  if(!show) return null;
+  return <div style={{animation:"fadeIn 0.3s ease"}}>{children}</div>;
+}
+
+/* ═══════════ INFO BOX ═══════════ */
+function Info({type="info",children}){
+  const m={info:{bg:C.blueL,c:C.blue,i:"📘"},std:{bg:C.purL,c:C.pur,i:"📐"},ok:{bg:C.grnL,c:C.grn,i:"✅"},warn:{bg:C.ambL,c:C.amb,i:"⚠️"}};
+  const x=m[type]||m.info;
+  return <div style={{padding:"10px 14px",background:x.bg,borderRadius:8,marginBottom:12,fontSize:13,lineHeight:2,color:x.c,borderRight:`4px solid ${x.c}`}}>{x.i} {children}</div>;
+}
+
+/* ═══════════ STEP (accordion) ═══════════ */
+function Step({n,title,color=C.blue,open,toggle,children}){
+  return(
+    <div style={{marginBottom:14,border:`1px solid ${C.bdr}`,borderRadius:12,overflow:"hidden",background:C.card}}>
+      <div onClick={toggle} style={{display:"flex",alignItems:"center",gap:10,padding:"12px 18px",cursor:"pointer",background:open?color:"#fff"}}>
+        <div style={{width:30,height:30,borderRadius:8,background:open?"rgba(255,255,255,0.2)":color+"15",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Rubik',sans-serif",fontWeight:700,fontSize:13,color:open?"#fff":color}}>{n}</div>
+        <div style={{flex:1,fontWeight:600,fontSize:14,color:open?"#fff":C.txt}}>{title}</div>
+        <span style={{color:open?"#fff":C.txtL}}>{open?"▲":"▼"}</span>
+      </div>
+      {open&&<div style={{padding:"18px 20px"}}>{children}</div>}
+    </div>
+  );
+}
+
+/* ═══════════ SUMMARY TABLE ═══════════ */
+function SummaryTable({columns,rows}){
+  return(
+    <div style={{overflowX:"auto",marginTop:20,marginBottom:16}}>
+      <div style={{fontSize:14,fontWeight:700,color:C.blue,marginBottom:8}}>📊 טבלת סיכום — יתרות מאזניות ותוצאתיות</div>
+      <table style={{width:"100%",borderCollapse:"collapse",fontSize:12,minWidth:700}}>
+        <thead><tr style={{background:C.blue}}>
+          <th style={{padding:"8px 10px",color:"#fff",textAlign:"right",fontWeight:600,position:"sticky",right:0,background:C.blue,zIndex:1}}>סעיף</th>
+          {columns.map((col,i)=><th key={i} style={{padding:"8px 6px",color:"#fff",textAlign:"center",fontWeight:500,fontSize:11,whiteSpace:"nowrap"}}>{col}</th>)}
+        </tr></thead>
+        <tbody>{rows.map((row,ri)=>(
+          <tr key={ri} style={{borderBottom:`1px solid ${C.bdr}`,background:row.bold?"#f0f4ff":"#fff"}}>
+            <td style={{padding:"6px 10px",fontWeight:row.bold?700:400,color:row.bold?C.blue:C.txt,position:"sticky",right:0,background:row.bold?"#f0f4ff":"#fff",zIndex:1,whiteSpace:"nowrap"}}>{row.label}</td>
+            {row.values.map((v,vi)=><td key={vi} style={{padding:"6px 6px",textAlign:"center",fontFamily:"'Rubik',sans-serif",fontSize:12,color:v<0?C.red:C.txt}}>{v!=null?fm(v):""}</td>)}
+          </tr>
+        ))}</tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EXERCISE 1 — FULL DETAIL
+   ═══════════════════════════════════════════════════════════ */
+function Ex1(){
+  const [os,setOs]=useState(1);
+  const [solved,setSolved]=useState({});
+  const mark=(k)=>setSolved(p=>({...p,[k]:true}));
+  const ok=k=>solved[k];
+  const allOk=(...keys)=>keys.every(k=>solved[k]);
+
+  return(<div>
+    <div style={{background:C.ambL,borderRadius:14,padding:20,marginBottom:24,borderRight:`5px solid ${C.amb}`}}>
+      <div style={{fontWeight:800,fontSize:17,color:C.amb,marginBottom:8}}>תרגיל 1 — חברת "קריספי העיר"</div>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2}}>
+        רכשה ב-<b>1.1.2016</b> מכונה לחימום נקניק.<br/>
+        עלות המכונה: <b>800,000</b>. דמי תיווך: <b>25,000</b>. משפטיות: <b>55,000</b> (שולמו מיד).<br/>
+        ה-800,000 ישולמו בחלוף <b>שנתיים</b>. מחיר הון: <b>5%</b>.<br/>
+        חיים שימושיים: <b>40 שנה</b>. ללא שייר. מודל הערכה מחדש, שנתי.<br/>
+        פח"נ מאופס. קרן → עודפים במימוש בלבד. התחייבות מסולקת 31.12.2017.
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:6,background:"#fff",borderRadius:10,padding:12,marginTop:10}}>
+        {[["31.12.2016","1,050,000"],["31.12.2017","600,000"],["31.12.2018","420,000"],["31.12.2019","780,000"],["31.12.2020","1,000,000"]].map(([d,v])=>(
+          <div key={d} style={{textAlign:"center"}}><div style={{fontSize:10,color:C.txtL}}>{d}</div><div style={{fontSize:14,fontWeight:700,color:C.blue}}>{v}</div></div>
+        ))}
+      </div>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2,marginTop:8}}>ב-<b>30.6.2021</b> נמכרה תמורת <b>920,000</b>. התמורה תתקבל ב-30.6.2022.</div>
+    </div>
+
+    {/* ── STEP 1: COST ── */}
+    <Step n="1" title="קביעת עלות הפריט — 1.1.2016" open={os===1} toggle={()=>setOs(os===1?0:1)}>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2,marginBottom:12}}>
+        חשבו את עלות המכונה הכוללת הנכנסת למאזן. שימו לב: חלק מהתמורה נדחה.
+      </div>
+      <F label="PV של המכונה:" expected={725623.58} onSolve={()=>mark("1a")}
+        explanation="התמורה 800,000 משולמת בעוד שנתיים. PV = 800,000 ÷ (1.05)² = 800,000 ÷ 1.1025 = 725,624. סעיף IAS 16.23: כאשר תמורה נדחית מעבר לתנאי אשראי רגילים — העלות נקבעת במונחי PV." />
+      <F label="עלות כוללת:" expected={805623.58} onSolve={()=>mark("1b")}
+        explanation="עלות = PV של המכונה (725,624) + דמי תיווך (25,000) + משפטיות (55,000) = 805,624. סעיף IAS 16.16: עלות פריט תכלול את כל העלויות המיוחסות ישירות להבאתו למצב שמיש." />
+      <Reveal show={allOk("1a","1b")}>
+        <Info type="ok">עלות כוללת: <b>805,624</b>. מתוכה — 725,624 כהתחייבות (PV), ו-80,000 במזומן.</Info>
+        <JE date="1.1.2016" title="פקודת רכישה" entries={[
+          {a:"מכונה לחימום נקניק",d:805624},
+          {a:"מזומן (תיווך + משפטיות)",c:80000},
+          {a:"התחייבות (זכאים) — לפי PV",c:725624}
+        ]}/>
+      </Reveal>
+    </Step>
+
+    {/* ── STEP 2: DEPRECIATION 2016 ── */}
+    <Step n="2" title="הוצאות פחת 2016" color={C.grn} open={os===2} toggle={()=>setOs(os===2?0:2)}>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2,marginBottom:12}}>לפני כל שערוך — רושמים פחת "כרגיל".</div>
+      <F label="הוצאות פחת:" expected={20140.59} onSolve={()=>mark("2a")}
+        explanation="עלות 805,624 ÷ 40 שנים = 20,141. פחת בשיטת קו ישר: עלות חלקי אורך חיים שימושיים." />
+      <Reveal show={ok("2a")}>
+        <JE date="31.12.2016" title="פחת 2016" entries={[
+          {a:"הוצאות פחת",d:20141},{a:"פחת נצבר",c:20141}
+        ]}/>
+      </Reveal>
+    </Step>
+
+    {/* ── STEP 3: FINANCE 2016 ── */}
+    <Step n="3" title="הוצאות מימון 2016" color="#0d9488" open={os===3} toggle={()=>setOs(os===3?0:3)}>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2,marginBottom:12}}>ההתחייבות נרשמה לפי PV. ההפרש עד 800,000 = הוצאות מימון לאורך שנתיים.</div>
+      <F label="הוצאות מימון:" expected={36281.18} onSolve={()=>mark("3a")}
+        explanation="יתרת התחייבות פתיחה (725,624) × שיעור הריבית (5%) = 36,281." />
+      <F label="יתרת התחייבות תום 2016:" expected={761904.76} onSolve={()=>mark("3b")}
+        explanation="יתרת פתיחה (725,624) + הוצאות מימון (36,281) = 761,905. ההוצאות לא משולמות — הן מגדילות את ההתחייבות." />
+      <Reveal show={allOk("3a","3b")}>
+        <JE date="31.12.2016" title="הוצאות מימון" entries={[
+          {a:"הוצאות מימון",d:36281},{a:"התחייבות (זכאים)",c:36281}
+        ]}/>
+      </Reveal>
+    </Step>
+
+    {/* ── STEP 4: RESET + REVAL 2016 ── */}
+    <Step n="4" title="איפוס פח״נ + שערוך 2016 — עליית ערך" color={C.pur} open={os===4} toggle={()=>setOs(os===4?0:4)}>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2,marginBottom:12}}>
+        שלב מכין: איפוס הפחת הנצבר כנגד חשבון הברוטו. לאחר מכן — שערוך לשווי הוגן.
+      </div>
+      <F label="ערך ספרים לאחר איפוס (לפני שערוך):" expected={785482.99} onSolve={()=>mark("4a")}
+        explanation="עלות (805,624) − פח״נ (20,141) = 785,483. לאחר האיפוס: ברוטו = 785,483, פח״נ = 0." />
+      <F label="הפרש שערוך (עליית ערך):" expected={264517.01} onSolve={()=>mark("4b")}
+        explanation="שווי הוגן (1,050,000) − ערך ספרים (785,483) = 264,517. IAS 16.39: עליית ערך → רווח כולל אחר (OCI), תצטבר בקרן הערכה מחדש." />
+      <Reveal show={allOk("4a","4b")}>
+        <Info type="std"><b>IAS 16.39:</b> עליית ערך תוכר ברווח כולל אחר ותצטבר בהון — אלא אם מבטלת ירידה קודמת.</Info>
+        <JE date="31.12.2016" title="איפוס פחת נצבר" entries={[
+          {a:"פחת נצבר",d:20141},{a:"מכונה",c:20141}
+        ]}/>
+        <JE title="שערוך — עליית ערך" entries={[
+          {a:"מכונה",d:264517},{a:"קרן הערכה מחדש (OCI)",c:264517}
+        ]}/>
+        <Info type="ok"><b>לאחר שערוך:</b> ברוטו = 1,050,000 | פח״נ = 0 | ערך ספרים = <b>1,050,000</b> | קרן = <b>264,517</b></Info>
+      </Reveal>
+    </Step>
+
+    {/* ── STEP 5: 2017 FULL ── */}
+    <Step n="5" title="2017 — פחת + מימון + שערוך (ירידת ערך מהותית)" color={C.red} open={os===5} toggle={()=>setOs(os===5?0:5)}>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2,marginBottom:8}}>שנה קריטית: ירידת ערך שחורגת מיתרת הקרן.</div>
+      <F label="הוצאות פחת 2017:" expected={26923.08} onSolve={()=>mark("5a")}
+        explanation="ערך ספרים חדש (1,050,000) ÷ יתרת חיים (39 שנה, כי שנה חלפה) = 26,923." />
+      <F label="הוצאות מימון 2017:" expected={38095.24} onSolve={()=>mark("5b")}
+        explanation="יתרת התחייבות (761,905) × 5% = 38,095. לאחר מכן: 761,905 + 38,095 = 800,000 — ההתחייבות מסולקת." />
+      <Reveal show={allOk("5a","5b")}>
+        <JE date="31.12.2017" title="פחת 2017" entries={[{a:"הוצאות פחת",d:26923},{a:"פחת נצבר",c:26923}]}/>
+        <JE title="מימון 2017" entries={[{a:"הוצאות מימון",d:38095},{a:"התחייבות",c:38095}]}/>
+        <JE title="סילוק התחייבות" entries={[{a:"התחייבות",d:800000},{a:"מזומן",c:800000}]}/>
+      </Reveal>
+
+      <div style={{borderTop:`1px solid ${C.bdr}`,marginTop:16,paddingTop:14}}>
+        <div style={{fontSize:13,color:C.txtM,marginBottom:8}}>כעת — איפוס פח״נ ושערוך:</div>
+        <F label="ערך ספרים לאחר איפוס (לפני שערוך):" expected={1023076.92} onSolve={()=>mark("5c")}
+          explanation="ברוטו (1,050,000) − פח״נ (26,923) = 1,023,077. לאחר איפוס: ברוטו=1,023,077, פח״נ=0." />
+        <F label="ירידת ערך כוללת:" expected={423076.92} onSolve={()=>mark("5d")}
+          explanation="ערך ספרים (1,023,077) − שווי הוגן (600,000) = 423,077." />
+        <F label="שלב 1 — כנגד קרן הערכה (OCI):" expected={264517.01} onSolve={()=>mark("5e")}
+          explanation="IAS 16.40: ירידת ערך מקוזזת תחילה כנגד קרן ההערכה מחדש. יתרת הקרן: 264,517 — כולה מנוצלת." />
+        <F label="שלב 2 — הפסד ברוו״ה + הפרשה:" expected={158559.92} onSolve={()=>mark("5f")}
+          explanation="ירידה כוללת (423,077) − כנגד קרן (264,517) = 158,560. סכום זה מוכר כהפסד ברווח והפסד, ונרשם כהפרשה לירידת ערך." />
+      </Reveal>
+      <Reveal show={allOk("5c","5d","5e","5f")}>
+        <JE date="31.12.2017" title="איפוס פח״נ" entries={[{a:"פחת נצבר",d:26923},{a:"מכונה",c:26923}]}/>
+        <JE title="שלב 1: כנגד קרן הערכה" entries={[{a:"קרן הערכה מחדש (OCI)",d:264517},{a:"מכונה",c:264517}]}/>
+        <JE title="שלב 2: הפסד ברוו״ה" entries={[{a:"הפסד מירידת ערך",d:158560},{a:"הפרשה לירידת ערך",c:158560}]}/>
+        <Info type="ok"><b>ערך ספרים לפני שערוך:</b> 1,023,077 | <b>לאחר שערוך:</b> 600,000<br/>ברוטו=758,560 | הפרשה=158,560 | ערך ספרים=<b>600,000</b> | קרן=0</Info>
+      </Reveal>
+    </Step>
+
+    {/* ── STEP 6: 2018 ── */}
+    <Step n="6" title="2018 — פחת + הפחתת הפרשה + ירידת ערך נוספת" color={C.amb} open={os===6} toggle={()=>setOs(os===6?0:6)}>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2,marginBottom:8}}>כשקיימת הפרשה — יש להפחיתה בקצב הפחת. בנוסף, ירידת ערך נוספת.</div>
+      <F label="הוצאות פחת:" expected={15789.47} onSolve={()=>mark("6a")}
+        explanation="ערך ספרים (600,000) ÷ יתרת חיים (38 שנה) = 15,789." />
+      <F label="הפחתת הפרשה:" expected={4172.63} onSolve={()=>mark("6b")}
+        explanation="הפרשה (158,560) ÷ יתרת חיים (38 שנה) = 4,173. הרעיון: כשנכס מתבלה — גם ירידת הערך 'מתכלה'." />
+      <F label="ערך ספרים לפני שערוך:" expected={584210.53} onSolve={()=>mark("6c")}
+        explanation="600,000 − 15,789 = 584,211." />
+      <Reveal show={allOk("6a","6b")}>
+        <JE date="31.12.2018" title="פחת" entries={[{a:"הוצאות פחת",d:15789},{a:"פחת נצבר",c:15789}]}/>
+        <JE title="הפחתת הפרשה" entries={[{a:"הפרשה לירידת ערך",d:4173},{a:"פחת נצבר",c:4173}]}/>
+      </Reveal>
+      <F label="ירידת ערך נוספת:" expected={164210.53} onSolve={()=>mark("6d")}
+        explanation="ערך ספרים (584,211) − שווי הוגן (420,000) = 164,211. אין יתרת קרן — הכל הפסד ברוו״ה." />
+      <Reveal show={allOk("6c","6d")}>
+        <JE date="31.12.2018" title="איפוס פח״נ" entries={[{a:"פחת נצבר",d:19962},{a:"מכונה",c:19962}]}/>
+        <JE title="ירידת ערך נוספת → הפסד + הפרשה" entries={[{a:"הפסד מירידת ערך",d:164211},{a:"הפרשה לירידת ערך",c:164211}]}/>
+        <Info type="ok"><b>לפני שערוך:</b> 584,211 | <b>לאחר שערוך:</b> 420,000<br/>הפרשה מצטברת: 154,387 + 164,211 = <b>318,598</b> | קרן = 0</Info>
+      </Reveal>
+    </Step>
+
+    {/* ── STEP 7: 2019 ── */}
+    <Step n="7" title="2019 — פחת + הפחתת הפרשה + עליית ערך (ביטול הפרשה + קרן)" color={C.grn} open={os===7} toggle={()=>setOs(os===7?0:7)}>
+      <F label="הוצאות פחת:" expected={11351.35} onSolve={()=>mark("7a")}
+        explanation="420,000 ÷ 37 שנה = 11,351." />
+      <F label="הפחתת הפרשה:" expected={8610.75} onSolve={()=>mark("7b")}
+        explanation="318,598 ÷ 37 = 8,611." />
+      <F label="ערך ספרים לפני שערוך:" expected={408648.65} onSolve={()=>mark("7c")}
+        explanation="420,000 − 11,351 = 408,649." />
+      <Reveal show={allOk("7a","7b")}>
+        <JE date="31.12.2019" title="פחת" entries={[{a:"הוצאות פחת",d:11351},{a:"פחת נצבר",c:11351}]}/>
+        <JE title="הפחתת הפרשה" entries={[{a:"הפרשה לירידת ערך",d:8611},{a:"פחת נצבר",c:8611}]}/>
+      </Reveal>
+      <F label="עליית ערך כוללת:" expected={371351.35} onSolve={()=>mark("7d")}
+        explanation="שווי הוגן (780,000) − ערך ספרים (408,649) = 371,351." />
+      <F label="שלב 1 — ביטול הפרשה → רווח ברוו״ה:" expected={309987.06} onSolve={()=>mark("7e")}
+        explanation="IAS 16.40: עליית ערך מבטלת קודם כל הפרשה קיימת → רווח ברוו״ה. יתרת הפרשה: 318,598 − 8,611 = 309,987." />
+      <F label="שלב 2 — יתרה → קרן הערכה:" expected={61364.29} onSolve={()=>mark("7f")}
+        explanation="371,351 − 309,987 = 61,364. היתרה שמעבר להפרשה → קרן הערכה מחדש (OCI)." />
+      <Reveal show={allOk("7d","7e","7f")}>
+        <JE date="31.12.2019" title="איפוס פח״נ" entries={[{a:"פחת נצבר",d:19962},{a:"מכונה",c:19962}]}/>
+        <JE title="שלב 1: ביטול הפרשה → רווח" entries={[{a:"הפרשה לירידת ערך",d:309987},{a:"רווח מעליית ערך (רוו״ה)",c:309987}]}/>
+        <JE title="שלב 2: יתרה → קרן" entries={[{a:"מכונה",d:61364},{a:"קרן הערכה מחדש (OCI)",c:61364}]}/>
+        <Info type="ok"><b>לפני שערוך:</b> 408,649 | <b>לאחר שערוך:</b> 780,000<br/>ברוטו=780,000 | הפרשה=0 | קרן=<b>61,364</b></Info>
+      </Reveal>
+    </Step>
+
+    {/* ── STEP 8: 2020 ── */}
+    <Step n="8" title="2020 — פחת + שערוך כלפי מעלה" color={C.blueM} open={os===8} toggle={()=>setOs(os===8?0:8)}>
+      <F label="הוצאות פחת:" expected={21666.67} onSolve={()=>mark("8a")}
+        explanation="780,000 ÷ 36 שנה = 21,667." />
+      <F label="ערך ספרים לפני שערוך:" expected={758333.33} onSolve={()=>mark("8b")}
+        explanation="780,000 − 21,667 = 758,333." />
+      <F label="עליית ערך → קרן:" expected={241666.67} onSolve={()=>mark("8c")}
+        explanation="1,000,000 − 758,333 = 241,667. אין הפרשה → הכל לקרן. קרן מצטברת: 61,364 + 241,667 = 303,031." />
+      <Reveal show={allOk("8a","8b","8c")}>
+        <JE date="31.12.2020" title="פחת" entries={[{a:"הוצאות פחת",d:21667},{a:"פחת נצבר",c:21667}]}/>
+        <JE title="איפוס פח״נ" entries={[{a:"פחת נצבר",d:21667},{a:"מכונה",c:21667}]}/>
+        <JE title="שערוך כלפי מעלה" entries={[{a:"מכונה",d:241667},{a:"קרן הערכה מחדש (OCI)",c:241667}]}/>
+        <Info type="ok"><b>לפני שערוך:</b> 758,333 | <b>לאחר שערוך:</b> 1,000,000<br/>קרן מצטברת: <b>303,031</b></Info>
+      </Reveal>
+    </Step>
+
+    {/* ── STEP 9: SALE ── */}
+    <Step n="9" title="30.6.2021 — מכירה" color={C.pink} open={os===9} toggle={()=>setOs(os===9?0:9)}>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2,marginBottom:8}}>פחת לחצי שנה. תמורת מכירה — בעוד שנה, לכן PV.</div>
+      <F label="פחת לחצי שנה:" expected={14285.71} onSolve={()=>mark("9a")}
+        explanation="1,000,000 ÷ 35 שנה × 6/12 = 14,286." />
+      <F label="ערך ספרים ערב מכירה:" expected={985714.29} onSolve={()=>mark("9b")}
+        explanation="1,000,000 − 14,286 = 985,714." />
+      <F label="PV של תמורת המכירה:" expected={876190.48} onSolve={()=>mark("9c")}
+        explanation="920,000 ÷ 1.05 = 876,190. IAS 16.23: תמורה נדחית → PV." />
+      <F label="הפסד הון (ערך מוחלט):" expected={109523.81} onSolve={()=>mark("9d")}
+        explanation="876,190 − 985,714 = (109,524). הפרש שלילי = הפסד הון." />
+      <F label="קרן הערכה מחדש → עודפים:" expected={303030.96} onSolve={()=>mark("9e")}
+        explanation="כל יתרת הקרן (303,031) מועברת לעודפים במועד המימוש." />
+      <F label="הכנסות ריבית לתום 2021 (חצי שנה):" expected={21637.59} tolerance={10} onSolve={()=>mark("9f")}
+        explanation="876,190 × [(1.05)^0.5 − 1] = 876,190 × 0.02470 ≈ 21,638." />
+      <Reveal show={allOk("9a","9b","9c","9d","9e")}>
+        <JE date="30.6.2021" title="פחת עד מכירה" entries={[{a:"הוצאות פחת",d:14286},{a:"פחת נצבר",c:14286}]}/>
+        <JE title="פקודת מכירה" entries={[
+          {a:"פחת נצבר",d:14286},{a:"חייבים (PV)",d:876190},{a:"הפסד הון",d:109524},{a:"מכונה",c:1000000}
+        ]}/>
+        <JE title="העברת קרן לעודפים" entries={[{a:"קרן הערכה מחדש",d:303031},{a:"עודפים",c:303031}]}/>
+        <JE date="31.12.2021" title="הכנסות ריבית (חצי שנה)" entries={[{a:"חייבים",d:21638},{a:"הכנסות ריבית",c:21638}]}/>
+      </Reveal>
+    </Step>
+
+    {/* ── SUMMARY TABLE ── */}
+    <SummaryTable
+      columns={["1.1.16","31.12.16\nטרם","31.12.16\nאחרי","31.12.17\nטרם","31.12.17\nאחרי","31.12.18\nטרם","31.12.18\nאחרי","31.12.19\nטרם","31.12.19\nאחרי","31.12.20\nטרם","31.12.20\nאחרי","30.6.21\nערב מכירה"]}
+      rows={[
+        {label:"מכונה (ברוטו)",values:[805624,805624,1050000,1050000,758560,758560,738598,738598,780000,780000,1000000,1000000],bold:false},
+        {label:"פחת נצבר",values:[0,-20141,0,-26923,0,-19962,0,-19962,0,-21667,0,-14286]},
+        {label:"הפרשה לי״ע",values:[0,0,0,0,-158560,-154387,-318598,-309987,0,0,0,0]},
+        {label:"ערך ספרים",values:[805624,785483,1050000,1023077,600000,584211,420000,408649,780000,758333,1000000,985714],bold:true},
+        {label:" ",values:[]},
+        {label:"הוצאות פחת",values:[null,20141,null,26923,null,15789,null,11351,null,21667,null,14286]},
+        {label:"הוצאות מימון",values:[null,36281,null,38095,null,null,null,null,null,null,null,null]},
+        {label:"הפסד מי״ע",values:[null,null,null,null,158560,null,164211,null,null,null,null,null]},
+        {label:"רווח מעליית ערך",values:[null,null,null,null,null,null,null,null,309987,null,null,null]},
+        {label:"הפסד הון",values:[null,null,null,null,null,null,null,null,null,null,null,109524]},
+        {label:" ",values:[]},
+        {label:"רווח כולל אחר (+)",values:[null,null,264517,null,null,null,null,null,61364,null,241667,null]},
+        {label:"הפסד כולל אחר (−)",values:[null,null,null,null,null,264517,null,null,null,null,null,null]},
+        {label:"יתרת קרן (מצטברת)",values:[0,0,264517,264517,0,0,0,0,61364,61364,303031,0],bold:true},
+      ]}
+    />
+  </div>);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EXERCISES 2-4 (abbreviated for space but same pattern)
+   ═══════════════════════════════════════════════════════════ */
+function Ex2(){
+  const [os,setOs]=useState(1);
+  const [solved,setSolved]=useState({});
+  const mark=k=>setSolved(p=>({...p,[k]:true}));
+  const ok=k=>solved[k];
+  const allOk=(...keys)=>keys.every(k=>solved[k]);
+  return(<div>
+    <div style={{background:C.blueL,borderRadius:14,padding:20,marginBottom:24,borderRight:`5px solid ${C.blueM}`}}>
+      <div style={{fontWeight:800,fontSize:17,color:C.blue,marginBottom:8}}>תרגיל 2 — "מרלו וצוות הפיתוח"</div>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2}}>רכשה ב-<b>1.1.2015</b> מכונה לחימום נקניק. עלות: <b>120,000</b> (במזומן). חיים: <b>25 שנה</b>. ללא שייר. שערוך שנתי, איפוס פח״נ, קרן → עודפים במימוש.</div>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(6,1fr)",gap:5,background:"#fff",borderRadius:10,padding:10,marginTop:8}}>
+        {[["31.12.15","160,000"],["31.12.16","175,000"],["31.12.17","115,000"],["31.12.18","70,000"],["31.12.19","50,000"],["31.12.20","120,000"]].map(([d,v])=>(
+          <div key={d} style={{textAlign:"center"}}><div style={{fontSize:10,color:C.txtL}}>{d}</div><div style={{fontSize:13,fontWeight:700,color:C.blue}}>{v}</div></div>
+        ))}
+      </div>
+      <div style={{fontSize:13,color:C.txtM,lineHeight:2,marginTop:8}}>ב-<b>1.4.2021</b> נמכרה תמורת <b>135,000</b>. עלויות עסקה: <b>5,000</b>.</div>
+    </div>
+
+    <Step n="1" title="2015 — פחת + שערוך כלפי מעלה" open={os===1} toggle={()=>setOs(os===1?0:1)}>
+      <F label="הוצאות פחת:" expected={4800} onSolve={()=>mark("1a")} explanation="120,000 ÷ 25 = 4,800."/>
+      <F label="ערך ספרים לפני שערוך:" expected={115200} onSolve={()=>mark("1b")} explanation="120,000 − 4,800 = 115,200."/>
+      <F label="עליית ערך → קרן:" expected={44800} onSolve={()=>mark("1c")} explanation="160,000 − 115,200 = 44,800."/>
+      <Reveal show={allOk("1a","1b","1c")}>
+        <JE date="31.12.2015" entries={[{a:"הוצאות פחת",d:4800},{a:"פחת נצבר",c:4800}]}/>
+        <JE title="איפוס" entries={[{a:"פחת נצבר",d:4800},{a:"מכונה",c:4800}]}/>
+        <JE title="שערוך" entries={[{a:"מכונה",d:44800},{a:"קרן הערכה מחדש",c:44800}]}/>
+        <Info type="ok"><b>לפני:</b> 115,200 | <b>אחרי:</b> 160,000 | קרן: 44,800</Info>
+      </Reveal>
+    </Step>
+
+    <Step n="2" title="2016 — פחת + שערוך כלפי מעלה נוסף" color={C.grn} open={os===2} toggle={()=>setOs(os===2?0:2)}>
+      <F label="הוצאות פחת:" expected={6666.67} onSolve={()=>mark("2a")} explanation="160,000 ÷ 24 = 6,667."/>
+      <F label="ערך ספרים לפני שערוך:" expected={153333.33} onSolve={()=>mark("2b")} explanation="160,000 − 6,667 = 153,333."/>
+      <F label="עליית ערך → קרן:" expected={21666.67} onSolve={()=>mark("2c")} explanation="175,000 − 153,333 = 21,667."/>
+      <Reveal show={allOk("2a","2b","2c")}>
+        <JE date="31.12.2016" entries={[{a:"הוצאות פחת",d:6667},{a:"פחת נצבר",c:6667}]}/>
+        <JE title="איפוס" entries={[{a:"פחת נצבר",d:6667},{a:"מכונה",c:6667}]}/>
+        <JE title="שערוך" entries={[{a:"מכונה",d:21667},{a:"קרן הערכה מחדש",c:21667}]}/>
+        <Info type="ok"><b>לפני:</b> 153,333 | <b>אחרי:</b> 175,000 | קרן מצטברת: 44,800 + 21,667 = <b>66,467</b></Info>
+      </Reveal>
+    </Step>
+
+    <Step n="3" title="2017 — ירידת ערך (כנגד קרן בלבד)" color={C.amb} open={os===3} toggle={()=>setOs(os===3?0:3)}>
+      <F label="הוצאות פחת:" expected={7608.70} onSolve={()=>mark("3a")} explanation="175,000 ÷ 23 = 7,609."/>
+      <F label="ערך ספרים לפני שערוך:" expected={167391.30} onSolve={()=>mark("3b")} explanation="175,000 − 7,609 = 167,391."/>
+      <F label="ירידת ערך:" expected={52391.30} onSolve={()=>mark("3c")} explanation="167,391 − 115,000 = 52,391. הירידה (52,391) < קרן (66,467) → כולה כנגד הקרן."/>
+      <Reveal show={allOk("3a","3b","3c")}>
+        <JE date="31.12.2017" entries={[{a:"הוצאות פחת",d:7609},{a:"פחת נצבר",c:7609}]}/>
+        <JE title="איפוס" entries={[{a:"פחת נצבר",d:7609},{a:"מכונה",c:7609}]}/>
+        <JE title="ירידת ערך — כנגד קרן בלבד" entries={[{a:"קרן הערכה מחדש",d:52391},{a:"מכונה",c:52391}]}/>
+        <Info type="ok"><b>לפני:</b> 167,391 | <b>אחרי:</b> 115,000 | קרן: 66,467 − 52,391 = <b>14,075</b>. אין הפסד ברוו״ה!</Info>
+      </Reveal>
+    </Step>
+
+    <Step n="4" title="2018 — ירידת ערך (חלקית קרן + חלקית רוו״ה)" color={C.red} open={os===4} toggle={()=>setOs(os===4?0:4)}>
+      <F label="הוצאות פחת:" expected={5227.27} onSolve={()=>mark("4a")} explanation="115,000 ÷ 22 = 5,227."/>
+      <F label="ערך ספרים לפני שערוך:" expected={109772.73} onSolve={()=>mark("4b")} explanation="115,000 − 5,227 = 109,773."/>
+      <F label="ירידת ערך כוללת:" expected={39772.73} onSolve={()=>mark("4c")} explanation="109,773 − 70,000 = 39,773."/>
+      <F label="שלב 1 — כנגד קרן:" expected={14075.37} onSolve={()=>mark("4d")} explanation="כל יתרת הקרן: 14,075."/>
+      <F label="שלב 2 — הפסד + הפרשה:" expected={25697.36} onSolve={()=>mark("4e")} explanation="39,773 − 14,075 = 25,697. הפסד ברוו״ה + הפרשה."/>
+      <Reveal show={allOk("4a","4b","4c","4d","4e")}>
+        <JE date="31.12.2018" entries={[{a:"הוצאות פחת",d:5227},{a:"פחת נצבר",c:5227}]}/>
+        <JE title="איפוס" entries={[{a:"פחת נצבר",d:5227},{a:"מכונה",c:5227}]}/>
+        <JE title="שלב 1" entries={[{a:"קרן הערכה מחדש",d:14075},{a:"מכונה",c:14075}]}/>
+        <JE title="שלב 2" entries={[{a:"הפסד מירידת ערך",d:25697},{a:"הפרשה לירידת ערך",c:25697}]}/>
+        <Info type="ok"><b>לפני:</b> 109,773 | <b>אחרי:</b> 70,000 | קרן=0 | הפרשה=<b>25,697</b></Info>
+      </Reveal>
+    </Step>
+
+    <Step n="5" title="2019 — ירידת ערך נוספת (עם הפחתת הפרשה)" color="#7f1d1d" open={os===5} toggle={()=>setOs(os===5?0:5)}>
+      <F label="הוצאות פחת:" expected={3333.33} onSolve={()=>mark("5a")} explanation="70,000 ÷ 21 = 3,333."/>
+      <F label="הפחתת הפרשה:" expected={1223.68} onSolve={()=>mark("5b")} explanation="25,697 ÷ 21 = 1,224."/>
+      <F label="ערך ספרים לפני שערוך:" expected={66666.67} onSolve={()=>mark("5c")} explanation="70,000 − 3,333 = 66,667."/>
+      <F label="ירידת ערך → הפסד + הפרשה:" expected={16666.67} onSolve={()=>mark("5d")} explanation="66,667 − 50,000 = 16,667. אין קרן → כולה הפסד."/>
+      <Reveal show={allOk("5a","5b","5c","5d")}>
+        <JE date="31.12.2019" entries={[{a:"הוצאות פחת",d:3333},{a:"פחת נצבר",c:3333}]}/>
+        <JE title="הפחתת הפרשה" entries={[{a:"הפרשה לי״ע",d:1224},{a:"פחת נצבר",c:1224}]}/>
+        <JE title="איפוס" entries={[{a:"פחת נצבר",d:4557},{a:"מכונה",c:4557}]}/>
+        <JE title="ירידת ערך" entries={[{a:"הפסד מירידת ערך",d:16667},{a:"הפרשה לי״ע",c:16667}]}/>
+        <Info type="ok"><b>לפני:</b> 66,667 | <b>אחרי:</b> 50,000 | הפרשה מצטברת ≈ <b>41,140</b></Info>
+      </Reveal>
+    </Step>
+
+    <Step n="6" title="2020 — עליית ערך (ביטול הפרשה + קרן חדשה)" color={C.grn} open={os===6} toggle={()=>setOs(os===6?0:6)}>
+      <F label="הוצאות פחת:" expected={2500} onSolve={()=>mark("6a")} explanation="50,000 ÷ 20 = 2,500."/>
+      <F label="הפחתת הפרשה:" expected={2057.02} onSolve={()=>mark("6b")} explanation="41,140 ÷ 20 = 2,057."/>
+      <F label="ערך ספרים לפני שערוך:" expected={47500} onSolve={()=>mark("6c")} explanation="50,000 − 2,500 = 47,500."/>
+      <F label="עליית ערך כוללת:" expected={72500} onSolve={()=>mark("6d")} explanation="120,000 − 47,500 = 72,500."/>
+      <F label="שלב 1 — רווח (ביטול הפרשה):" expected={39083.33} tolerance={5} onSolve={()=>mark("6e")} explanation="יתרת הפרשה ≈ 39,083 → רווח ברוו״ה."/>
+      <F label="שלב 2 — לקרן:" expected={33416.67} tolerance={5} onSolve={()=>mark("6f")} explanation="72,500 − 39,083 = 33,417 → קרן הערכה מחדש."/>
+      <Reveal show={allOk("6d","6e","6f")}>
+        <JE date="31.12.2020" entries={[{a:"הוצאות פחת",d:2500},{a:"פחת נצבר",c:2500}]}/>
+        <JE title="הפחתת הפרשה" entries={[{a:"הפרשה לי״ע",d:2057},{a:"פחת נצבר",c:2057}]}/>
+        <JE title="איפוס" entries={[{a:"פחת נצבר",d:4557},{a:"מכונה",c:4557}]}/>
+        <JE title="שלב 1" entries={[{a:"הפרשה לי״ע",d:39083},{a:"רווח מעליית ערך",c:39083}]}/>
+        <JE title="שלב 2" entries={[{a:"מכונה",d:33417},{a:"קרן הערכה מחדש",c:33417}]}/>
+        <Info type="ok"><b>לפני:</b> 47,500 | <b>אחרי:</b> 120,000 | קרן: <b>33,417</b></Info>
+      </Reveal>
+    </Step>
+
+    <Step n="7" title="1.4.2021 — מכירה" color={C.pink} open={os===7} toggle={()=>setOs(os===7?0:7)}>
+      <Info type="info">תמורה נטו = 135,000 − 5,000 עלויות עסקה = 130,000.</Info>
+      <F label="פחת Q1 (3/12):" expected={1578.95} onSolve={()=>mark("7a")} explanation="120,000 ÷ 19 × 3/12 = 1,579."/>
+      <F label="ערך ספרים ערב מכירה:" expected={118421.05} onSolve={()=>mark("7b")} explanation="120,000 − 1,579 = 118,421."/>
+      <F label="רווח הון:" expected={11578.95} onSolve={()=>mark("7c")} explanation="תמורה נטו (130,000) − ערך ספרים (118,421) = 11,579."/>
+      <Reveal show={allOk("7a","7b","7c")}>
+        <JE date="1.4.2021" entries={[{a:"הוצאות פחת",d:1579},{a:"פחת נצבר",c:1579}]}/>
+        <JE title="מכירה" entries={[{a:"פחת נצבר",d:1579},{a:"מזומן",d:130000},{a:"מכונה",c:120000},{a:"רווח הון",c:11579}]}/>
+        <JE title="קרן → עודפים" entries={[{a:"קרן הערכה מחדש",d:33417},{a:"עודפים",c:33417}]}/>
+      </Reveal>
+    </Step>
+
+    <SummaryTable
+      columns={["1.1.15","31.12.15\nאחרי","31.12.16\nאחרי","31.12.17\nאחרי","31.12.18\nאחרי","31.12.19\nאחרי","31.12.20\nאחרי","1.4.21\nמכירה"]}
+      rows={[
+        {label:"ברוטו",values:[120000,160000,175000,115000,70000,50000,120000,0]},
+        {label:"פח״נ",values:[0,0,0,0,0,0,0,0]},
+        {label:"הפרשה",values:[0,0,0,0,-25697,-41140,0,0]},
+        {label:"ערך ספרים",values:[120000,160000,175000,115000,70000,50000,120000,0],bold:true},
+        {label:" ",values:[]},
+        {label:"הוצאות פחת",values:[null,4800,6667,7609,5227,3333,2500,1579]},
+        {label:"הפסד מי״ע",values:[null,null,null,null,25697,16667,null,null]},
+        {label:"רווח מעליית ערך",values:[null,null,null,null,null,null,39083,null]},
+        {label:"רווח הון",values:[null,null,null,null,null,null,null,11579]},
+        {label:" ",values:[]},
+        {label:"OCI (+)",values:[null,44800,21667,null,null,null,33417,null]},
+        {label:"OCI (−)",values:[null,null,null,52391,14075,null,null,null]},
+        {label:"יתרת קרן",values:[0,44800,66467,14075,0,0,33417,0],bold:true},
+      ]}
+    />
+  </div>);
+}
+
+function ExPlaceholder({n,title,desc}){
+  return(<div style={{background:C.purL,borderRadius:14,padding:30,textAlign:"center"}}>
+    <div style={{fontSize:20,fontWeight:700,color:C.pur,marginBottom:8}}>תרגיל {n} — {title}</div>
+    <div style={{fontSize:14,color:C.txtM}}>{desc}</div>
+    <div style={{fontSize:13,color:C.txtL,marginTop:12}}>בבנייה — מבנה זהה לתרגילים 1-2 עם הפחתת קרן לעודפים בקצב הפחת</div>
+  </div>);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAIN APP
+   ═══════════════════════════════════════════════════════════ */
+export default function App(){
+  const [ex,setEx]=useState(1);
+  const tabs=[
+    {id:1,t:"תרגיל 1",s:"PV + שערוך + הפרשה + מכירה",c:C.amb},
+    {id:2,t:"תרגיל 2",s:"שערוך שנתי + עלויות עסקה",c:C.blueM},
+    {id:3,t:"תרגיל 3",s:"הפחתת קרן (כל שנתיים)",c:C.pur},
+    {id:4,t:"תרגיל 4",s:"הפחתת קרן (שנתי)",c:C.grn},
+  ];
+  return(
+    <div dir="rtl" style={{fontFamily:"'Heebo',sans-serif",background:C.bg,minHeight:"100vh"}}>
+      <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+      <style>{`@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}`}</style>
+      <div style={{background:"#fff",borderBottom:`1px solid ${C.bdr}`,padding:"16px 20px",position:"sticky",top:0,zIndex:10}}>
+        <div style={{maxWidth:920,margin:"0 auto"}}>
+          <div style={{fontSize:10,color:C.txtL,letterSpacing:2,fontWeight:600}}>IAS 16 — REVALUATION MODEL</div>
+          <div style={{fontFamily:"'Rubik',sans-serif",fontSize:20,fontWeight:800,color:C.txt}}>מדריך למידה אינטראקטיבי — רכוש קבוע</div>
+        </div>
+      </div>
+      <div style={{maxWidth:920,margin:"0 auto",padding:"20px 14px"}}>
+        <div style={{display:"flex",gap:6,marginBottom:20,flexWrap:"wrap"}}>
+          {tabs.map(t=>(
+            <button key={t.id} onClick={()=>setEx(t.id)} style={{padding:"8px 16px",borderRadius:8,border:ex===t.id?`2px solid ${t.c}`:`1px solid ${C.bdr}`,background:ex===t.id?t.c+"12":"#fff",cursor:"pointer",textAlign:"right"}}>
+              <div style={{fontWeight:700,fontSize:13,color:ex===t.id?t.c:C.txt}}>{t.t}</div>
+              <div style={{fontSize:10,color:C.txtL}}>{t.s}</div>
+            </button>
+          ))}
+        </div>
+        <Info type="info"><b>הוראות:</b> פתרו כל שלב בסדר. הקלידו ערך מספרי ולחצו "בדוק". הפקודות והפירוט יתגלו רק אחרי שתפתרו נכון. אחרי 2 ניסיונות — לחצו על הרמז. אחרי 4 — התשובה תופיע.</Info>
+        {ex===1&&<Ex1/>}
+        {ex===2&&<Ex2/>}
+        {ex===3&&<ExPlaceholder n={3} title="הפחתת קרן כל שנתיים" desc="עלות 50,000 | חיים 20 שנה | שערוך כל שנתיים | FV: 70K, 30K, 80K, 35K | מכירה 33,000"/>}
+        {ex===4&&<ExPlaceholder n={4} title="הפחתת קרן שנתית" desc="עלות 400,000 | חיים 10 שנה | שערוך שנתי | FV: 400K, 380K, 260K, 310K | מכירה 318,000"/>}
+      </div>
+    </div>
+  );
+}
