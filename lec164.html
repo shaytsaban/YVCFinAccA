@@ -50,6 +50,7 @@
       const [st,setSt]=useState(null);
       const [att,setAtt]=useState(0);
       const [showExp,setShowExp]=useState(false);
+      const [showAns,setShowAns]=useState(false);
       const abs=Math.abs(expected);
       
       const check=()=>{
@@ -59,20 +60,36 @@
         else{setSt("w");setAtt(a=>a+1);}
       };
 
+      const btnStyle = {padding:"6px 12px", borderRadius:6, border:"none", fontSize:12, cursor:"pointer", fontWeight:600, fontFamily:"'Heebo',sans-serif", display:"flex", alignItems:"center", gap:6};
+
       return(
-        <div style={{marginBottom:14}}>
+        <div style={{marginBottom:18}}>
           <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
-            <span style={{fontSize:14,color:C.txtM,minWidth:80}}>{label}</span>
+            <span style={{fontSize:14,color:C.txtM,minWidth:140,fontWeight:500}}>{label}</span>
             <input type="text" value={v} onChange={e=>{setV(e.target.value);setSt(null);}}
-              onKeyDown={e=>e.key==="Enter"&&check()} disabled={st==="ok"}
-              style={{width:150,padding:"8px 12px",border:`2px solid ${st==="ok"?C.grn:st==="w"?C.red:C.bdr}`,borderRadius:8,fontSize:15,fontFamily:"'Rubik',sans-serif",background:st==="ok"?C.grnL:st==="w"?C.redL:"#fff",textAlign:"left",direction:"ltr",outline:"none"}}
-              placeholder="?" />
-            <button onClick={check} disabled={st==="ok"} style={{padding:"7px 14px",borderRadius:8,border:"none",background:st==="ok"?C.grn:C.blueM,color:"#fff",fontSize:13,cursor:"pointer",fontWeight:600,fontFamily:"'Heebo',sans-serif"}}>{st==="ok"?"✓":"בדוק"}</button>
-            {st==="ok"&&<span style={{color:C.grn,fontSize:13,fontWeight:600}}>✓ {fm(expected)}</span>}
-            {st==="w"&&<span style={{color:C.red,fontSize:12}}>✗ לא מדויק, נסה שוב</span>}
+              onKeyDown={e=>e.key==="Enter"&&check()} disabled={st==="ok" || showAns}
+              style={{width:130,padding:"8px 12px",border:`2px solid ${st==="ok"||showAns?C.grn:st==="w"?C.red:C.bdr}`,borderRadius:8,fontSize:15,fontFamily:"'Rubik',sans-serif",background:st==="ok"||showAns?C.grnL:st==="w"?C.redL:"#fff",textAlign:"left",direction:"ltr",outline:"none"}}
+              placeholder="0" />
+            <button onClick={check} disabled={st==="ok" || showAns} style={{padding:"7px 14px",borderRadius:8,border:"none",background:st==="ok"||showAns?C.grn:C.blueM,color:"#fff",fontSize:13,cursor:"pointer",fontWeight:600,fontFamily:"'Heebo',sans-serif"}}>{st==="ok"||showAns?"✓":"בדוק"}</button>
+            {(st==="ok" || showAns)&&<span style={{color:C.grn,fontSize:13,fontWeight:600}}>✓ {fm(expected)}</span>}
           </div>
-          {st==="w"&&att>=2&&explanation&&<div style={{marginTop:6,padding:"8px 14px",background:C.ambL,borderRadius:8,fontSize:13,lineHeight:1.9,color:C.amb,borderRight:`3px solid ${C.amb}`,cursor:"pointer"}} onClick={()=>setShowExp(!showExp)}>{showExp?explanation:"💡 לחץ לרמז"}</div>}
-          {st==="w"&&att>=4&&<div style={{marginTop:4,padding:"6px 14px",background:C.purL,borderRadius:8,fontSize:13,color:C.pur}}>📖 התשובה: <b>{fm(expected)}</b></div>}
+          
+          {st==="w" && !showAns && (
+            <div style={{marginTop: 8, padding: "10px 14px", background: "#fff", border: `1px solid ${C.redL}`, borderRadius: 8, borderRight: `4px solid ${C.red}`, animation:"fadeIn 0.3s ease"}}>
+              <div style={{fontSize: 13, color: C.red, marginBottom: 8, fontWeight:600}}>
+                 {att === 1 ? "✗ התוצאה אינה מדויקת. נסו לבדוק את החישוב שוב." : "✗ עדיין לא מדויק. כדאי להיעזר בדרך החישוב."}
+              </div>
+              <div style={{display:"flex", gap: 8, flexWrap:"wrap"}}>
+                 {!showExp && <button onClick={()=>setShowExp(true)} style={{...btnStyle, background:C.ambL, color:C.amb}}>💡 הצג דרך חישוב</button>}
+                 {att >= 3 && <button onClick={()=>{setShowAns(true); setSt("ok"); if(onSolve)onSolve();}} style={{...btnStyle, background:C.purL, color:C.pur}}>📖 גלה לי את התשובה</button>}
+              </div>
+              {showExp && (
+                <div style={{marginTop: 10, padding: 12, background: C.ambL, color: C.amb, borderRadius: 6, fontSize: 13, lineHeight: 1.7}}>
+                  <b style={{display:"block", marginBottom:4}}>דרך חישוב:</b> {explanation}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       );
     }
@@ -659,17 +676,22 @@
           
           <div style={{maxWidth:920,margin:"0 auto",padding:"20px 14px"}}>
             <div style={{display:"flex",gap:6,marginBottom:20,flexWrap:"wrap"}}>
-              {tabs.map(t=>(
-                <button key={t.id} onClick={()=>setEx(t.id)} style={{padding:"8px 16px",borderRadius:8,border:ex===t.id?`2px solid ${t.c}`:`1px solid ${C.bdr}`,background:ex===t.id?t.c+"12":"#fff",cursor:"pointer",textAlign:"right", transition:"all 0.2s"}}>
-                  <div style={{fontWeight:700,fontSize:13,color:ex===t.id?t.c:C.txt}}>{t.t}</div>
-                  <div style={{fontSize:10,color:C.txtL}}>{t.s}</div>
-                </button>
-              ))}
-            </div>
-            
-            <Info type="info"><b>הוראות:</b> פתרו כל שלב בסדר. הקלידו ערך מספרי ולחצו "בדוק". הפקודות והפירוט יתגלו רק אחרי שתפתרו נכון. טבלת הסיכום תיפתח בסיום התרגיל.</Info>
-            
-            {ex===1&&<Ex1/>}
+            {tabs.map(t=>(
+              <button key={t.id} onClick={()=>setEx(t.id)} style={{padding:"8px 16px",borderRadius:8,border:ex===t.id?`2px solid ${t.c}`:`1px solid ${C.bdr}`,background:ex===t.id?t.c+"12":"#fff",cursor:"pointer",textAlign:"right", transition:"all 0.2s"}}>
+                <div style={{fontWeight:700,fontSize:13,color:ex===t.id?t.c:C.txt}}>{t.t}</div>
+                <div style={{fontSize:10,color:C.txtL}}>{t.s}</div>
+              </button>
+            ))}
+          </div>
+          
+          <Info type="info">
+            <b>הוראות עבודה:</b><br/>
+            1. פתרו כל שלב לפי הסדר והקלידו ערך מספרי (ניתן להזין פסיקים, למשל: 1,000).<br/>
+            2. <b>אין צורך בספרות עשרוניות</b> - עגלו תמיד למספר השלם הקרוב ביותר (המערכת סולחת על סטיות עיגול קלות).<br/>
+            3. אם טעיתם, יופיע כפתור שיציג לכם את <b>דרך החישוב המלאה</b>, ולאחר 3 ניסיונות תוכלו גם לגלות את התשובה הסופית.
+          </Info>
+          
+          {ex===1&&<Ex1/>}
             {ex===2&&<Ex2/>}
             {ex===3&&<Ex3/>}
             {ex===4&&<Ex4/>}
