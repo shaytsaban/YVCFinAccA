@@ -10,15 +10,15 @@
         body {
             font-family: 'Assistant', 'IBM Plex Sans Hebrew', sans-serif;
             background-color: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
+            color: #0f172a;
+            line-height: 1.7;
         }
         .container-main {
-            max-width: 1450px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 40px 20px;
             display: grid;
-            grid-template-columns: 1fr 450px;
+            grid-template-columns: 1fr 500px;
             gap: 40px;
         }
         @media (max-width: 1200px) {
@@ -39,15 +39,26 @@
             border-top: 6px solid #3b82f6;
         }
 
+        /* Original Question Box */
+        .original-question {
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
+            border-right: 8px solid #0f172a;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
         .accounting-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 0.8rem;
+            margin: 20px 0;
+            font-size: 0.85rem;
             background: #fff;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
         }
         .accounting-table th, .accounting-table td {
             border: 1px solid #e2e8f0;
@@ -58,11 +69,10 @@
             text-align: right !important;
             font-weight: 700;
             background-color: #f1f5f9;
-            min-width: 220px;
-            padding-right: 12px !important;
+            min-width: 250px;
+            padding-right: 15px !important;
         }
         
-        /* The Question Mark Button */
         .calc-btn {
             display: inline-flex;
             align-items: center;
@@ -97,9 +107,9 @@
         .journal-box {
             background: #ffffff;
             padding: 24px;
-            border-radius: 16px;
+            border-radius: 12px;
             border-right: 6px solid #3b82f6;
-            margin: 25px 0;
+            margin: 20px 0;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
         }
@@ -147,17 +157,17 @@
 
         .step-section {
             background: white;
-            padding: 35px;
-            border-radius: 24px;
+            padding: 40px;
+            border-radius: 20px;
             margin-bottom: 50px;
             border: 1px solid #eef2f6;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.05);
         }
         
         .header-column {
             font-size: 0.8rem;
             font-weight: 800;
-            line-height: 1.3;
+            line-height: 1.4;
             padding: 14px 6px !important;
             background-color: #f8fafc;
             color: #334155;
@@ -171,185 +181,441 @@
 
     <!-- Right Side: Main Content -->
     <div class="content-area">
-        <header class="mb-14">
-            <h1 class="text-4xl font-black text-slate-900 mb-3">מערכת למידה אינטראקטיבית: שערוך נכס קבוע</h1>
-            <p class="text-xl text-slate-500">פתרון אקדמי מלא ומפורט (IAS 16) - כולל לוגיקה, רציונל והשפעה על הדוחות</p>
-            <div class="bg-indigo-600 text-white p-5 rounded-2xl mt-8 flex items-center gap-4 shadow-lg shadow-indigo-200">
-                <span class="text-3xl">💡</span>
-                <div>
-                    <p class="font-bold text-lg">הדרכה:</p>
-                    <p>המערכת היא דינמית. לחצו על כל סימן שאלה <span class="calc-btn" style="pointer-events:none; margin:0 4px;">?</span> בטבלאות ובפקודות היומן כדי לראות את הניתוח המלא בסרגל הצד.</p>
-                </div>
-            </div>
+        
+        <header class="mb-10">
+            <h1 class="text-5xl font-black text-slate-900 mb-4 tracking-tight">פתרון פדגוגי מורחב: שערוך נכס קבוע (IAS 16)</h1>
+            <p class="text-2xl text-slate-500 font-light">ניתוח רציף מ-2017 עד 2025 - שנה אחר שנה ללא דילוגים.</p>
         </header>
 
-        <!-- Section 1: 2017 -->
+        <!-- Original Question Section -->
+        <section class="original-question">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">תרגול - סוגיות הפחתת רכוש קבוע לרבות הפחתה שיטתית של קרן ההערכה מחדש לעודפים</h2>
+            
+            <h3 class="font-bold text-lg mt-4">מטרת התרגיל:</h3>
+            <ul class="list-disc pr-6 mb-4 text-slate-700 space-y-1">
+                <li>לסכם ברמה פרקטית חלק מסוגיות התיאוריה שנסקרו לעיל.</li>
+                <li>להציג את המקרה המתאפשר לפי התקן לפיו קרן ההערכה מחדש מופחתת לעודפים בקצב הפחת (בשונה מהמקרה אותו סקרנו עד כה, המתייחס להעברת מלוא קרן ההערכה לעודפים במועד המימוש / מכירת הנכס בלבד).</li>
+            </ul>
+
+            <h3 class="font-bold text-lg mt-6">נוסח התרגיל:</h3>
+            <ul class="list-disc pr-6 mb-4 text-slate-700 space-y-2">
+                <li>חברה רכשה מכונה לחימום נקניק לעובדי המשרד, בתאריך 1.1.2017.</li>
+                <li>עלות המכונה הסתכמה ב-50,000 ש"ח, היא הגיעה לחברה והפכה לזמינה לשימוש מיד באותו היום.</li>
+                <li>החברה מודדת פריטי רכוש קבוע המשתייכים לקבוצת המכונות והציוד לפי <strong>מודל הערכה מחדש</strong>, כאשר תדירות ההערכה מחדש היא כל שנתיים.</li>
+                <li>אורך החיים השימושיים של מכונת הנקניק הינו 20 שנה. ערך השייר הנאמד לה הוא 0.</li>
+                <li><strong>החברה מפחיתה את קרן ההערכה מחדש לעודפים.</strong></li>
+                <li>החברה מאפסת את הפחת הנצבר בכל מועד שערוך.</li>
+            </ul>
+
+            <h3 class="font-bold text-lg mt-6">נתוני שווי הוגן בתאריכים שונים:</h3>
+            <div class="overflow-x-auto mt-2 mb-4">
+                <table class="w-full text-center border-collapse border border-slate-300">
+                    <tr class="bg-slate-100 font-bold"><th class="border p-2">תאריך</th><th class="border p-2">שווי - ש"ח</th></tr>
+                    <tr><td class="border p-2">31/12/2018</td><td class="border p-2">70,000</td></tr>
+                    <tr><td class="border p-2">31/12/2020</td><td class="border p-2">30,000</td></tr>
+                    <tr><td class="border p-2">31/12/2022</td><td class="border p-2">80,000</td></tr>
+                    <tr><td class="border p-2">31/12/2024</td><td class="border p-2">35,000</td></tr>
+                </table>
+            </div>
+            
+            <p class="text-slate-700 font-bold mt-4">המכונה נמכרה ב-1.6.2025 בתמורה ל-33,000 ש"ח.</p>
+            <p class="text-blue-700 font-bold mt-2 text-lg">נדרש: חשבו והציגו את כל היתרות המאזניות והתוצאתיות בגין הפריט עבור שנות הדיווח 2017 - 2025.</p>
+        </section>
+
+        <!-- Interactive Notice -->
+        <div class="bg-indigo-600 text-white p-6 rounded-2xl mb-10 flex items-center gap-6 shadow-lg">
+            <span class="text-4xl">💡</span>
+            <div>
+                <p class="font-bold text-xl mb-1">מערכת פתרון אינטראקטיבית:</p>
+                <p class="text-md">לחצו על לחצני ההסבר <span class="calc-btn" style="pointer-events:none; margin:0 4px; width:20px; height:20px; font-size:12px;">?</span> בטבלאות ובפקודות היומן מטה כדי לראות את דרך החישוב, הרציונל וההשפעה על הדוחות הכספיים (בצד שמאל).</p>
+            </div>
+        </div>
+
+        <!-- ================= YEAR 2017 ================= -->
         <section class="step-section">
-            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-50 pb-2">1. שנת 2017: רכישה והכרה ראשונית</h2>
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-slate-200 pb-2">שנת 2017: רכישה והפעלה</h2>
+            <p class="text-slate-600 mb-6">בשנה הראשונה, טרם הגיע מועד השערוך הראשון (שנקבע לכל שנתיים), המכונה מטופלת לפי מודל העלות המסורתי. רושמים את העלות המקורית ומפחיתים אותה בגין שנת שימוש אחת מלאה.</p>
             
             <div class="journal-box">
-                <h4 class="font-bold text-slate-700 mb-4">פקודות יומן - שנת 2017</h4>
+                <h4 class="font-bold text-slate-800 text-lg mb-4">פקודות יומן - 2017</h4>
                 <div class="space-y-4">
-                    <div class="p-3 bg-slate-50 rounded-lg">
-                        <strong>1.1.2017: יום הרכישה</strong><br>
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong>1.1.2017: רכישה והכרה ראשונית</strong><br><br>
                         ח' מכונה .................................... 50,000 <span class="calc-btn" data-key="cost_base">?</span><br>
-                        ז' מזומן / ספקים ........................... 50,000
+                        ז' מזומן / התחייבויות ..................... 50,000
                     </div>
-                    <div class="p-3 bg-slate-50 rounded-lg">
-                        <strong>31.12.2017: רישום פחת לסוף שנה</strong><br>
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong>31.12.2017: פחת שנה ראשונה</strong><br><br>
                         ח' הוצאות פחת .............................. 2,500 <span class="calc-btn" data-key="dep_17">?</span><br>
                         ז' פחת נצבר ............................... 2,500
                     </div>
                 </div>
             </div>
             
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto mt-6">
                 <table class="accounting-table">
                     <thead>
                         <tr>
-                            <th class="row-title">תאריך דיווח</th>
-                            <th class="header-column">31/12/2017</th>
+                            <th class="row-title">עמודה דיווחית</th>
+                            <th class="header-column bg-slate-100">31/12/2017</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="row-title">עלות - "ברוטו" <span class="calc-btn" data-key="gross_desc">?</span></td><td>50,000 <span class="calc-btn" data-key="cost_base">?</span></td></tr>
+                        <tr><td class="row-title">עלות - "ברוטו"</td><td>50,000 <span class="calc-btn" data-key="cost_base">?</span></td></tr>
                         <tr><td class="row-title">פחת נצבר</td><td>2,500 <span class="calc-btn" data-key="dep_17">?</span></td></tr>
                         <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>47,500 <span class="calc-btn" data-key="bv_17">?</span></td></tr>
+                        <tr><td class="row-title">הוצאות פחת</td><td>2,500</td></tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Section 2: 2018 -->
+        <!-- ================= YEAR 2018 ================= -->
         <section class="step-section">
-            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-50 pb-2">2. שנת 2018: הערכה מחדש ראשונה (עלייה)</h2>
-            
-            <div class="journal-box">
-                <h4 class="font-bold text-slate-700 mb-4">פקודות יומן - 31.12.2018</h4>
+            <h2 class="text-3xl font-black text-blue-800 mb-6 border-b-4 border-blue-100 pb-2">שנת 2018: שערוך ראשון (עליית ערך)</h2>
+            <p class="text-slate-600 mb-6">הגענו למועד השערוך הדו-שנתי הראשון. לפני ביצוע השערוך, עלינו להשלים את רישום הפחת הרגיל לשנת 2018 כדי לדעת מהו הערך בספרים המעודכן. רק לאחר מכן משווים את הערך נטו לשווי ההוגן, מאפסים פחת ויוצרים קרן הערכה מחדש (OCI).</p>
+
+            <div class="journal-box border-blue-400">
+                <h4 class="font-bold text-slate-800 text-lg mb-4">פקודות יומן - 31.12.2018</h4>
                 <div class="space-y-4">
-                    <div class="p-3 bg-blue-50/50 rounded-lg">
-                        <strong>פחת שוטף (לפני שערוך):</strong><br>
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong>א. פחת שוטף עד למועד השערוך:</strong><br><br>
                         ח' הוצאות פחת .............................. 2,500 <span class="calc-btn" data-key="dep_18_reg">?</span><br>
                         ז' פחת נצבר ............................... 2,500
                     </div>
-                    <div class="p-3 bg-green-50/50 rounded-lg border border-green-200">
-                        <strong>ביצוע השערוך (שיטת הנטו):</strong><br>
-                        ח' פחת נצבר (איפוס) ........................ 5,000 <span class="calc-btn" data-key="acc_dep_18">?</span><br>
-                        ח' מכונה (עדכון) ........................... 20,000 <span class="calc-btn" data-key="asset_adj_18">?</span><br>
+                    <div class="p-4 bg-blue-50 rounded-xl border border-blue-200">
+                        <strong>ב. שערוך הנכס ויצירת קרן הון (שיטת הנטו):</strong><br><br>
+                        ח' פחת נצבר (איפוס נצבר שנתיים) ............ 5,000 <span class="calc-btn" data-key="acc_dep_18">?</span><br>
+                        ח' מכונה (עדכון הברוטו ל-70K) .............. 20,000 <span class="calc-btn" data-key="asset_adj_18">?</span><br>
                         ז' קרן הערכה מחדש (OCI) ..................... 25,000 <span class="calc-btn" data-key="oci_18">?</span>
                     </div>
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto mt-6">
                 <table class="accounting-table">
                     <thead>
                         <tr>
                             <th class="row-title">עמודה דיווחית</th>
-                            <th class="header-column">31/12/2017</th>
                             <th class="header-column">לפני הערכה מחדש<br>31/12/2018</th>
-                            <th class="header-column bg-blue-50">אחרי הערכה מחדש<br>31/12/2018</th>
+                            <th class="header-column bg-blue-100">אחרי הערכה מחדש<br>31/12/2018</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="row-title">עלות - "ברוטו"</td><td>50,000</td><td>50,000</td><td>70,000 <span class="calc-btn" data-key="val_70k">?</span></td></tr>
-                        <tr><td class="row-title">פחת נצבר</td><td>2,500</td><td>5,000 <span class="calc-btn" data-key="dep_18_acc">?</span></td><td>0 <span class="calc-btn" data-key="zero_dep_18">?</span></td></tr>
-                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>47,500</td><td>45,000 <span class="calc-btn" data-key="bv_18_pre">?</span></td><td>70,000</td></tr>
-                        <tr><td class="row-title">רווח כולל אחר (OCI)</td><td>0</td><td>0</td><td>25,000 <span class="calc-btn" data-key="oci_18">?</span></td></tr>
+                        <tr><td class="row-title">עלות - "ברוטו"</td><td>50,000</td><td>70,000 <span class="calc-btn" data-key="val_70k">?</span></td></tr>
+                        <tr><td class="row-title">פחת נצבר</td><td>5,000 <span class="calc-btn" data-key="dep_18_acc">?</span></td><td>0 <span class="calc-btn" data-key="zero_dep">?</span></td></tr>
+                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>45,000 <span class="calc-btn" data-key="bv_18_pre">?</span></td><td>70,000</td></tr>
+                        <tr><td class="row-title">הוצאות פחת</td><td>2,500</td><td>0</td></tr>
+                        <tr><td class="row-title">רווח כולל אחר (OCI)</td><td>0</td><td>25,000 <span class="calc-btn" data-key="oci_18">?</span></td></tr>
+                        <tr class="font-bold"><td class="row-title">יתרת קרן הערכה מחדש</td><td>0</td><td>25,000</td></tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Section 3: 2020 -->
+        <!-- ================= YEAR 2019 ================= -->
         <section class="step-section">
-            <h2 class="text-2xl font-bold text-red-900 mb-6 border-b-2 border-red-50 pb-2">3. השנים 2019-2020: ירידת ערך ופחת משתנה</h2>
-            <div class="bg-amber-50 p-4 rounded-xl mb-6 text-sm border-r-4 border-amber-400 font-semibold">
-                הערה פדגוגית קריטית: כאשר מבוצע שערוך, בשנים העוקבות אופן חישוב הוצאות הפחת משתנה ומתבסס על השווי החדש, המחולק ביתרת אורך החיים הנותרת!
-            </div>
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-slate-200 pb-2">שנת 2019: שנה ללא שערוך (התאמות פחת)</h2>
+            <p class="text-slate-600 mb-6">שנת 2019 היא שנת ביניים. לא מתבצע בה שערוך. אולם, ההשלכות של שערוך 2018 מורגשות כעת: <strong>בסיס הפחת משתנה.</strong> אנו מחשבים פחת חדש על בסיס 70,000 ש"ח, ובמקביל מתחילים "לפצות" את העודפים באמצעות הפחתה שיטתית מקרן ההערכה.</p>
 
             <div class="journal-box">
-                <h4 class="font-bold text-slate-700 mb-4">פקודות יומן (2019):</h4>
-                <div class="p-3 bg-slate-50 rounded-lg mb-3">
-                    <strong>1. רישום פחת משוערך:</strong><br>
-                    ח' הוצאות פחת (חדש) ........................ 3,889 <span class="calc-btn" data-key="dep_19">?</span><br>
-                    ז' פחת נצבר ............................... 3,889
-                </div>
-                <div class="p-3 bg-indigo-50 rounded-lg">
-                    <strong>2. הפחתה שיטתית לעודפים:</strong><br>
-                    ח' קרן הערכה מחדש ........................... 1,389 <span class="calc-btn" data-key="transfer_19">?</span><br>
-                    ז' עודפים ................................... 1,389
+                <h4 class="font-bold text-slate-800 text-lg mb-4">פקודות יומן - 31.12.2019</h4>
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong>1. פחת משוערך לשנה השוטפת:</strong><br><br>
+                        ח' הוצאות פחת (חדש) ........................ 3,889 <span class="calc-btn" data-key="dep_19">?</span><br>
+                        ז' פחת נצבר ............................... 3,889
+                    </div>
+                    <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-200">
+                        <strong>2. הפחתה שיטתית של הקרן:</strong><br><br>
+                        ח' קרן הערכה מחדש ........................... 1,389 <span class="calc-btn" data-key="transfer_19">?</span><br>
+                        ז' עודפים ................................... 1,389
+                    </div>
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto mt-6">
                 <table class="accounting-table">
                     <thead>
                         <tr>
-                            <th class="row-title">תאריך / עמודה</th>
-                            <th class="header-column">31/12/2019</th>
-                            <th class="header-column">לפני הערכה מחדש<br>31/12/2020</th>
-                            <th class="header-column bg-red-50">אחרי הערכה מחדש<br>31/12/2020</th>
+                            <th class="row-title">עמודה דיווחית</th>
+                            <th class="header-column bg-slate-100">31/12/2019</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="row-title">עלות - "ברוטו"</td><td>70,000</td><td>70,000</td><td>30,000 <span class="calc-btn" data-key="val_30k">?</span></td></tr>
-                        <tr><td class="row-title">פחת נצבר</td><td>3,889</td><td>7,778 <span class="calc-btn" data-key="dep_20_acc">?</span></td><td>0</td></tr>
-                        <tr><td class="row-title">הפרשה לירידת ערך</td><td>0</td><td>0</td><td>10,000 <span class="calc-btn" data-key="imp_20">?</span></td></tr>
-                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>66,111</td><td>62,222 <span class="calc-btn" data-key="bv_20_pre">?</span></td><td>30,000</td></tr>
-                        <tr><td class="row-title">הפסד מירידת ערך (P&L)</td><td>0</td><td>0</td><td>10,000 <span class="calc-btn" data-key="imp_20">?</span></td></tr>
-                        <tr><td class="row-title">הפסד כולל אחר (OCI)</td><td>0</td><td>0</td><td>22,222 <span class="calc-btn" data-key="oci_loss_20">?</span></td></tr>
-                        <tr><td class="row-title">יתרת קרן הערכה מחדש</td><td>23,611 <span class="calc-btn" data-key="fund_19">?</span></td><td>22,222 <span class="calc-btn" data-key="fund_20">?</span></td><td>0</td></tr>
-                        <tr class="text-blue-700 font-bold"><td class="row-title">שינוי חיובי בעודפים כנגד הקרן</td><td>1,389</td><td>1,389</td><td>0 <span class="calc-btn" data-key="transfer_20">?</span></td></tr>
+                        <tr><td class="row-title">עלות - "ברוטו"</td><td>70,000</td></tr>
+                        <tr><td class="row-title">פחת נצבר</td><td>3,889 <span class="calc-btn" data-key="dep_19">?</span></td></tr>
+                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>66,111 <span class="calc-btn" data-key="bv_19">?</span></td></tr>
+                        <tr><td class="row-title">הוצאות פחת</td><td>3,889</td></tr>
+                        <tr class="font-bold"><td class="row-title">יתרת קרן הערכה מחדש</td><td>23,611 <span class="calc-btn" data-key="fund_19">?</span></td></tr>
+                        <tr class="text-blue-700 font-bold"><td class="row-title">שינוי חיובי בעודפים כנגד הקרן</td><td>1,389 <span class="calc-btn" data-key="transfer_19">?</span></td></tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Section 4: 2022 -->
+        <!-- ================= YEAR 2020 ================= -->
         <section class="step-section">
-            <h2 class="text-2xl font-bold text-green-900 mb-6 border-b-2 border-green-50 pb-2">4. שנת 2022: התאוששות וביטול הפסד (Recovery)</h2>
-            <div class="journal-box">
-                <h4 class="font-bold text-slate-700 mb-4">פקודות יומן - 31.12.2022</h4>
+            <h2 class="text-3xl font-black text-red-800 mb-6 border-b-4 border-red-200 pb-2">שנת 2020: שערוך וירידת ערך משמעותית</h2>
+            <p class="text-slate-600 mb-6">מועד השערוך השני. השוק קורס ושווי המכונה מוערך ב-30,000 ש"ח בלבד. לפני השערוך, עלינו לבצע את שגרת 2020: פחת רגיל והעברה לעודפים. לאחר מכן, אנו בוחנים את ירידת הערך. שימו לב להצגת ה"ברוטו" של ההפרשה לירידת ערך בטבלה.</p>
+
+            <div class="journal-box border-red-400">
+                <h4 class="font-bold text-slate-800 text-lg mb-4">פקודות יומן נבחרות - 31.12.2020</h4>
                 <div class="space-y-4">
-                    <div class="p-3 bg-slate-50 rounded-lg">
-                        <strong>איפוס הפחת הנצבר מ-2020:</strong><br>
-                        ח' פחת נצבר ................................ 3,750 <span class="calc-btn" data-key="acc_dep_22">?</span>
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong>א. שגרה טרום שערוך (פחת + הפחתת קרן):</strong><br><br>
+                        ח' הוצאות פחת .............................. 3,889<br>
+                        ז' פחת נצבר ............................... 3,889<br><br>
+                        ח' קרן הערכה מחדש ........................... 1,389<br>
+                        ז' עודפים ................................... 1,389
                     </div>
-                    <div class="p-3 bg-green-50 rounded-lg border border-green-200">
-                        <strong>רישום עליית הערך המורכבת:</strong><br>
-                        ח' מכונה (התאמה לשווי 80K) ................. 50,000 <span class="calc-btn" data-key="asset_adj_22">?</span><br>
-                        ז' רווח מעליית ערך (P&L) ................... 8,750 <span class="calc-btn" data-key="recovery_8750">?</span><br>
-                        ז' קרן הערכה מחדש (OCI) ..................... 45,000 <span class="calc-btn" data-key="oci_22">?</span>
+                    <div class="p-4 bg-red-50 rounded-xl border border-red-200">
+                        <strong>ב. פקודת ירידת ערך (הפסד OCI ו-P&L):</strong><br><br>
+                        ח' פחת נצבר (איפוס מוחלט) ................... 7,778 <span class="calc-btn" data-key="dep_20_acc">?</span><br>
+                        ח' קרן הערכה מחדש (סגירת הקרן) ............. 22,222 <span class="calc-btn" data-key="oci_loss_20">?</span><br>
+                        ח' הפסד מירידת ערך (P&L) .................... 10,000 <span class="calc-btn" data-key="imp_20">?</span><br>
+                        ז' מכונה (התאמת הברוטו ל-40K) .............. 30,000 <span class="calc-btn" data-key="asset_adj_20_40k">?</span><br>
+                        ז' הפרשה לירידת ערך .......................... 10,000 <span class="calc-btn" data-key="imp_prov_20">?</span>
                     </div>
                 </div>
             </div>
+
+            <div class="overflow-x-auto mt-6">
+                <table class="accounting-table">
+                    <thead>
+                        <tr>
+                            <th class="row-title">עמודה דיווחית</th>
+                            <th class="header-column">לפני הערכה מחדש<br>31/12/2020</th>
+                            <th class="header-column bg-red-100">אחרי הערכה מחדש<br>31/12/2020</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="row-title">עלות - "ברוטו"</td><td>70,000</td><td>40,000 <span class="calc-btn" data-key="asset_adj_20_40k">?</span></td></tr>
+                        <tr><td class="row-title">פחת נצבר</td><td>7,778 <span class="calc-btn" data-key="dep_20_acc">?</span></td><td>0 <span class="calc-btn" data-key="zero_dep">?</span></td></tr>
+                        <tr><td class="row-title">הפרשה לירידת ערך</td><td>0</td><td>10,000 <span class="calc-btn" data-key="imp_prov_20">?</span></td></tr>
+                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>62,222 <span class="calc-btn" data-key="bv_20_pre">?</span></td><td>30,000 <span class="calc-btn" data-key="val_30k">?</span></td></tr>
+                        <tr><td class="row-title">הוצאות פחת</td><td>3,889</td><td>0</td></tr>
+                        <tr><td class="row-title">הפסד מירידת ערך (P&L)</td><td>0</td><td>10,000 <span class="calc-btn" data-key="imp_20">?</span></td></tr>
+                        <tr><td class="row-title">הפסד כולל אחר (OCI)</td><td>0</td><td>22,222 <span class="calc-btn" data-key="oci_loss_20">?</span></td></tr>
+                        <tr class="font-bold"><td class="row-title">יתרת קרן הערכה מחדש</td><td>22,222 <span class="calc-btn" data-key="fund_20">?</span></td><td>0 <span class="calc-btn" data-key="fund_20_post">?</span></td></tr>
+                        <tr class="text-blue-700 font-bold"><td class="row-title">שינוי חיובי בעודפים כנגד הקרן</td><td>1,389 <span class="calc-btn" data-key="transfer_20">?</span></td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
-        <!-- Section 5: 2025 -->
+        <!-- ================= YEAR 2021 ================= -->
         <section class="step-section">
-            <h2 class="text-2xl font-bold text-slate-900 mb-6 border-b-2 border-slate-100 pb-2">5. שנת 2025: חמישה חודשי פחת, מימוש וגריעה</h2>
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-slate-200 pb-2">שנת 2021: פחת והפחתת הפרשה (שנה ללא שערוך)</h2>
+            <p class="text-slate-600 mb-6">בשנת 2021 אין שערוך. אך מכיוון שב-2020 בחרנו להציג את הירידה עם <strong>הפרשה לירידת ערך</strong> (הצגת "ברוטו"), חישוב הפחת השנה מתפצל: אנו רושמים פחת על הברוטו, ומנגד מקטינים בהדרגה את ההפרשה, כדי להגיע להוצאת הפחת ה"נטו" שמשקפת את השווי (30,000).</p>
+
+            <div class="journal-box">
+                <h4 class="font-bold text-slate-800 text-lg mb-4">פקודות יומן מורכבות - 31.12.2021</h4>
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong>פחת ברוטו והפחתת ההפרשה:</strong><br><br>
+                        ח' הוצאות פחת (P&L - נטו) ................... 1,875 <span class="calc-btn" data-key="net_dep_21">?</span><br>
+                        ח' הפרשה לירידת ערך (הקטנת החשבון) ........... 625 <span class="calc-btn" data-key="imp_amort_21">?</span><br>
+                        ז' פחת נצבר (לפי עלות ברוטו 40K) ............ 2,500 <span class="calc-btn" data-key="dep_21_gross">?</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto mt-6">
+                <table class="accounting-table">
+                    <thead>
+                        <tr>
+                            <th class="row-title">עמודה דיווחית</th>
+                            <th class="header-column bg-slate-100">אין שערוך<br>31/12/2021</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="row-title">עלות - "ברוטו"</td><td>40,000</td></tr>
+                        <tr><td class="row-title">פחת נצבר</td><td>2,500 <span class="calc-btn" data-key="dep_21_gross">?</span></td></tr>
+                        <tr><td class="row-title">הפרשה לירידת ערך</td><td>9,375 <span class="calc-btn" data-key="imp_amort_21">?</span></td></tr>
+                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>28,125 <span class="calc-btn" data-key="bv_21">?</span></td></tr>
+                        <tr><td class="row-title">הוצאות פחת</td><td>1,875 <span class="calc-btn" data-key="net_dep_21">?</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= YEAR 2022 ================= -->
+        <section class="step-section">
+            <h2 class="text-3xl font-black text-green-800 mb-6 border-b-4 border-green-200 pb-2">שנת 2022: התאוששות שוק וביטול הפסד</h2>
+            <p class="text-slate-600 mb-6">מועד שערוך. לאחר ביצוע פחת 2022, שווי המכונה קופץ ל-80,000 ש"ח! כאן יש לטפל ב"התאוששות" (Recovery): תחילה מבטלים את הפסד העבר ב-P&L (עד לתקרה מותרת), ורק היתרה מועברת לפתיחת קרן הון חדשה.</p>
+
+            <div class="journal-box border-green-400">
+                <h4 class="font-bold text-slate-800 text-lg mb-4">פקודות יומן נבחרות - 31.12.2022</h4>
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong>א. פחת שוטף ברוטו והפחתת הפרשה 2022:</strong><br><br>
+                        ח' הוצאות פחת .............................. 1,875<br>
+                        ח' הפרשה לירידת ערך .......................... 625<br>
+                        ז' פחת נצבר ............................... 2,500
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-xl border border-green-200">
+                        <strong>ב. פקודת ההתאוששות והשערוך מחדש:</strong><br><br>
+                        ח' פחת נצבר (איפוס הצבירה של 21-22) .......... 5,000 <span class="calc-btn" data-key="dep_22_acc">?</span><br>
+                        ח' הפרשה לירידת ערך (איפוס היתרה שנותרה) ...... 8,750 <span class="calc-btn" data-key="imp_prov_22_clear">?</span><br>
+                        ח' מכונה (השלמה ל-80,000) .................... 40,000 <span class="calc-btn" data-key="asset_adj_22">?</span><br>
+                        ז' רווח מעליית ערך (ביטול הפסד ב-P&L) ....... 8,750 <span class="calc-btn" data-key="recovery_8750">?</span><br>
+                        ז' קרן הערכה מחדש (היתרה ל-OCI) ............. 45,000 <span class="calc-btn" data-key="oci_22">?</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto mt-6">
+                <table class="accounting-table">
+                    <thead>
+                        <tr>
+                            <th class="row-title">עמודה דיווחית</th>
+                            <th class="header-column">לפני הערכה מחדש<br>31/12/2022</th>
+                            <th class="header-column bg-green-100">אחרי הערכה מחדש<br>31/12/2022</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="row-title">עלות - "ברוטו"</td><td>40,000</td><td>80,000 <span class="calc-btn" data-key="val_80k">?</span></td></tr>
+                        <tr><td class="row-title">פחת נצבר</td><td>5,000 <span class="calc-btn" data-key="dep_22_acc">?</span></td><td>0 <span class="calc-btn" data-key="zero_dep">?</span></td></tr>
+                        <tr><td class="row-title">הפרשה לירידת ערך</td><td>8,750 <span class="calc-btn" data-key="imp_prov_22">?</span></td><td>0 <span class="calc-btn" data-key="imp_prov_22_clear">?</span></td></tr>
+                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>26,250 <span class="calc-btn" data-key="bv_22_pre">?</span></td><td>80,000</td></tr>
+                        <tr><td class="row-title">הוצאות פחת</td><td>1,875</td><td>0</td></tr>
+                        <tr><td class="row-title">רווח מעליית ערך (P&L)</td><td>0</td><td>8,750 <span class="calc-btn" data-key="recovery_8750">?</span></td></tr>
+                        <tr><td class="row-title">רווח כולל אחר (OCI)</td><td>0</td><td>45,000 <span class="calc-btn" data-key="oci_22">?</span></td></tr>
+                        <tr class="font-bold"><td class="row-title">יתרת קרן הערכה מחדש</td><td>0</td><td>45,000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= YEAR 2023 ================= -->
+        <section class="step-section">
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-slate-200 pb-2">שנת 2023: פחת משוערך חדש והעברות (שנה ללא שערוך)</h2>
+            <p class="text-slate-600 mb-6">ב-2023 שוב אין שערוך. אנו חוזרים למסלול של פחת משוערך נטו (ללא ההפרשה המסובכת). בסיס הפחת כעת הוא 80,000 ש"ח על פני יתרת השנים שנותרו. במקביל, כיוון שנוצרה קרן הערכה חדשה (45,000), אנו מחדשים את ההפחתה השיטתית לעודפים.</p>
+
+            <div class="journal-box">
+                <h4 class="font-bold text-slate-800 text-lg mb-4">פקודות יומן - 31.12.2023</h4>
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong>1. הוצאות פחת:</strong><br><br>
+                        ח' הוצאות פחת .............................. 5,714 <span class="calc-btn" data-key="dep_23">?</span><br>
+                        ז' פחת נצבר ............................... 5,714
+                    </div>
+                    <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-200">
+                        <strong>2. הפחתה שיטתית מהקרן לעודפים:</strong><br><br>
+                        ח' קרן הערכה מחדש ........................... 3,214 <span class="calc-btn" data-key="transfer_23">?</span><br>
+                        ז' עודפים ................................... 3,214
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto mt-6">
+                <table class="accounting-table">
+                    <thead>
+                        <tr>
+                            <th class="row-title">עמודה דיווחית</th>
+                            <th class="header-column bg-slate-100">אין שערוך<br>31/12/2023</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="row-title">עלות - "ברוטו"</td><td>80,000</td></tr>
+                        <tr><td class="row-title">פחת נצבר</td><td>5,714 <span class="calc-btn" data-key="dep_23">?</span></td></tr>
+                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>74,286 <span class="calc-btn" data-key="bv_23">?</span></td></tr>
+                        <tr><td class="row-title">הוצאות פחת</td><td>5,714</td></tr>
+                        <tr class="font-bold"><td class="row-title">יתרת קרן הערכה מחדש</td><td>41,786 <span class="calc-btn" data-key="fund_23">?</span></td></tr>
+                        <tr class="text-blue-700 font-bold"><td class="row-title">שינוי חיובי בעודפים כנגד הקרן</td><td>3,214 <span class="calc-btn" data-key="transfer_23">?</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= YEAR 2024 ================= -->
+        <section class="step-section">
+            <h2 class="text-3xl font-black text-orange-800 mb-6 border-b-4 border-orange-200 pb-2">שנת 2024: שערוך, ירידת ערך... אך ללא P&L!</h2>
+            <p class="text-slate-600 mb-6">מועד שערוך נוסף. הערך יורד חזרה ל-35,000 ש"ח. ההבדל הגדול משנת 2020 הוא שהפעם, יש לנו "כרית אוויר" גדולה מאוד בקרן ההערכה (מרווחי 2022). לכן, הקרן בולעת את *כל* ההפסד, ושום דבר לא פוגע בדו"ח רווח והפסד!</p>
+
+            <div class="journal-box border-orange-400">
+                <h4 class="font-bold text-slate-800 text-lg mb-4">פקודות יומן נבחרות - 31.12.2024</h4>
+                <div class="space-y-4">
+                    <div class="p-4 bg-orange-50 rounded-xl border border-orange-200">
+                        <strong>פקודת ירידת ערך שנספגת ב-OCI:</strong><br><br>
+                        ח' פחת נצבר (איפוס 23-24) .................. 11,429 <span class="calc-btn" data-key="dep_24_acc">?</span><br>
+                        ח' קרן הערכה מחדש (ספיגת ההפסד כליל) ........ 33,571 <span class="calc-btn" data-key="oci_loss_24">?</span><br>
+                        ז' מכונה (עדכון ל-35K) ....................... 45,000 <span class="calc-btn" data-key="asset_adj_24">?</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto mt-6">
+                <table class="accounting-table">
+                    <thead>
+                        <tr>
+                            <th class="row-title">עמודה דיווחית</th>
+                            <th class="header-column">לפני הערכה מחדש<br>31/12/2024</th>
+                            <th class="header-column bg-orange-100">אחרי הערכה מחדש<br>31/12/2024</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="row-title">עלות - "ברוטו"</td><td>80,000</td><td>35,000 <span class="calc-btn" data-key="val_35k_24">?</span></td></tr>
+                        <tr><td class="row-title">פחת נצבר</td><td>11,429 <span class="calc-btn" data-key="dep_24_acc">?</span></td><td>0 <span class="calc-btn" data-key="zero_dep">?</span></td></tr>
+                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>68,571 <span class="calc-btn" data-key="bv_24_pre">?</span></td><td>35,000</td></tr>
+                        <tr><td class="row-title">הפסד כולל אחר (OCI)</td><td>0</td><td>33,571 <span class="calc-btn" data-key="oci_loss_24">?</span></td></tr>
+                        <tr class="font-bold"><td class="row-title">יתרת קרן הערכה מחדש</td><td>38,571 <span class="calc-btn" data-key="fund_24_pre">?</span></td><td>5,000 <span class="calc-btn" data-key="fund_24_post">?</span></td></tr>
+                        <tr class="text-blue-700 font-bold"><td class="row-title">שינוי חיובי בעודפים כנגד הקרן</td><td>3,214 <span class="calc-btn" data-key="transfer_24">?</span></td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= YEAR 2025 ================= -->
+        <section class="step-section">
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-slate-300 pb-2">שנת 2025: סיום הדרך - 5 חודשי שימוש ומכירה</h2>
             <div class="bg-red-50 p-4 rounded-xl mb-6 border-r-4 border-red-500">
-                <strong>שים לב לנקודת הזמן:</strong> המכונה נמכרה ב-1.6.2025. המשמעות היא שהנכס יצר לחברה ערך בחמישה חודשים בלבד השנה (ינואר, פברואר, מרץ, אפריל, מאי).
+                <strong>התחשבנות מדויקת על ציר הזמן:</strong> המכונה נמכרה ב-1.6.2025. אנו מחשבים את כל הפעולות (פחת, העברה לקרן) לפי יחס של 5/12 חודשים. ביום המכירה, יתרת הקרן שנותרה נסגרת בבת אחת לחשבון העודפים.
             </div>
             
-            <div class="overflow-x-auto">
+            <div class="journal-box border-slate-400">
+                <h4 class="font-bold text-slate-800 text-lg mb-4">פקודות יומן - פרידה (1.6.2025)</h4>
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong>1. התחשבנות ל-5 חודשים:</strong><br><br>
+                        ח' הוצאות פחת (5 ח') ....................... 1,215 <span class="calc-btn" data-key="dep_25_5m">?</span><br>
+                        ז' פחת נצבר ............................... 1,215<br><br>
+                        ח' קרן הערכה מחדש ........................... 174 <span class="calc-btn" data-key="transfer_25">?</span><br>
+                        ז' עודפים ................................... 174
+                    </div>
+                    <div class="p-4 bg-red-50 rounded-xl border border-red-200">
+                        <strong>2. פקודת המכירה והגריעה (Disposal):</strong><br><br>
+                        ח' מזומן (תמורה קרובה לערך) ................ 33,000<br>
+                        ח' פחת נצבר (איפוס סופי) ................... 1,215<br>
+                        ח' הפסד הון ממכירה (P&L) .................. 785 <span class="calc-btn" data-key="loss_sale">?</span><br>
+                        ז' מכונה (הוצאת הנכס מהספרים) ............. 35,000
+                    </div>
+                    <div class="p-4 bg-purple-50 rounded-xl border border-purple-200">
+                        <strong>3. סגירת קרן ההערכה הסופית:</strong><br><br>
+                        ח' קרן הערכה מחדש (ריקון היתרה) ............. 4,826 <span class="calc-btn" data-key="final_transfer">?</span><br>
+                        ז' עודפים (מימוש ל-RE) ...................... 4,826
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto mt-6">
                 <table class="accounting-table">
                     <thead>
                         <tr>
                             <th class="row-title">עמודה דיווחית</th>
-                            <th class="header-column">אחרי הערכה מחדש<br>31/12/2024</th>
-                            <th class="header-column bg-yellow-50">לפני מכירה<br>01/06/2025</th>
-                            <th class="header-column bg-green-100">סוף שנה<br>31/12/2025</th>
+                            <th class="header-column bg-yellow-100">לפני מכירה<br>01/06/2025</th>
+                            <th class="header-column bg-green-100 text-green-900">אחרי מכירה (סוף שנה)<br>31/12/2025</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="row-title">עלות - "ברוטו"</td><td>35,000</td><td>35,000</td><td>0</td></tr>
-                        <tr><td class="row-title">פחת נצבר</td><td>0</td><td>1,215 <span class="calc-btn" data-key="dep_25_5m">?</span></td><td>0</td></tr>
-                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>35,000</td><td>33,785 <span class="calc-btn" data-key="bv_25_pre">?</span></td><td>0</td></tr>
-                        <tr><td class="row-title">יתרת קרן הערכה מחדש</td><td>5,000</td><td>4,826 <span class="calc-btn" data-key="fund_25_pre">?</span></td><td>0</td></tr>
-                        <tr class="text-blue-700 font-bold"><td class="row-title">שינוי חיובי בעודפים כנגד הקרן</td><td>0</td><td>174 <span class="calc-btn" data-key="transfer_25">?</span></td><td>4,826 <span class="calc-btn" data-key="final_transfer">?</span></td></tr>
-                        <tr class="text-red-600 font-bold"><td class="row-title">הפסד הון ממכירה</td><td>0</td><td>0</td><td>785 <span class="calc-btn" data-key="loss_sale">?</span></td></tr>
+                        <tr><td class="row-title">עלות - "ברוטו"</td><td>35,000</td><td>0</td></tr>
+                        <tr><td class="row-title">פחת נצבר</td><td>1,215 <span class="calc-btn" data-key="dep_25_5m">?</span></td><td>0</td></tr>
+                        <tr class="font-bold bg-slate-50"><td class="row-title">ערך ספרים</td><td>33,785 <span class="calc-btn" data-key="bv_25_pre">?</span></td><td>0</td></tr>
+                        <tr><td class="row-title">הוצאות פחת</td><td>1,215</td><td>1,215 <span class="calc-btn" data-key="dep_25_end">?</span></td></tr>
+                        <tr><td class="row-title">יתרת קרן הערכה מחדש</td><td>4,826 <span class="calc-btn" data-key="fund_25_pre">?</span></td><td>0 <span class="calc-btn" data-key="fund_25_end">?</span></td></tr>
+                        <tr class="text-blue-700 font-bold"><td class="row-title">שינוי חיובי בעודפים כנגד הקרן</td><td>174 <span class="calc-btn" data-key="transfer_25">?</span></td><td>4,826 <span class="calc-btn" data-key="final_transfer">?</span></td></tr>
+                        <tr class="text-red-600 font-bold"><td class="row-title">הפסד הון ממכירה</td><td>0</td><td>785 <span class="calc-btn" data-key="loss_sale">?</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -357,283 +623,477 @@
 
     </div>
 
-    <!-- Explanation Sidebar -->
+    <!-- Right Side: Explanation Sidebar -->
     <aside class="explanation-sidebar">
-        <div id="welcome-msg" class="text-center mt-10">
-            <div class="text-6xl mb-4">🔍</div>
-            <h3 class="text-2xl font-black text-blue-900 mb-4">הפעלת למידה חכמה</h3>
-            <p class="text-slate-600 font-medium">לפתיחת ההסברים, לחצו על כפתורי סימני השאלה הכחולים שמפוזרים לאורך הפתרון.</p>
+        <div id="welcome-msg" class="text-center mt-20">
+            <div class="text-8xl mb-6 opacity-80">🔍</div>
+            <h3 class="text-3xl font-black text-blue-900 mb-4 tracking-tight">מרכז ניתוח ומידע</h3>
+            <p class="text-slate-600 font-medium text-lg leading-relaxed">זהו מנוע הלמידה הדינמי. לחצו על כפתורי ה- <span class="calc-btn" style="pointer-events:none; margin:0; width:22px; height:22px;">?</span> השונים המפוזרים בטבלאות כדי לקבל את הנוסחה המדויקת והלוגיקה המסתתרת מאחורי כל מספר חשבונאי.</p>
         </div>
+        
         <div id="explanation-content" class="hidden">
-            <h3 id="exp-title" class="text-2xl font-bold text-blue-800 mb-4 border-b-2 border-blue-100 pb-2"></h3>
+            <h3 id="exp-title" class="text-2xl font-black text-blue-800 mb-6 border-b-4 border-blue-100 pb-3 leading-tight"></h3>
             
-            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">נוסחת החישוב:</h4>
+            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 bg-slate-100 inline-block px-2 py-1 rounded">נוסחת החישוב:</h4>
             <div id="exp-calc" class="formula-block"></div>
             
-            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2 mt-6">לוגיקה ודרך עבודה:</h4>
-            <div id="exp-logic" class="text-slate-700 text-md mb-6 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100"></div>
+            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 mt-6 bg-slate-100 inline-block px-2 py-1 rounded">לוגיקה ודרך עבודה:</h4>
+            <div id="exp-logic" class="text-slate-700 text-md mb-6 leading-relaxed bg-slate-50 p-5 rounded-xl border border-slate-200"></div>
             
-            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">הנחיות התקן (רציונל):</h4>
+            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 bg-slate-100 inline-block px-2 py-1 rounded">הנחיות התקן (רציונל):</h4>
             <div id="exp-rational" class="rationale-note"></div>
             
-            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2 mt-4">השפעה על הדוחות:</h4>
-            <div id="exp-impact" class="impact-note"></div>
+            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 mt-6 bg-slate-100 inline-block px-2 py-1 rounded">השפעה על הדוחות:</h4>
+            <div id="exp-impact" class="impact-note font-semibold"></div>
         </div>
     </aside>
 
 </div>
 
 <script>
-    // Comprehensive Explanation Data Dictionary
+    // Extensive Dictionary containing 40+ dynamic explanations mapped to the buttons.
     const explanationData = {
+        // --- 2017 ---
         cost_base: {
             title: "ח' מכונה: עלות רכישה (בסיס היסטורי)",
             calc: "Machinery Account = 50,000 NIS",
-            logic: "הנכס נרכש ב-1.1.2017 ומוכר לראשונה לפי מחיר העלות ששולם עבורו במזומן או באשראי (50,000 ש\"ח). העלות כוללת את מחיר הרכישה וכל הוצאה אחרת שנדרשה כדי להביא את המכונה למצב הפעלה.",
-            rational: "תקן IAS 16 דורש הכרה ראשונית בנכס רכוש קבוע לפי עלותו. גם אם החברה בחרה במודל הערכה מחדש, בסיס העלות נשמר עד לביצוע השערוך הראשון בפועל.",
+            logic: "הנכס נרכש ב-1.1.2017 ומוכר לראשונה לפי מחיר העלות ששולם עבורו (50,000 ש\"ח). העלות כוללת את מחיר הרכישה וכל הוצאה ישירה שנדרשה להבאת המכונה למצב הפעלה.",
+            rational: "תקן IAS 16 דורש הכרה ראשונית לפי עלות. גם אם החברה בחרה במודל הערכה מחדש, בסיס העלות נשמר עד לביצוע השערוך הראשון בפועל.",
             impact: "מאזן: הגדלת נכסים לא שוטפים ב-50,000 מול קיטון במזומן/הגדלת התחייבויות."
         },
         dep_17: {
             title: "הוצאות פחת לשנת 2017",
             calc: "50,000 / 20 = 2,500",
-            logic: "החישוב מתבצע לפי פחת בקו ישר: לוקחים את העלות המקורית (50,000) ומחלקים באורך החיים השימושי המלא (20 שנה). כיוון שהנכס נרכש ב-1 בינואר, אנו רושמים פחת בגין שנה שלמה.",
-            rational: "פחת מבטא הקצאה שיטתית של הסכום בר הפחת של נכס לאורך אורך חייו השימושיים. זוהי הוצאה תפעולית המייצגת את 'הצריכה' של הנכס.",
-            impact: "רווח והפסד: הוצאה של 2,500 שמקטינה את הרווח הנקי. מאזן: הגדלת פחת נצבר שמקטין את ערך הנכס נטו."
+            logic: "פחת בקו ישר: לוקחים את העלות המקורית (50,000) ומחלקים באורך החיים השימושי המלא (20 שנה). כיוון שהנכס נרכש ב-1 בינואר, רושמים פחת לשנה שלמה.",
+            rational: "פחת מבטא הקצאה שיטתית של הערך בר הפחת של נכס לאורך חייו השימושיים.",
+            impact: "רווח והפסד (P&L): הוצאה של 2,500 שמקטינה את הרווח הנקי. מאזן: הגדלת פחת נצבר."
         },
         gross_desc: {
             title: "מושג: עלות ברוטו (Gross Carrying Amount)",
             calc: "Machinery Account Balance Before Deduction",
-            logic: "שורת העלות 'ברוטו' מייצגת את היתרה שנמצאת פיזית בכרטיס הנהלת החשבונות של הנכס עצמו, לפני שמנכים ממנה את חשבון הנגדי של הפחת הנצבר.",
-            rational: "בשיטת הנטו, כאשר מתבצע שערוך, אנו מעדכנים את שורת ה'ברוטו' כך שתהיה זהה בדיוק לשווי ההוגן העדכני של הנכס (היות והפחת מאופס).",
-            impact: "דיווח מאזני בלבד (ביאור נכסים קבועים)."
+            logic: "שורת העלות 'ברוטו' מייצגת את היתרה הרשומה בכרטיס הנהלת החשבונות של הנכס עצמו, לפני הפחתת חשבון הפחת הנצבר (הקונטרה).",
+            rational: "בשיטת הנטו, כאשר מתבצע שערוך, אנו מעדכנים את שורת ה'ברוטו' כך שתהיה זהה בדיוק לשווי ההוגן העדכני של הנכס (כי הפחת מאופס).",
+            impact: "דיווח מאזני (ביאור רכוש קבוע)."
         },
         bv_17: {
             title: "ערך בספרים - סוף 2017",
             calc: "50,000 (Cost) - 2,500 (Acc. Dep) = 47,500",
             logic: "הערך בספרים (Carrying Amount) מחושב על ידי הפחתת הפחת הנצבר מהעלות המקורית. זהו הערך ה'נטו' המוצג במאזן.",
-            rational: "ייצוג העלות ההיסטורית שטרם הופחתה או נצרכה על ידי החברה.",
-            impact: "זהו סך הנכס שיוצג בסעיף רכוש קבוע במאזן ליום 31.12.2017."
+            rational: "ייצוג העלות ההיסטורית שטרם 'נצרכה' על ידי החברה בפעילותה.",
+            impact: "זהו סך הנכס שיוצג בסעיף רכוש קבוע (נטו) במאזן."
         },
+
+        // --- 2018 ---
         dep_18_reg: {
             title: "הוצאות פחת שוטף לפני שערוך (2018)",
             calc: "50,000 / 20 = 2,500",
-            logic: "חשוב מאוד: שערוך מתבצע תמיד לסוף התקופה. לכן, עבור שנת 2018, אנו רושמים קודם כל פחת שוטף ורגיל לפי הבסיס הישן (עלות היסטורית).",
+            logic: "שערוך מתבצע תמיד לסוף התקופה הרלוונטית. לכן, עבור 2018, אנו רושמים קודם כל פחת שוטף ורגיל לפי הבסיס הישן (היסטורי).",
             rational: "חובה לעדכן את בלאי הנכס עד לרגע שבו מבצעים את השערוך לשווי השוק, כדי למדוד נכונה את הערך בספרים הרגע שלפני השערוך.",
-            impact: "רווח והפסד: הוצאה של 2,500 המקטינה את הרווח של 2018."
-        },
-        acc_dep_18: {
-            title: "ביטול פחת נצבר במועד השערוך",
-            calc: "2,500 (2017) + 2,500 (2018) = 5,000\nDebit: Acc. Depreciation",
-            logic: "בשיטת הנטו, אנו סוגרים לחלוטין את כרטיס הפחת הנצבר (מחייבים ב-5,000) ומעבירים אותו לזכות כרטיס המכונה.",
-            rational: "IAS 16 מאפשר שתי שיטות. בשיטת הנטו, 'מוחקים' את העבר ומתחילים ספירת פחת חדשה מתוך השווי ההוגן המעודכן.",
-            impact: "מאזן: איפוס חשבון פחת נצבר ל-0. הקטנת חשבון הברוטו בהתאמה."
-        },
-        asset_adj_18: {
-            title: "התאמת המכונה לשווי ההוגן",
-            calc: "70,000 (Fair Value) - 50,000 (Cost) = 20,000",
-            logic: "לאחר שאיפסנו את הפחת, המכונה עומדת בספרים על יתרת חובה של 45,000. כדי להביא את ה'ברוטו' ל-70,000, עלינו להוסיף 20,000 (ועוד ה-5,000 שירדו מהפחת = 25,000 סה\"כ התאמה לנטו). הרישום הטכני בברוטו הוא תוספת של 20,000.",
-            rational: "מטרת הפקודה היא לוודא שיתרת החשבון המאזני תשקף במדויק את הערכת השמאי (70,000).",
-            impact: "מאזן: הגדלת כרטיס הנכס."
-        },
-        oci_18: {
-            title: "יצירת קרן הערכה מחדש (OCI)",
-            calc: "70,000 (FV) - 45,000 (BV) = 25,000",
-            logic: "הרווח מהשערוך מחושב כהפרש שבין השווי ההוגן העדכני לבין הערך בספרים (נטו) רגע לפני השערוך.",
-            rational: "עליות ערך של רכוש קבוע מעל עלותן ההיסטורית אינן מוכרות כרווח נקי, אלא נרשמות כרווח כולל אחר. זאת כדי למנוע חלוקת דיבידנד מרווח 'על הנייר' שטרם מומש.",
-            impact: "OCI והון עצמי: הגדלת ההון העצמי בסעיף קרן הערכה מחדש ב-25,000."
-        },
-        val_70k: {
-            title: "קביעת השווי ההוגן (2018)",
-            calc: "New Carrying Amount = 70,000",
-            logic: "השווי ההוגן הופך להיות ה'עלות' החדשה של הנכס לצורך חישובי הפחת העתידיים.",
-            rational: "במודל השערוך, הדיווח המאזני שואף להיות קרוב ככל הניתן לערך הכלכלי הנוכחי של הנכס.",
-            impact: "מאזן: הצגת הנכס בשווי של 70,000."
+            impact: "רווח והפסד: הוצאה של 2,500 המקטינה את הרווח."
         },
         dep_18_acc: {
             title: "פחת נצבר לפני השערוך (2018)",
             calc: "2,500 + 2,500 = 5,000",
-            logic: "צבירת הבלאי ההיסטורי עבור שתי שנות השימוש הראשונות.",
-            rational: "סכום זה חיוני כדי לדעת מהו הערך בספרים לפני השערוך.",
-            impact: "טבלת עזר לביצוע פקודת איפוס הפחת."
-        },
-        zero_dep_18: {
-            title: "איפוס סופי של הפחת הנצבר",
-            calc: "Balance = 0",
-            logic: "מיד לאחר פקודת היומן של השערוך, חשבון הפחת הנצבר מתאפס.",
-            rational: "כדי למנוע כפילות - השווי החדש כבר מגלם בתוכו את מצב הנכס הנוכחי והפחת המצטבר שלו.",
-            impact: "מאזן: פחת נצבר מדווח כ-0."
+            logic: "סכום הפחת המצטבר שנרשם במשך שתי שנות השימוש הראשונות.",
+            rational: "נתון מהותי לצורך חישוב הערך בספרים המופחת, לפני ההשוואה לשווי השוק.",
+            impact: "טבלת עזר מאזנית לקראת איפוס הפחת."
         },
         bv_18_pre: {
             title: "ערך בספרים לפני הערכה 2018",
             calc: "50,000 - 5,000 = 45,000",
             logic: "הערך נטו שהיה מדווח בסוף 2018 לולא ביצענו שערוך.",
-            rational: "בסיס השוואה קריטי לחישוב הרווח (25,000) שעובר לקרן ההון.",
-            impact: "נתון עזר חישובי בלבד."
+            rational: "זהו בסיס ההשוואה הנדרש כדי לקבוע את גובה הרווח מהשערוך.",
+            impact: "משמש לחישוב הרווח (25,000) שעובר לקרן ההון."
         },
+        acc_dep_18: {
+            title: "ביטול פחת נצבר במועד השערוך (שיטת הנטו)",
+            calc: "2,500 (2017) + 2,500 (2018) = 5,000\nDebit: Acc. Depreciation",
+            logic: "בשיטת הנטו, אנו סוגרים לחלוטין את כרטיס הפחת הנצבר (מחייבים ב-5,000) ומעבירים אותו לזכות כרטיס המכונה.",
+            rational: "IAS 16 מתיר את שיטת הנטו כדי 'למחוק' את העבר ולהתחיל ספירת פחת חדשה מתוך השווי ההוגן העדכני.",
+            impact: "מאזן: איפוס חשבון פחת נצבר ל-0."
+        },
+        asset_adj_18: {
+            title: "התאמת חשבון המכונה לשווי ההוגן",
+            calc: "70,000 (Fair Value) - 50,000 (Original Cost) = 20,000",
+            logic: "לאחר איפוס הפחת, המכונה בספרים עומדת על יתרת חובה של 45,000. כדי להביא את ה'ברוטו' ל-70,000, עלינו להוסיף לחשבון המכונה 20,000 (ועוד 5,000 שהגיעו מאיפוס הפחת = 25,000 שזה השערוך נטו).",
+            rational: "הבטחת הצגה מדויקת של השווי החדש בכרטיס הראשי של הנכס.",
+            impact: "מאזן: הגדלת כרטיס הנכס."
+        },
+        val_70k: {
+            title: "קביעת השווי ההוגן (2018)",
+            calc: "New Carrying Amount = 70,000",
+            logic: "השווי ההוגן הופך להיות ה'עלות' החדשה של הנכס לצורך חישובי הפחת העתידיים.",
+            rational: "מודל השערוך דורש עדכון הדיווח לערך הכלכלי הנוכחי בשוק.",
+            impact: "מאזן: הנכס מדווח לפי 70,000."
+        },
+        zero_dep: {
+            title: "איפוס סופי של פחת נצבר",
+            calc: "Balance = 0",
+            logic: "מיד לאחר פקודת היומן של השערוך, חשבון הפחת הנצבר עומד על אפס.",
+            rational: "השווי החדש (70K) כבר מגלם בתוכו את מצב הנכס הנוכחי, אין צורך בגרירת פחת היסטורי.",
+            impact: "מאזן: 0 בפחת נצבר."
+        },
+        oci_18: {
+            title: "יצירת קרן הערכה מחדש (OCI)",
+            calc: "70,000 (FV) - 45,000 (BV) = 25,000",
+            logic: "הרווח הוא ההפרש שבין השווי ההוגן העדכני לבין הערך בספרים (נטו) רגע לפני השערוך.",
+            rational: "עליות ערך מעל עלות היסטורית נרשמות כרווח כולל אחר (OCI) ולא ב-P&L, למניעת חלוקת דיבידנד מרווח 'על הנייר'.",
+            impact: "הון עצמי: הגדלת קרן הערכה מחדש ב-25,000."
+        },
+
+        // --- 2019 ---
         dep_19: {
-            title: "חישוב הוצאות הפחת החדשות (2019)",
+            title: "חישוב הוצאות הפחת המשוערכות החדשות (2019)",
             calc: "70,000 (New FV) / 18 (Remaining Years) = 3,889",
-            logic: "זהו שלב קריטי: לאחר השערוך, אנו זונחים את הנוסחה הישנה. הפחת החדש שווה לשווי המשוערך (70,000) חלקי השנים שנותרו לנכס (20-2 = 18 שנים).",
-            rational: "הנכס שווה עכשיו יותר, ולכן גם 'הצריכה' שלו שווה יותר. יש להקצות את השווי החדש לאורך התקופה הנותרת.",
-            impact: "רווח והפסד: הוצאות הפחת גדלות מ-2,500 ל-3,889, כלומר הרווח הנקי קטן השנה יותר מבשנים קודמות."
+            logic: "זהו הלב של מודל השערוך: לאחר השערוך, זונחים את הנוסחה הישנה. הפחת שווה לשווי המשוערך (70,000) חלקי השנים שנותרו לנכס (20 פחות 2 שנים שחלפו = 18 שנים).",
+            rational: "הנכס שווה עכשיו יותר, ולכן הקצאת השחיקה (פחת) גבוהה יותר לשנים הנותרות.",
+            impact: "רווח והפסד: הפחת גדל מ-2,500 ל-3,889. הרווח הנקי קטן השנה."
         },
         transfer_19: {
             title: "הפחתה שיטתית מהקרן לעודפים",
-            calc: "25,000 (Fund) / 18 (Years) = 1,389",
-            logic: "בכל שנה אנו מעבירים סכום מהקרן לעודפים. הסכום שווה ליתרת הקרן המקורית מחולקת ביתרת חיי הנכס (או לחלופין: הפחת החדש פחות הפחת הישן: 3,889 - 2,500).",
-            rational: "מטרת ההעברה היא 'לפצות' את העודפים (הרווחים הראויים לחלוקה). בגלל השערוך, נרשם פחת גבוה יותר שהקטין את הרווח הנקי. העברה זו מחזירה את המצב בעודפים למה שהיה קורה תחת בסיס עלות היסטורית.",
-            impact: "הון עצמי: העברה פנימית מ-OCI (קרן הערכה) לעודפים (Retained Earnings). אין השפעה על סך ההון."
+            calc: "25,000 (Original Fund) / 18 (Years) = 1,389",
+            logic: "מעבירים סכום מהקרן לעודפים השווה ליתרת הקרן חלקי יתרת חיי הנכס (זה בדיוק ההפרש בין הפחת החדש 3,889 לפחת הישן 2,500).",
+            rational: "מטרת ההעברה 'לפצות' את העודפים (הרווחים הראויים לחלוקה) על כך שהפחת הגבוה הקטין את הרווח הנקי המועבר אליהם. ההעברה מנטרלת פגיעה זו.",
+            impact: "הון עצמי: קיטון קרן הון (1,389) וגידול זהה בעודפים. סך ההון לא משתנה."
         },
-        val_30k: {
-            title: "נפילת ערך (Impairment) - 2020",
-            calc: "New Fair Value = 30,000",
-            logic: "בסוף 2020 התרחשה ירידת ערך מהותית בשוק, ושווי הנכס עודכן ל-30,000.",
-            rational: "תקן IAS 36 מחייב לבצע הפחתה לערך בר השבה כאשר השווי יורד משמעותית.",
-            impact: "מאזן: קיטון בנכסים ל-30,000."
-        },
-        dep_20_acc: {
-            title: "פחת נצבר לפני ירידת ערך (2020)",
-            calc: "3,889 (2019) + 3,889 (2020) = 7,778",
-            logic: "סכום הפחת שנרשם במשך שנתיים על בסיס השווי המשוערך הקודם של 70,000.",
-            rational: "נדרש כדי לחשב את הערך בספרים המעודכן ביום בדיקת ירידת הערך.",
-            impact: "מאזן: קיטון נכסים נטו."
-        },
-        bv_20_pre: {
-            title: "ערך בספרים לפני ההתרסקות (2020)",
-            calc: "70,000 - 7,778 = 62,222",
-            logic: "זהו הערך אליו הגענו לאחר הפחת של שנת 2020. זה המספר שאותו אנו משווים לשווי השוק החדש (30,000).",
-            rational: "ההפרש בין נתון זה ל-30,000 (32,222) הוא סך ירידת הערך שיש לטפל בה חשבונאית.",
-            impact: "נתון עזר חישובי."
+        bv_19: {
+            title: "ערך בספרים - סוף 2019",
+            calc: "70,000 - 3,889 = 66,111",
+            logic: "השווי המשוערך פחות הפחת הנצבר (החדש) לשנה אחת.",
+            rational: "מייצג את הערך הנותר במאזן לאחר שנת שימוש אחת בבסיס המשוערך.",
+            impact: "מאזן: סעיף רכוש קבוע."
         },
         fund_19: {
             title: "יתרת קרן הערכה מחדש לאחר הפחתה (2019)",
             calc: "25,000 - 1,389 = 23,611",
-            logic: "הקרן התחילה מ-25,000 וירדה בעקבות ההפחתה השיטתית לעודפים.",
-            rational: "קרן ההון מדלדלת לאורך הזמן ככל שהנכס נצרך.",
-            impact: "הון עצמי: הקטנת רכיב ה-OCI ב-1,389."
+            logic: "הקרן התחילה מ-25,000 וירדה ב-1,389 בעקבות ההפחתה השיטתית לעודפים.",
+            rational: "קרן ההון הולכת ומדלדלת לאורך הזמן (מתממשת רעיונית במקביל לצריכת הנכס).",
+            impact: "הון עצמי: הצגת היתרה החדשה בסעיף קרן הערכה."
+        },
+
+        // --- 2020 ---
+        dep_20_acc: {
+            title: "פחת נצבר לפני ירידת ערך (2020)",
+            calc: "3,889 (2019) + 3,889 (2020) = 7,778",
+            logic: "סכום הפחת שנרשם במשך שנתיים על בסיס השווי המשוערך הקודם של 70,000.",
+            rational: "נדרש כדי לחשב את הערך בספרים המעודכן ביום בדיקת ירידת הערך ולצורך פקודת האיפוס.",
+            impact: "מאזן: יתרה לקראת איפוס."
+        },
+        bv_20_pre: {
+            title: "ערך בספרים לפני ההתרסקות (2020)",
+            calc: "70,000 - 7,778 = 62,222",
+            logic: "זהו הערך אליו הגענו לאחר רישום הפחת של שנת 2020. נתון זה מושווה לשווי השוק החדש והנמוך (30,000).",
+            rational: "קביעת נקודת המוצא לפני ההכרה בהפסדי הון או ירידת ערך.",
+            impact: "משמש לחישוב ההפסד: 62,222 - 30,000 = 32,222."
         },
         fund_20: {
             title: "יתרת קרן זמינה לפני ירידת הערך (2020)",
             calc: "23,611 - 1,389 = 22,222",
-            logic: "זהו נתון קריטי! בסוף 2020 אנו מבצעים הפחתה שיטתית נוספת. נשאר בקרן 22,222. זה הסכום המקסימלי שניתן לקזז נגד ירידת הערך.",
-            rational: "חובה לעדכן את הקרן לשנה השוטפת לפני שניגשים לנתח את ירידת הערך בסוף אותה שנה.",
-            impact: "הון עצמי: יתרת הקרן הזמינה לקליטת הפסדים."
+            logic: "נתון קריטי! בסוף 2020 אנו מבצעים הפחתה שיטתית שגרתית נוספת. נשאר בקרן 22,222. זה הסכום המקסימלי שישמש כ'כרית' לספיגת ירידת הערך.",
+            rational: "חובה לעדכן את הקרן לשנה השוטפת *לפני* שניגשים לטפל בירידת הערך בסוף אותה שנה.",
+            impact: "הון עצמי: היתרה שתיסגר מיד לאחר מכן."
         },
         transfer_20: {
-            title: "איפוס הקרן וסיום ההפחתה השיטתית",
-            calc: "Balance = 0",
-            logic: "מכיוון שכל יתרת הקרן (22,222) נמחקה כנגד ירידת הערך, לא נשארה קרן. לכן, משנת 2021 ואילך כבר לא תהיה 'הפחתה שיטתית' לעודפים.",
-            rational: "אי אפשר להעביר כסף מקרן שאינה קיימת.",
-            impact: "עצירת הפקודות השנתיות של ח' קרן ז' עודפים."
+            title: "עצירת ההפחתה השיטתית מ-2020 ואילך",
+            calc: "Fund Balance after Impairment = 0",
+            logic: "מכיוון שכל יתרת הקרן (22,222) נמחקה כנגד ירידת הערך של 2020, הקרן התרוקנה. משנת 2021 ואילך כבר לא תהיה העברה מהקרן לעודפים.",
+            rational: "אין אפשרות להעביר כסף מקרן שאינה קיימת (מאופסת).",
+            impact: "העברה '0' בשנים 21-22."
+        },
+        val_30k: {
+            title: "קביעת השווי הנמוך (2020)",
+            calc: "New Fair Value = 30,000",
+            logic: "השוק קרס, ושמאות מצביעה על שווי של 30,000. התקן דורש הנחתה של הערך המאזני.",
+            rational: "מדידת ערך בר השבה וירידת ערך (שילוב של IAS 16 עם IAS 36).",
+            impact: "מאזן: קיטון נכסים ל-30,000."
+        },
+        asset_adj_20_40k: {
+            title: "התאמת הברוטו ל-40,000 (הצגת ירידה ברוטו)",
+            calc: "Gross Account = 40,000",
+            logic: "במקום למעוך את כרטיס המכונה ישר ל-30,000, אנו בוחרים להציג אותו בעלות של 40,000 (כי 40K פחות פחת עתידי ישקף 30K? לא, ה-40K הוא ברוטו, וההפרשה היא 10K, יחד זה 30K).",
+            rational: "זוהי טכניקת הצגה שבה ההפסד החזוי שנרשם ב-P&L (10,000) מופרד לחשבון נגדי עצמאי ('הפרשה לירידת ערך').",
+            impact: "מאזן: נכס ברוטו 40,000."
+        },
+        imp_prov_20: {
+            title: "יצירת הפרשה לירידת ערך (חשבון נגדי)",
+            calc: "Credit: Provision for Impairment = 10,000",
+            logic: "זהו חשבון חובה/זכות שמקזז את סעיף המכונה במאזן. הוא אוצר בתוכו את ההפסד שנרשם ברווח והפסד.",
+            rational: "שמירה על תיעוד ההפסד החריג, כדי לאפשר הפחתה הדרגתית שלו כנגד הוצאות הפחת בשנים הבאות (פחת משולב).",
+            impact: "מאזן: הקטנת רכוש קבוע נטו ב-10,000."
         },
         oci_loss_20: {
             title: "סגירת קרן ההערכה (OCI)",
             calc: "Debit: OCI Surplus = 22,222",
-            logic: "סך ירידת הערך הוא 32,222. אנו מוחקים את כל יתרת הקרן הקיימת בסך 22,222 כהפסד כולל אחר (נרשם לחובת ה-OCI).",
-            rational: "כשיש ירידת ערך, היא מוחקת קודם כל רווחים קודמים שלא מומשו ויושבים בקרן עבור אותו נכס.",
-            impact: "OCI: הפסד של 22,222."
+            logic: "הירידה הכוללת היא 32,222. היא מוחקת קודם כל את כל הקרן שהצטברה בסעיף (22,222) כהפסד ב-OCI.",
+            rational: "כשיש ירידת ערך בנכס שמוערך מחדש, היא פוגעת קודם ברווחים שלא מומשו. זוהי פגיעה ישירה בהון העצמי בלי לעבור ברווח והפסד.",
+            impact: "OCI: הפסד כולל אחר בסך 22,222."
         },
         imp_20: {
-            title: "הפסד מירידת ערך (P&L)",
-            calc: "32,222 (Total Loss) - 22,222 (Fund) = 10,000",
-            logic: "לאחר שסגרנו את הקרן, נותר הפסד של 10,000. סכום זה נרשם כהוצאה ישירות לדוח רווח והפסד.",
-            rational: "כל ירידה שיורדת מתחת לבסיס העלות ההיסטורית המופחתת (ה'רצפה' הרעיונית) חייבת להירשם כהפסד ב-P&L.",
-            impact: "רווח והפסד: הוצאה חד פעמית של 10,000 המקטינה דרסטית את הרווח הנקי."
+            title: "הפסד מירידת ערך בדוח רווח והפסד (P&L)",
+            calc: "32,222 (Total Drop) - 22,222 (OCI Cushion) = 10,000",
+            logic: "רק לאחר שהקרן התרוקנה, 'עודף' הירידה (10,000) מכה בדוח רווח והפסד של שנת 2020 כהוצאה חריגה.",
+            rational: "כל ירידה שיורדת מתחת לעלות ההיסטורית המופחתת (ה'רצפה') חייבת להיות מוכרת כהפסד תקופתי אמיתי.",
+            impact: "P&L: הפסד חריג של 10,000 שמקטין רווח נקי."
         },
-        acc_dep_22: {
+
+        // --- 2021 ---
+        dep_21_gross: {
+            title: "פחת ברוטו - 2021",
+            calc: "40,000 (Gross) / 16 (Remaining Years) = 2,500",
+            logic: "כיוון שבחרנו להציג ברוטו (40K) והפרשה (10K), חשבון הפחת הנצבר מחושב מתוך הברוטו (40K לחלק ל-16 שנים).",
+            rational: "שיטת רישום טכנית המפצלת את התהליך. הפחת הנצבר מתנפח ב-2,500.",
+            impact: "מאזן: הגדלת חשבון פחת נצבר."
+        },
+        imp_amort_21: {
+            title: "הפחתת ההפרשה לירידת ערך",
+            calc: "10,000 (Provision) / 16 (Years) = 625",
+            logic: "במקביל לפחת, אנו 'משחררים' חלק מההפרשה לירידת הערך (מקטינים את יתרת ה-10,000 ב-625 מדי שנה). היתרה שיורדת לשנה הבאה היא 9,375.",
+            rational: "תיקון הדרגתי של ההפסד שספגנו מראש, כדי להתאים להוצאה הכלכלית האמיתית הנדרשת.",
+            impact: "מאזן: הקטנת סעיף ההפרשה (הגדלת נטו הנכס)."
+        },
+        net_dep_21: {
+            title: "הוצאות פחת נטו בדוח רווח והפסד (2021)",
+            calc: "2,500 (Gross Dep) - 625 (Prov. Amort) = 1,875\nOR: 30,000 (Net Value) / 16 = 1,875",
+            logic: "ההוצאה ב-P&L היא ההפרש בין הפחת ברוטו (חובה) להפחתת ההפרשה (זכות). התוצאה היא 1,875.",
+            rational: "הדוח התוצאתי (P&L) רואה רק את ההוצאה הכלכלית 'נטו' הנגזרת מהשווי ההוגן שנקבע ב-2020 (30,000). התסבוכת של הברוטו משפיעה רק על מבנה המאזן.",
+            impact: "P&L: הוצאה של 1,875 בלבד."
+        },
+        bv_21: {
+            title: "ערך בספרים משולב - סוף 2021",
+            calc: "40,000 (Cost) - 2,500 (Dep) - 9,375 (Prov) = 28,125",
+            logic: "הערך המאזני המלא נטו, המשקלל את כל חשבונות העזר הנגדיים.",
+            rational: "מוכיח שהשיטה עובדת: 30,000 פחות פחת נטו של 1,875 נותן בדיוק את אותו ערך של 28,125.",
+            impact: "מאזן: הנכס נטו."
+        },
+
+        // --- 2022 ---
+        dep_22_acc: {
             title: "איפוס פחת במועד ההתאוששות (2022)",
-            calc: "1,875 (2021) + 1,875 (2022) = 3,750",
-            logic: "לאחר ההתרסקות ל-30,000, הפחת ירד ל-1,875 בשנה (30K מחולק ב-16 שנים). לאחר שנתיים (2021-2022), זהו הפחת הנצבר שיש לאפס לקראת השערוך הבא.",
-            rational: "שוב מיישמים את שיטת הנטו לקראת עדכון השווי ל-80,000.",
-            impact: "מאזן: איפוס החשבון הנגדי."
+            calc: "2,500 (2021) + 2,500 (2022) = 5,000",
+            logic: "ב-31.12.2022 (לפני שערוך) הצטבר פחת של 5,000 מתוך הברוטו של ה-40K. אנו מאפסים אותו לחלוטין כחלק מיישום מחודש של שיטת הנטו לקראת העלייה.",
+            rational: "ניקוי הפחת הישן לפני הצגת השווי החדש של 80,000.",
+            impact: "מאזן: ביטול צבירת הפחת."
+        },
+        imp_prov_22: {
+            title: "יתרת ההפרשה לפני ההתאוששות",
+            calc: "9,375 - 625 = 8,750",
+            logic: "ההפרשה הופחתה שוב בשנת 2022 בעוד 625. היתרה שנותרה בחשבון היא 8,750.",
+            rational: "חשוב לדעת מה היתרה המדויקת, כדי לדעת כמה לאפס וכמה מותר 'לבטל' בהפסד P&L.",
+            impact: "נתון עזר חישובי."
+        },
+        imp_prov_22_clear: {
+            title: "איפוס מוחלט של ההפרשה",
+            calc: "Debit Provision = 8,750",
+            logic: "כיוון שהנכס עולה חזרה ל-80K, אין יותר 'ירידת ערך'. מחשבים את היתרה (8,750) וסוגרים את החשבון.",
+            rational: "הנכס כבר לא סובל מירידת ערך, יש לנקות את הספרים מחשבונות נגדיים של הפסדים.",
+            impact: "מאזן: יתרת חשבון ההפרשה הופכת ל-0."
+        },
+        bv_22_pre: {
+            title: "ערך טרום שערוך 2022",
+            calc: "40,000 - 5,000 - 8,750 = 26,250",
+            logic: "זה הערך נטו לפני הזינוק. לחלופין: 28,125 (השנה הקודמת) פחות פחת נטו 1,875.",
+            rational: "זה הבסיס לחלוקת עליית הערך בין P&L ל-OCI.",
+            impact: "עזר חישוב. העלייה הכוללת: 80K פחות 26.25K."
         },
         asset_adj_22: {
-            title: "ח' מכונה: התאמה לשווי 80K",
-            calc: "80,000 (New FV) - 30,000 (Old FV Base) = 50,000",
-            logic: "הנכס זינק משווי ברוטו של 30,000 לשווי של 80,000. ההפרש הוא 50,000, ולכן אנו מגדילים את כרטיס המכונה בסכום זה.",
-            rational: "עדכון כרטיס הנכס למציאות החדשה בשוק.",
-            impact: "מאזן: הגדלת נכסים קבועים."
+            title: "התאמת המכונה לשווי של 80K",
+            calc: "80,000 (New FV) - 40,000 (Old Gross Base) = 40,000",
+            logic: "הגדלת חשבון הברוטו של המכונה מ-40,000 ל-80,000.",
+            rational: "הצגת שווי שוק מעודכן (הזינוק הגדול של שנת 2022).",
+            impact: "מאזן: הגדלת חשבון הנכסים ב-40K."
         },
         recovery_8750: {
             title: "ביטול הפסד ברווח והפסד (P&L Recovery Limit)",
-            calc: "10,000 (Original P&L Loss) - [ 10,000 / 16 * 2 ] (Saved Dep) = 8,750",
-            logic: "הנכס עלה ב-53,750 (80K - 26,250 BV). כמה מזה ילך ל-P&L? הכלל קובע שאי אפשר לבטל יותר ממה שהיה בספרים לולא ההפסד. רשמנו 10,000 הפסד. במשך שנתיים 'נחסך' פחת של 1,250 בגין ההפסד. לכן נותר לבטל רק 8,750.",
-            rational: "עקרון שמרנות: ה-P&L יכול לתקן עבר, אבל אסור לו לעבור את תקרת העלות ההיסטורית. ביטול יתר ייצור רווח פיקטיבי.",
-            impact: "רווח והפסד: הכנסה (ביטול הפסד) של 8,750."
+            calc: "Max allowed = 10,000 (Orig. Loss) - 1,250 (Saved Amort for 2y) = 8,750",
+            logic: "הנכס עלה ב-53,750 (מ-26,250 ל-80,000). הכלל: מבטלים הפסד עבר רק עד 'תקרת' העלות לולא הירידה. בקיצור, זה בדיוק יתרת חשבון ההפרשה שאופס (8,750).",
+            rational: "עקרון השמרנות: ה-P&L מתקן עבר, אבל אסור ליצור בו רווח שעולה על העלות ההיסטורית. השאר הולך ל-OCI.",
+            impact: "P&L: הכנסה מביטול הפסד של 8,750."
         },
         oci_22: {
             title: "יצירת קרן הערכה מחדש חדשה (2022)",
             calc: "53,750 (Total Gain) - 8,750 (P&L Recovery) = 45,000",
-            logic: "מסך העלייה בערך הנכס (53,750), קיזזנו 8,750 לטובת רווח והפסד. כל היתרה (45,000) היא עליית ערך 'נקייה' מעל העלות, וזורמת לקרן הון חדשה ב-OCI.",
-            rational: "פתיחת מחזור חדש של הערכה מחדש חיובית בספרים.",
+            logic: "מסך העלייה (53,750), קיזזנו 8,750 לטובת P&L. היתרה (45,000) היא עליית ערך 'נקייה' מעל העלות, וזורמת לקרן הון חדשה ב-OCI.",
+            rational: "פתיחת מחזור חדש של הערכה מחדש חיובית בספרים, בדומה למה שקרה ב-2018.",
             impact: "הון עצמי: הגדלת רכיב ה-OCI ב-45,000."
         },
+        val_80k: {
+            title: "השווי החדש והמזנק ב-2022",
+            calc: "New FV = 80,000",
+            logic: "עלייה חדה שמשנה את פני הדוחות לחלוטין לקראת השנים הבאות.",
+            rational: "שיקוף עקבי של מחירי השוק (קפיצת מדרגה).",
+            impact: "מאזן: הנכס מדווח כ-80,000 נטו."
+        },
+
+        // --- 2023 ---
+        dep_23: {
+            title: "פחת חדש משוערך (2023)",
+            calc: "80,000 / 14 = 5,714",
+            logic: "שוב משנים בסיס! שווי חדש (80K) חלקי יתרת החיים (20 שנה במקור, פחות 6 שנים שעברו 17-22 = 14 שנים).",
+            rational: "עדכון הפחת כדי שיקצה את השווי הכלכלי החדש לאורך התקופה הנותרת.",
+            impact: "P&L: זינוק בהוצאות הפחת ל-5,714."
+        },
+        transfer_23: {
+            title: "חידוש ההפחתה השיטתית (2023)",
+            calc: "45,000 / 14 = 3,214",
+            logic: "כיוון שיש לנו קרן חדשה של 45,000, אנו חוזרים להעביר חלק ממנה לעודפים. החישוב: הקרן חלקי 14 שנים.",
+            rational: "העברה לעודפים מתחדשת תמיד כשיש יתרת קרן קיימת, כדי לאזן את הפחת הגבוה (5,714) שפגע ברווח הנקי.",
+            impact: "הון: העברה פנימית מ-OCI לעודפים של 3,214."
+        },
+        bv_23: {
+            title: "ערך בספרים - סוף 2023",
+            calc: "80,000 - 5,714 = 74,286",
+            logic: "עלות ברוטו פחות שנת פחת אחת תחת הבסיס החדש.",
+            rational: "ערך המאזן לסוף 2023.",
+            impact: "מאזן: נכס נטו 74,286."
+        },
+        fund_23: {
+            title: "יתרת קרן - סוף 2023",
+            calc: "45,000 - 3,214 = 41,786",
+            logic: "יתרת הקרן לאחר שנת הפחתה שיטתית אחת מאז שנוצרה.",
+            rational: "הקרן מתחילה להישחק שוב עם הזמן.",
+            impact: "הון: יתרת סגירה 41,786 ל-OCI."
+        },
+
+        // --- 2024 ---
+        dep_24_acc: {
+            title: "פחת נצבר לפני שערוך (2024)",
+            calc: "5,714 * 2 = 11,429",
+            logic: "הצטברות הפחת במשך שנתיים (2023-2024) מאז השערוך הקודם. יאופס בסוף 2024.",
+            rational: "צבירה לקראת איפוס מלא בשערוך הנטו.",
+            impact: "מאזן: פחת נצבר טרום איפוס."
+        },
+        bv_24_pre: {
+            title: "ערך טרום שערוך 2024",
+            calc: "80,000 - 11,429 = 68,571",
+            logic: "נקודת המוצא שממנה מחשבים את ההפסד לשנת 2024 (מ-68.5K ל-35K).",
+            rational: "השוואת נטו השווי מול נטו השוק.",
+            impact: "עזר חישוב: הפסד של 33,571."
+        },
+        fund_24_pre: {
+            title: "יתרת 'כרית האוויר' הזמינה (2024)",
+            calc: "41,786 - 3,214 = 38,571",
+            logic: "עדכון הקרן ל-2024 (הורדת ה-3,214 השנתיים) רגע לפני בחינת הירידה. בקרן יש 38,571 פנויים לספיגת זעזועים.",
+            rational: "כדי לדעת כמה הפסד ניתן לספוג ללא פגיעה ב-P&L, חייבים לדעת מה היתרה הקיימת בדיוק.",
+            impact: "הון: היתרה המשמשת כקו הגנה ראשון."
+        },
+        transfer_24: {
+            title: "הפחתה שיטתית שגרתית (2024)",
+            calc: "Transfer = 3,214",
+            logic: "לפני שמטפלים בזעזוע השערוך בסוף השנה, משלימים את שגרת הפעולות הנדרשת לשנת 2024 המלאה (העברת 3,214 לעודפים).",
+            rational: "השערוך קורה בחצות ה-31/12, עד אז החשבונאות שגרתית.",
+            impact: "הון: הגדלת עודפים על חשבון OCI."
+        },
+        val_35k_24: {
+            title: "ירידה לשווי 35,000 (2024)",
+            calc: "New FV = 35,000",
+            logic: "שוק נקניקיות החימום בירידה - המכונה שווה עכשיו פחות מחצי ממה שהייתה שווה.",
+            rational: "עדכון תקופתי (כל שנתיים).",
+            impact: "מאזן: קיטון אגרסיבי של הנכס."
+        },
+        asset_adj_24: {
+            title: "הקטנת נכס (ברוטו) ל-35K",
+            calc: "80,000 - 35,000 = 45,000\nCredit: Machinery",
+            logic: "מקטינים את ברוטו המכונה ב-45,000 כדי לרדת מה-80K הקודם.",
+            rational: "התאמה טכנית בשיטת הנטו להגיע לערך המטרה.",
+            impact: "מאזן: כרטיס המכונה מקוצץ."
+        },
+        oci_loss_24: {
+            title: "הפסד הון מלא ב-OCI (הפתעה: ללא P&L!)",
+            calc: "68,571 - 35,000 = 33,571",
+            logic: "הירידה הכוללת היא 33,571. מכיוון שבקרן ההון שלנו יש יתרה גבוהה מזה (38,571), הקרן סופגת את כל ההפסד בעצמה! שום דבר לא דולף לדוח רווח והפסד.",
+            rational: "יישום קלאסי ויפה של הכלל: כל עוד יש קרן הערכה חיובית מאותו נכס, היא זו שתספוג ירידות ערך לפני שרושמים הוצאה תפעולית.",
+            impact: "OCI: הפסד של 33,571 שמקטין הון, מבלי לפגוע ברווח השנתי של החברה."
+        },
+        fund_24_post: {
+            title: "השארית בקרן ששרדה (2024)",
+            calc: "38,571 (Pre) - 33,571 (Loss absorbed) = 5,000",
+            logic: "נשארו 5,000 בקרן ההערכה. המכונה ירדה, אבל לא מספיק כדי למחוק לגמרי את כל רווחי 2022.",
+            rational: "היתרה החדשה תשמש לבסיס ההפחתה השיטתית לשנים שנותרו (או במקרה שלנו, לחודשים שנותרו עד המכירה).",
+            impact: "הון: יתרת 5,000 נסגרת ב-OCI לסוף 2024."
+        },
+
+        // --- 2025 ---
         dep_25_5m: {
-            title: "חישוב פחת לחמישה חודשים בלבד (2025)",
+            title: "פחת לחמישה חודשים בלבד - 2025",
             calc: "(35,000 / 12) * (5 / 12) = 1,215",
-            logic: "המכונה נמכרה ביום 1.6.2025. אנו מחשבים את הפחת השנתי (35K חלקי 12 שנים נותרות = 2,917). כיוון שעברו רק 5 חודשים מלאים מתחילת השנה, הפחת היחסי הוא 2,917 כפול 5/12.",
-            rational: "הפחת משקף את השימוש המדויק. לא רושמים פחת על תקופה בה הנכס כבר לא שייך לחברה.",
-            impact: "רווח והפסד: הוצאה של 1,215."
+            logic: "המכונה נמכרה ב-1.6.2025. אנו מחשבים את הפחת השנתי (35K חלקי 12 שנים נותרות = 2,917). כיוון שעברו רק 5 חודשים מלאים השנה (ינואר-מאי), הפחת היחסי הוא 2,917 כפול 5/12.",
+            rational: "הפחת משקף את השימוש המדויק. לעולם לא רושמים פחת על תקופה בה הנכס כבר לא שייך לחברה.",
+            impact: "P&L: הוצאה של 1,215."
         },
         bv_25_pre: {
-            title: "ערך בספרים במועד המכירה (1.6.2025)",
-            calc: "35,000 (Cost Base) - 1,215 (Dep for 5m) = 33,785",
-            logic: "זהו הערך המעודכן ביותר בספרים ביום היציאה של הנכס מהחברה.",
+            title: "ערך בספרים ביום המכירה (1.6.2025)",
+            calc: "35,000 (Cost Base) - 1,215 (5m Dep) = 33,785",
+            logic: "זהו הערך המעודכן ביותר בספרים ביום היציאה של הנכס מהחברה למשלוח.",
             rational: "נתון זה הוא הבסיס לקביעת הרווח או ההפסד מהמכירה עצמה מול התמורה במזומן.",
-            impact: "זהו הסכום שייגרע מהמאזן בפקודת המכירה."
+            impact: "זהו הסכום (נטו) שייגרע בפקודת המכירה."
         },
         fund_25_pre: {
-            title: "יתרת הקרן במועד המכירה",
+            title: "יתרת הקרן ביום המכירה",
             calc: "5,000 - 174 = 4,826",
-            logic: "זו יתרת קרן ההערכה שנותרה בחברה ביום המכירה, לאחר העברה של 174 בגין חמשת החודשים של השנה הנוכחית.",
-            rational: "יש לדעת מה היתרה המדויקת על מנת לרוקן אותה בעת המימוש.",
-            impact: "יתרה מאזנית של הון רגע לפני גריעה."
+            logic: "זו יתרת קרן ההערכה שנותרה ביום המכירה לאחר ההפחתה היחסית (174) בגין חמשת החודשים האחרונים של הפעילות.",
+            rational: "אנו חייבים לדעת מה היתרה המדויקת של הקרן ברגע הגריעה, כדי לדעת כמה לרוקן ממנה ולסגור.",
+            impact: "הון: היתרה שתיסגר כליל בפקודה נפרדת."
         },
         transfer_25: {
-            title: "הפחתה שיטתית ל-5 חודשים",
+            title: "הפחתה שיטתית חלקית - 5 חודשים",
             calc: "(5,000 / 12) * (5 / 12) = 174",
-            logic: "בדיוק כפי שחישבנו פחת חלקי, אנו גם מממשים את הקרן באופן חלקי. החישוב הוא מנה שנתית (5,000/12) כפול היחס 5/12.",
-            rational: "הקצאה מדויקת של ההטבה ההונית לפי זמן השימוש.",
-            impact: "הון עצמי: העברה פנימית של 174 לעודפים."
+            logic: "בדיוק כפי שחישבנו פחת חלקי, אנו גם 'מממשים' את הקרן באופן חלקי לעודפים. מנה שנתית (5,000/12) כפול היחס של 5/12.",
+            rational: "הקצאה מדויקת של ההטבה ההונית והפיצוי לעודפים ביחס ישיר לזמן השימוש בפועל.",
+            impact: "הון: העברה פנימית של 174 לעודפים."
         },
         final_transfer: {
-            title: "מימוש סופי וגריעת הקרן",
-            calc: "Transfer Remaining Balance = 4,826",
-            logic: "ביום המכירה (1.6.2025), הנכס יוצא מהספרים. לא הגיוני להשאיר 'קרן הערכה' עבור נכס שלא קיים. לכן, כל היתרה הנותרת בקרן (4,826) מועברת בפקודה אחת ולתמיד לזכות העודפים.",
-            rational: "יישום הנחיות IAS 16 להעברת יתרת קרן לעודפים בעת גריעת נכס.",
-            impact: "הון עצמי: איפוס הקרן ב-OCI והגדלת העודפים באותו סכום (4,826)."
+            title: "מימוש סופי וגריעת הקרן (Disposal)",
+            calc: "Transfer Remaining Balance = 4,826\nDr. Revaluation Reserve / Cr. Retained Earnings",
+            logic: "ביום המכירה, הנכס יוצא מהספרים. אי אפשר להשאיר 'קרן הערכה' עבור נכס שלא קיים. לכן, כל היתרה בקרן מועברת בבת אחת לזכות העודפים.",
+            rational: "יישום הנחיות IAS 16 הדורשות שביום גריעת הנכס, כל יתרה הונית הקשורה אליו מתממשת ועוברת ישירות לעודפים, ללא מעבר ברווח והפסד (Directly to Retained Earnings).",
+            impact: "הון: איפוס OCI והגדלת עודפים ב-4,826 בבת אחת."
         },
         loss_sale: {
             title: "חישוב הפסד הון ממכירה (P&L)",
             calc: "33,000 (Proceeds) - 33,785 (Net Book Value) = -785",
-            logic: "החברה קיבלה במזומן 33,000 ש\"ח. לעומת זאת, היא מסרה נכס ששווה בספרים 33,785 ש\"ח. ההפרש השלילי הוא הפסד הון.",
-            rational: "הכרה ברווח/הפסד מיידי הנובע מהפער בין תמורת השוק לבין הרישום החשבונאי המופחת.",
-            impact: "רווח והפסד: הפסד הון של 785 המקטין את הרווח הנקי לשנת 2025."
+            logic: "מכרנו ב-33,000 מזומן. המכונה שווה בספרים 33,785. ההפרש השלילי מהווה הפסד הון סופי בהחלט מהעסקה.",
+            rational: "הכרה ברווח/הפסד מיידי הנובע מהפער בין תמורת השוק לבין הרישום החשבונאי המופחת. סוף הסיפור.",
+            impact: "P&L: הפסד הון של 785 המקטין את הרווח הנקי לשנת 2025."
+        },
+        dep_25_end: {
+            title: "דיווח לסוף שנה - הוצאות פחת",
+            calc: "Yearly P&L Total = 1,215",
+            logic: "הדוח התוצאתי מציג את סך ההוצאות במהלך השנה כולה. נרשמו 1,215 ש\"ח עד המכירה ביוני, וזהו הסכום המדווח בדוח המלא לסוף השנה.",
+            rational: "דוח P&L צובר פעילות תקופתית (בשונה ממאזן שהוא לנקודת זמן).",
+            impact: "דיווח שנתי ברווח והפסד."
+        },
+        fund_25_end: {
+            title: "דיווח לסוף שנה - קרן הערכה",
+            calc: "Year End Balance = 0",
+            logic: "סעיף המאזן של הקרן מראה 'אפס' גדול. הקרן כולה (4,826) נסגרה ב-1.6 לתוך העודפים בעקבות המכירה.",
+            rational: "אין נכס = אין קרן הערכה מחדש.",
+            impact: "מאזן 31.12.2025 (רכיב הון): 0."
         }
     };
 
-    // Robust Initialization
+    // System Initialization (Stable Event Delegation)
     document.addEventListener('DOMContentLoaded', () => {
-        const buttons = document.querySelectorAll('.calc-btn');
+        const explanationContainer = document.getElementById('explanation-content');
+        const welcomeContainer = document.getElementById('welcome-msg');
         
-        buttons.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                // Prevent bubbling
+        // Use event delegation on the document body to catch all button clicks reliably
+        document.body.addEventListener('click', function(e) {
+            if (e.target.classList.contains('calc-btn')) {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                const key = this.getAttribute('data-key');
+                const btn = e.target;
+                const key = btn.getAttribute('data-key');
                 const entry = explanationData[key];
                 
                 if (!entry) {
-                    console.error("Missing explanation data for key:", key);
+                    console.warn("No explanation data found for key:", key);
                     return;
                 }
 
-                // Update UI toggles
-                document.getElementById('welcome-msg').style.display = 'none';
-                const contentArea = document.getElementById('explanation-content');
-                contentArea.classList.remove('hidden');
+                // Update UI state
+                welcomeContainer.style.display = 'none';
+                explanationContainer.classList.remove('hidden');
 
                 // Populate Content
                 document.getElementById('exp-title').innerText = entry.title;
@@ -643,21 +1103,21 @@
                 document.getElementById('exp-impact').innerText = entry.impact;
 
                 // Visual Feedback on Buttons
-                buttons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+                document.querySelectorAll('.calc-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-                // Highlight corresponding table cell
-                const parentCell = this.closest('td');
-                if(parentCell) {
+                // Highlight corresponding table cell or journal box
+                const parentCell = btn.closest('td') || btn.closest('.p-4');
+                if (parentCell) {
                     parentCell.classList.add('highlight-active');
                     setTimeout(() => {
                         parentCell.classList.remove('highlight-active');
                     }, 1500);
                 }
 
-                // Scroll sidebar to top
-                document.querySelector('.explanation-sidebar').scrollTop = 0;
-            });
+                // Smooth Scroll sidebar to top
+                document.querySelector('.explanation-sidebar').scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
     });
 </script>
