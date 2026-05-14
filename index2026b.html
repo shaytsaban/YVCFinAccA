@@ -14,6 +14,275 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Additional modern styling -->
+    <style>
+        :root {
+            --gradient-start: #1e3c72;
+            --gradient-end: #2a5298;
+            --accent: #2a5298;
+            --accent-light: #4a7bc9;
+            --card-bg: rgba(255,255,255,0.95);
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.25);
+            --radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            font-family: 'Assistant', sans-serif;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3c72 50%, #2a5298 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero .instructor {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(42,82,152,0.2);
+        }
+
+        .lecture-card.card {
+            background: white;
+            overflow: hidden;
+        }
+
+        .lecture-content {
+            padding: 1.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(238,90,36,0.4);
+            transition: var(--transition);
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(238,90,36,0.5);
+            background: linear-gradient(135deg, #ff5252, #d63031);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #2a5298, #4a7bc9);
+            border-radius: 4px;
+        }
+
+        .progress-section.card {
+            background: linear-gradient(135deg, #ffffff, #f0f4ff);
+            border-left: 6px solid #2a5298;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #2a5298, #4a7bc9, #2a5298);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .material-link.card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .material-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .brand-gradient {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+
+        .lecture-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .completion-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .toggle-switch {
+            width: 44px;
+            height: 24px;
+            background: #cbd5e1;
+            border-radius: 12px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            right: 2px;
+            transition: var(--transition);
+        }
+
+        input:checked + .toggle-switch {
+            background: #2a5298;
+        }
+
+        input:checked + .toggle-switch::after {
+            right: 22px;
+        }
+
+        .lecture-checkbox {
+            display: none;
+        }
+
+        .badge-new {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(238,90,36,0.3);
+        }
+
+        .cinema-modal {
+            backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.9);
+        }
+
+        .footer-link {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .lecture-meta {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="hero">
@@ -164,11 +433,11 @@
                     </div>
                 </article>
 
-                <!-- Lecture 5 (NEW) -->
+                <!-- Lecture 5 (replaced video) -->
                 <article class="lecture-card card new-lecture" data-lecture="5">
                     <div class="badge-new">חדש!</div>
-                    <div class="video-container" onclick="openCinema('https://www.youtube.com/embed/pCh3aI-aKPk')">
-                        <img src="https://img.youtube.com/vi/vjyGYu2lCDM/maxresdefault.jpg" alt="הרצאה 5" class="thumbnail">
+                    <div class="video-container" onclick="openCinema('https://www.youtube.com/embed/z1B35p1YUZ4')">
+                        <img src="https://img.youtube.com/vi/z1B35p1YUZ4/maxresdefault.jpg" alt="הרצאה 5" class="thumbnail">
                         <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
                     </div>
                     <div class="lecture-content">
@@ -181,6 +450,78 @@
                         <div class="card-footer">
                             <label class="completion-toggle">
                                 <input type="checkbox" class="lecture-checkbox" data-id="lec5">
+                                <span class="toggle-switch"></span>
+                                <span class="toggle-label">סומן כהושלם</span>
+                            </label>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Lecture 6 (new) -->
+                <article class="lecture-card card new-lecture" data-lecture="6">
+                    <div class="badge-new">חדש!</div>
+                    <div class="video-container" onclick="openCinema('https://www.youtube.com/embed/h3U78p_8FeQ')">
+                        <img src="https://img.youtube.com/vi/h3U78p_8FeQ/maxresdefault.jpg" alt="הרצאה 6" class="thumbnail">
+                        <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <div class="lecture-content">
+                        <div class="lecture-meta">
+                            <span class="date"><i class="fa-regular fa-calendar"></i> 23.04.2026</span>
+                            <span class="duration"><i class="fa-regular fa-clock"></i> 3 שעות אקדמיות</span>
+                        </div>
+                        <h4>הרצאה 6 - הבסיס לירידת ערך נכסים</h4>
+                        <p class="lecture-desc">מבוא לירידת ערך נכסים על פי IAS 36, סקירת האינדיקציות לירידת ערך והכרת מושג הסכום בר ההשבה.</p>
+                        <div class="card-footer">
+                            <label class="completion-toggle">
+                                <input type="checkbox" class="lecture-checkbox" data-id="lec6">
+                                <span class="toggle-switch"></span>
+                                <span class="toggle-label">סומן כהושלם</span>
+                            </label>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Lecture 7 (new) -->
+                <article class="lecture-card card new-lecture" data-lecture="7">
+                    <div class="badge-new">חדש!</div>
+                    <div class="video-container" onclick="openCinema('https://www.youtube.com/embed/vFK__XILYk4')">
+                        <img src="https://img.youtube.com/vi/vFK__XILYk4/maxresdefault.jpg" alt="הרצאה 7" class="thumbnail">
+                        <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <div class="lecture-content">
+                        <div class="lecture-meta">
+                            <span class="date"><i class="fa-regular fa-calendar"></i> 30.04.2026</span>
+                            <span class="duration"><i class="fa-regular fa-clock"></i> 3 שעות אקדמיות</span>
+                        </div>
+                        <h4>הרצאה 7 - ירידת ערך נכסים - מתקדם</h4>
+                        <p class="lecture-desc">תרגול מתקדם של ירידת ערך נכסים, חישוב הפסד מירידת ערך והשלכות חשבונאיות.</p>
+                        <div class="card-footer">
+                            <label class="completion-toggle">
+                                <input type="checkbox" class="lecture-checkbox" data-id="lec7">
+                                <span class="toggle-switch"></span>
+                                <span class="toggle-label">סומן כהושלם</span>
+                            </label>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Lecture 8 (new) -->
+                <article class="lecture-card card new-lecture" data-lecture="8">
+                    <div class="badge-new">חדש!</div>
+                    <div class="video-container" onclick="openCinema('https://www.youtube.com/embed/4HYdLpmhw4E')">
+                        <img src="https://img.youtube.com/vi/4HYdLpmhw4E/maxresdefault.jpg" alt="הרצאה 8" class="thumbnail">
+                        <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    <div class="lecture-content">
+                        <div class="lecture-meta">
+                            <span class="date"><i class="fa-regular fa-calendar"></i> 7.05.2026</span>
+                            <span class="duration"><i class="fa-regular fa-clock"></i> 3 שעות אקדמיות</span>
+                        </div>
+                        <h4>הרצאה 8 - דיון מתקדם בהוצאות מימון לטובת היוון עלויות</h4>
+                        <p class="lecture-desc">העמקה בהיוון עלויות אשראי כחלק מעלות הנכס בהתאם ל-IAS 23.</p>
+                        <div class="card-footer">
+                            <label class="completion-toggle">
+                                <input type="checkbox" class="lecture-checkbox" data-id="lec8">
                                 <span class="toggle-switch"></span>
                                 <span class="toggle-label">סומן כהושלם</span>
                             </label>
