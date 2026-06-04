@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>המדריך המלא — IAS 8 ו‑IAS 10 | הכנה למועצה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b232e; --ink-soft:#465464; --paper:#f4efe6; --paper-2:#fcf9f3;
+  --line:#ddd4c3; --accent:#9a2a2a; --accent-2:#1d5d52; --accent-3:#bd8418; --accent-4:#2b4d80;
+  --quote-bg:#edf3f1; --shadow:0 1px 0 rgba(27,35,46,.04), 0 14px 38px -22px rgba(27,35,46,.4);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Heebo",sans-serif;color:var(--ink);line-height:1.9;font-size:17px;
+  background:radial-gradient(circle at 10% -5%,#fcf9f3 0,transparent 45%),radial-gradient(circle at 95% 2%,#efe7d7 0,transparent 42%),var(--paper);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* progress bar */
+#progress{position:fixed;top:0;right:0;height:4px;width:0;z-index:60;
+  background:linear-gradient(90deg,var(--accent),var(--accent-3));transition:width .1s linear}
+
+/* hero */
+header.hero{border-bottom:3px solid var(--ink);padding:58px 0 34px;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(800px 300px at 85% 0%,rgba(189,132,24,.10),transparent 70%);
+  animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-40px)}}
+.kicker{font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:800;margin:0 0 14px}
+header.hero h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(2.1rem,5.4vw,3.6rem);line-height:1.1;margin:0 0 16px;letter-spacing:-.01em}
+header.hero p.lead{font-size:1.13rem;color:var(--ink-soft);max-width:62ch;margin:0}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.hero-meta span{font-size:.8rem;font-weight:700;background:#fff;border:1px solid var(--line);padding:7px 14px;border-radius:999px;color:var(--ink-soft)}
+
+/* nav */
+nav.toc{position:sticky;top:0;z-index:50;background:rgba(244,239,230,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);padding:9px 0}
+nav.toc .inner{display:flex;flex-wrap:wrap;gap:5px;max-width:1080px;margin:0 auto;padding:0 22px}
+nav.toc a{font-size:.82rem;font-weight:700;text-decoration:none;color:var(--ink-soft);padding:5px 11px;border-radius:8px;cursor:pointer;transition:.16s}
+nav.toc a:hover{background:var(--ink);color:#fff}
+nav.toc a.active{background:var(--accent);color:#fff}
+
+/* sections + reveal anim */
+section{margin:0 0 70px;scroll-margin-top:70px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--line);padding-bottom:10px;margin-bottom:26px}
+.sec-num{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:2.2rem;color:var(--accent);line-height:1}
+h2{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:1.95rem;margin:0;letter-spacing:-.01em}
+h3{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:1.4rem;margin:38px 0 12px}
+h4{font-size:1.06rem;font-weight:800;margin:24px 0 8px}
+p{margin:0 0 14px}
+.muted{color:var(--ink-soft)}
+.big-lead{font-size:1.12rem}
+
+/* simple-language box */
+.plain{background:linear-gradient(180deg,#fff,#fdfbf6);border:1px solid var(--line);border-right:6px solid var(--accent-3);
+  border-radius:var(--radius);padding:18px 22px;margin:20px 0;box-shadow:var(--shadow)}
+.plain .h{font-weight:900;display:flex;align-items:center;gap:9px;margin-bottom:6px;font-size:1.05rem;color:var(--ink)}
+.plain .h .emo{font-size:1.3rem}
+.plain p:last-child{margin-bottom:0}
+.why{background:#fff;border:1px dashed var(--accent-2);border-radius:var(--radius);padding:16px 20px;margin:20px 0}
+.why .h{font-weight:900;color:var(--accent-2);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+
+/* standard cite */
+.standard{background:var(--quote-bg);border-right:5px solid var(--accent-2);border-radius:0 12px 12px 0;padding:15px 20px;margin:18px 0;box-shadow:var(--shadow)}
+.standard .tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.06em;background:var(--accent-2);color:#fff;padding:3px 11px;border-radius:7px;margin-bottom:8px}
+.standard p{margin:0;font-size:.97rem;color:#223833}
+.standard.blue{border-right-color:var(--accent-4)} .standard.blue .tag{background:var(--accent-4)}
+.standard.red{border-right-color:var(--accent)} .standard.red .tag{background:var(--accent)}
+.standard.amber{border-right-color:var(--accent-3)} .standard.amber .tag{background:var(--accent-3)}
+
+/* callouts */
+.callout{border:1px solid var(--line);background:#fff;border-radius:var(--radius);padding:17px 20px;margin:18px 0;box-shadow:var(--shadow);transition:transform .2s}
+.callout:hover{transform:translateY(-2px)}
+.callout .head{font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.callout.tip{border-right:5px solid var(--accent-3)} .callout.trap{border-right:5px solid var(--accent)} .callout.key{border-right:5px solid var(--accent-2)}
+.callout p:last-child{margin-bottom:0}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dot.r{background:var(--accent)}.dot.g{background:var(--accent-2)}.dot.a{background:var(--accent-3)}.dot.b{background:var(--accent-4)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.95rem;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+th,td{padding:11px 14px;text-align:right;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--ink);color:#fff;font-weight:600;font-size:.9rem}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:700}
+.tbl-zebra tr:nth-child(even) td{background:#faf6ee}
+
+/* TIMELINE visual */
+.timeline{position:relative;margin:34px 0 10px;padding:0 10px}
+.tl-track{position:relative;height:8px;background:linear-gradient(90deg,var(--accent-2),var(--accent-3));border-radius:6px;margin:60px 0 70px}
+.tl-window{position:absolute;top:-7px;height:22px;border-radius:8px;background:rgba(189,132,24,.22);border:2px dashed var(--accent-3);
+  right:24%;width:46%;animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{background:rgba(189,132,24,.16)}50%{background:rgba(189,132,24,.34)}}
+.tl-pt{position:absolute;top:50%;transform:translate(50%,-50%);text-align:center}
+.tl-pt .knob{width:20px;height:20px;border-radius:50%;background:#fff;border:4px solid var(--accent-2);margin:0 auto 8px;box-shadow:var(--shadow)}
+.tl-pt .lbl{font-size:.82rem;font-weight:800;white-space:nowrap;background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:8px}
+.tl-pt .sub{font-size:.72rem;color:var(--ink-soft);margin-top:4px;max-width:150px}
+.tl-pt.a{right:24%} .tl-pt.b{right:70%}
+.tl-pt.b .knob{border-color:var(--accent-3)}
+.tl-mid{position:absolute;top:-44px;right:47%;transform:translateX(50%);font-size:.78rem;font-weight:800;color:var(--accent-3)}
+
+/* flow / decision tree */
+.flow{display:flex;flex-direction:column;gap:0;margin:24px 0;align-items:center}
+.flow .node{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:12px 18px;text-align:center;font-weight:700;max-width:600px;box-shadow:var(--shadow)}
+.flow .q{background:var(--ink);color:#fff}
+.flow .arm{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;width:100%}
+.flow .branch{flex:1;min-width:230px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.flow .label{font-size:.78rem;font-weight:800;letter-spacing:.04em;color:var(--ink-soft);background:var(--paper-2);padding:2px 10px;border-radius:6px}
+.flow .conn{width:3px;height:20px;background:var(--ink);border-radius:2px}
+.flow .leaf{border-radius:12px;padding:12px 16px;text-align:center;font-weight:700;font-size:.92rem;width:100%;color:#fff}
+.leaf.g{background:var(--accent-2)}.leaf.a{background:var(--accent-3)}.leaf.r{background:var(--accent)}.leaf.b{background:var(--accent-4)}
+
+/* concept cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:22px 0}
+.card{background:#fff;border:1px solid var(--line);border-top:5px solid var(--accent);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);transition:transform .2s}
+.card:hover{transform:translateY(-4px)}
+.card.g{border-top-color:var(--accent-2)}.card.a{border-top-color:var(--accent-3)}.card.b{border-top-color:var(--accent-4)}
+.card h4{margin:0 0 6px}
+.card .pic{font-size:1.8rem;margin-bottom:6px}
+.card p{font-size:.92rem;margin:0;color:var(--ink-soft)}
+
+/* QUESTION blocks */
+.qa{border:1px solid var(--line);border-radius:16px;margin:24px 0;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.qa .qhead{padding:15px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.qa .qhead .lvl{font-size:.72rem;font-weight:900;letter-spacing:.08em;padding:4px 11px;border-radius:999px;color:#fff}
+.lvl.basic{background:var(--accent-2)}.lvl.mid{background:var(--accent-3)}.lvl.council{background:var(--accent)}
+.qa .qhead h4{margin:0;font-family:"Frank Ruhl Libre",serif;font-size:1.16rem;flex:1;min-width:200px}
+.qa .qbody{padding:10px 20px 6px}
+.qa .req{font-weight:800;margin:10px 0;color:var(--ink)}
+.hintbar{display:flex;gap:8px;flex-wrap:wrap;padding:4px 20px 14px}
+.hintbtn{font-size:.82rem;font-weight:800;border:1.5px solid var(--accent-3);color:var(--accent-3);background:#fff;border-radius:999px;padding:6px 14px;cursor:pointer;transition:.15s}
+.hintbtn:hover{background:var(--accent-3);color:#fff}
+.hint{display:none;margin:0 20px 12px;padding:12px 16px;background:#fdf6e7;border-right:4px solid var(--accent-3);border-radius:0 10px 10px 0;font-size:.93rem}
+.hint.show{display:block;animation:slide .35s ease}
+@keyframes slide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+details.sol{border-top:1px dashed var(--line)}
+details.sol summary{cursor:pointer;padding:14px 20px;font-weight:900;color:var(--accent-2);list-style:none;display:flex;align-items:center;gap:8px;user-select:none}
+details.sol summary::-webkit-details-marker{display:none}
+details.sol summary::before{content:"▸";transition:transform .25s;display:inline-block;font-size:1.1em}
+details.sol[open] summary::before{transform:rotate(-90deg)}
+details.sol .solbody{padding:4px 20px 22px;border-top:1px solid var(--line);animation:slide .4s ease}
+.verdict{display:inline-block;font-weight:900;padding:5px 14px;border-radius:9px;color:#fff;margin:10px 0;font-size:.92rem}
+.verdict.adj{background:var(--accent-2)}.verdict.nonadj{background:var(--accent-4)}.verdict.err{background:var(--accent)}.verdict.est{background:var(--accent-3)}.verdict.gray{background:#5a6470}
+.steps{counter-reset:s;padding-right:0;list-style:none;margin:10px 0}
+.steps li{position:relative;padding:8px 44px 8px 0;margin:4px 0}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;right:0;top:6px;width:28px;height:28px;background:var(--accent-2);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem}
+.calc{background:#f5f7f6;border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-family:"Heebo";font-size:.92rem;margin:10px 0}
+.calc table{box-shadow:none;margin:6px 0;background:transparent}
+.calc th,.calc td{padding:6px 10px;border-color:#e3e8e6}
+
+ol.clean,ul.clean{margin:6px 0 14px;padding-right:22px}
+ol.clean li,ul.clean li{margin:6px 0}
+.pill{display:inline-block;font-size:.74rem;font-weight:800;padding:2px 9px;border-radius:6px;background:var(--ink);color:#fff;vertical-align:middle}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:20px 0}
+.gloss .term{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.gloss .term b{color:var(--accent);display:block;margin-bottom:3px}
+.gloss .term span{font-size:.92rem;color:var(--ink-soft)}
+
+/* quiz */
+.quiz{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+.quiz .scorebar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;font-weight:800}
+.quiz .score{background:var(--accent-2);color:#fff;padding:4px 14px;border-radius:999px;font-size:.9rem}
+.quiz .qitem{padding:16px 0;border-bottom:1px solid var(--line)}
+.quiz .qitem:last-child{border-bottom:none}
+.quiz .qtext{font-weight:700;margin-bottom:10px}
+.quiz .opt{display:block;padding:10px 14px;border:1px solid var(--line);border-radius:10px;margin:6px 0;cursor:pointer;transition:.12s;font-size:.95rem}
+.quiz .opt:hover{border-color:var(--ink);background:#faf7f0}
+.quiz .opt.correct{background:#e3f0ea;border-color:var(--accent-2);font-weight:700}
+.quiz .opt.wrong{background:#f6e2e2;border-color:var(--accent)}
+.quiz .explain{font-size:.9rem;color:var(--ink-soft);margin-top:8px;display:none;background:var(--paper-2);padding:11px 14px;border-radius:9px;border-right:3px solid var(--accent-2)}
+.quiz .explain.show{display:block;animation:slide .35s ease}
+
+footer{border-top:3px solid var(--ink);padding:30px 0 70px;margin-top:40px;color:var(--ink-soft);font-size:.9rem}
+
+@media(max-width:680px){
+  body{font-size:16px}
+  .flow .arm{flex-direction:column}
+  .tl-window{right:20%;width:55%}
+  .tl-pt.a{right:20%}.tl-pt.b{right:74%}
+  .sec-num{font-size:1.7rem}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">הכנה למבחני מועצת רואי חשבון · חשבונאות פיננסית · ברמת מתחילים עד מועצה</p>
+    <h1>המדריך המלא<br>IAS 10 ו‑IAS 8 — מאפס ועד מועצה</h1>
+    <p class="lead">כל מה שצריך לדעת על אירועים לאחר מועד הדיווח (IAS 10) ועל מדיניות, אומדנים וטעויות (IAS 8) — בשפה פשוטה, עם הסברים מצולמים, אנלוגיות מהחיים, עשרות שאלות בכל רמות הקושי, רמזים שלב‑אחרי‑שלב, ופתרונות מלאים.</p>
+    <div class="hero-meta">
+      <span>🎯 ללא ידע מוקדם</span>
+      <span>📊 ציר זמן ותרשימי החלטה</span>
+      <span>✍️ 22 שאלות פתורות</span>
+      <span>💡 רמזים מדורגים</span>
+      <span>🧪 מבחן עצמי</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" id="toc">
+  <div class="inner">
+    <a data-go="intro">למה זה חשוב</a>
+    <a data-go="gloss">מילון פשוט</a>
+    <a data-go="ias10-base">IAS 10 · הרעיון</a>
+    <a data-go="ias10-adj">מחייב התאמה</a>
+    <a data-go="ias10-non">לא מחייב</a>
+    <a data-go="ias10-special">דיבידנד ועסק חי</a>
+    <a data-go="ias10-q">שאלות IAS 10</a>
+    <a data-go="ias8-base">IAS 8 · הרעיון</a>
+    <a data-go="ias8-policy">מדיניות</a>
+    <a data-go="ias8-est">אומדן</a>
+    <a data-go="ias8-err">טעויות</a>
+    <a data-go="ias8-q">שאלות IAS 8</a>
+    <a data-go="traps">מלכודות</a>
+    <a data-go="quiz">מבחן עצמי</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ===== WHY ===== -->
+<section id="intro" class="reveal">
+  <div class="sec-head"><span class="sec-num">0</span><h2>למה בכלל צריך את שני התקנים האלה?</h2></div>
+
+  <p class="big-lead">תחשבו על דוח כספי כמו על <strong>תמונה שצילמתם ב‑31 בדצמבר</strong>. התמונה אמורה לתאר את מצב החברה בדיוק באותו רגע. אבל יש בעיה אחת קטנה: <strong>אף אחד לא מקבל את התמונה באותו רגע.</strong> לוקח חודשים עד שמסיימים לערוך, לבדוק ולאשר את הדוחות לפרסום.</p>
+
+  <div class="plain">
+    <div class="h"><span class="emo">📸</span>הרעיון של IAS 10 — מה קורה בין הצילום למסירה?</div>
+    <p>בין רגע הצילום (31.12) לבין הרגע שבו מוסרים את התמונה ללקוח (אישור הדוחות), אתם עדיין יכולים לגעת בתמונה. השאלה הגדולה: קיבלתם מידע חדש — האם הוא <strong>מספר לכם משהו שכבר היה נכון ברגע הצילום</strong> (אז צריך לתקן את התמונה), או שקרה משהו <strong>חדש לגמרי אחרי הצילום</strong> (אז התמונה נכונה, רק מצרפים לידה פתק שמסביר)?</p>
+  </div>
+
+  <div class="plain">
+    <div class="h"><span class="emo">📐</span>הרעיון של IAS 8 — איך מודדים, ומה עושים כשטעינו?</div>
+    <p>IAS 8 לא עוסק בפרק זמן מסוים. הוא עונה על שלוש שאלות פשוטות: (1) <strong>איך בוחרים</strong> שיטת מדידה (מדיניות)? (2) מה עושים כשמספר שהערכנו <strong>מתעדכן</strong> כי קיבלנו מידע חדש (אומדן)? (3) מה עושים כשפשוט <strong>טעינו</strong> בעבר (טעות)? לכל אחד מהשלושה יש כלל טיפול אחר — וזה כל העניין.</p>
+  </div>
+
+  <div class="why">
+    <div class="h"><span>🎓</span>בשביל מה זה חשוב לבעלי המניות?</div>
+    <p>בעל מניות שקורא דוח רוצה להאמין שהמספרים אמינים ושאפשר להשוות בין שנה לשנה. שני התקנים בדיוק בשביל זה: IAS 10 דואג שהתמונה תהיה <strong>עדכנית ונכונה למועד הדיווח</strong>, ו‑IAS 8 דואג שכשמשנים שיטה או מתקנים טעות, זה ייעשה <strong>בצורה אחידה ושקופה</strong> — כך שאי אפשר "לייפות" את הדוחות סתם.</p>
+  </div>
+
+  <h3>ההבדל בשורה אחת</h3>
+  <div class="cards">
+    <div class="card b"><div class="pic">⏳</div><h4>IAS 10 = שאלה של זמן</h4><p>האם המידע מאיר את העבר (31.12) או נוצר אחריו? לפי זה: לתקן או רק לגלות.</p></div>
+    <div class="card a"><div class="pic">🔧</div><h4>IAS 8 = שאלה של סוג</h4><p>מדיניות / אומדן / טעות? לפי זה: למפרע (אחורה) או מכאן ולהבא (קדימה).</p></div>
+    <div class="card g"><div class="pic">🔗</div><h4>הגשר ביניהם</h4><p>טעות שמתגלה בחלון הזמן? IAS 10 אומר "כן, תתקן"; IAS 8 אומר "ככה תתקן".</p></div>
+  </div>
+</section>
+
+<!-- ===== GLOSSARY ===== -->
+<section id="gloss" class="reveal">
+  <div class="sec-head"><span class="sec-num">1</span><h2>מילון מונחים — בלי מילים מפוצצות</h2></div>
+  <p class="muted">לפני שמתחילים, נכיר את המילים. כל מונח מוסבר במשפט אחד פשוט.</p>
+  <div class="gloss">
+    <div class="term"><b>מועד הדיווח</b><span>היום שבו "מצלמים" את החברה — בדרך כלל 31.12. זה תאריך המאזן.</span></div>
+    <div class="term"><b>אישור הדוחות לפרסום</b><span>היום שבו ההנהלה/דירקטוריון אומרים "סיימנו, אפשר לפרסם". סוף החלון.</span></div>
+    <div class="term"><b>אירוע מחייב התאמה</b><span>מידע חדש שמספר על מצב שכבר היה קיים ב‑31.12 ← מתקנים את המספרים.</span></div>
+    <div class="term"><b>אירוע שאינו מחייב התאמה</b><span>משהו חדש שקרה אחרי 31.12 ← לא נוגעים במספרים, רק כותבים ביאור.</span></div>
+    <div class="term"><b>גילוי (ביאור)</b><span>טקסט שמסביר משהו חשוב שלא נכנס למספרים עצמם. כמו "פתק ליד התמונה".</span></div>
+    <div class="term"><b>מדיניות חשבונאית</b><span>השיטה / הכלל שבחרנו למדוד בו (למשל FIFO למלאי, או שווי הוגן לנדל"ן).</span></div>
+    <div class="term"><b>אומדן</b><span>מספר שאי אפשר לדעת בוודאות אז מעריכים (אורך חיים של מכונה, חובות אבודים).</span></div>
+    <div class="term"><b>טעות</b><span>שגיאה אמיתית — התעלמנו ממידע שהיה לנו, או טעינו בחישוב.</span></div>
+    <div class="term"><b>למפרע (Retrospective)</b><span>מתקנים אחורה — כאילו השיטה החדשה הייתה תמיד. משנים מספרי השוואה.</span></div>
+    <div class="term"><b>מכאן ולהבא (Prospective)</b><span>מתקנים רק מהיום קדימה. לא נוגעים בעבר ובמספרי ההשוואה.</span></div>
+    <div class="term"><b>מספרי השוואה</b><span>המספרים של השנה הקודמת שמופיעים ליד מספרי השנה הנוכחית בדוח.</span></div>
+    <div class="term"><b>מהותי (Material)</b><span>מספיק חשוב כדי להשפיע על החלטה של מי שקורא את הדוח. ברירת מחדל במבחן: כן.</span></div>
+    <div class="term"><b>מחויבות משתמעת</b><span>לא חתמתם חוזה, אבל יצרתם ציפייה אמיתית אצל אחרים שתעשו משהו ← חייבים.</span></div>
+    <div class="term"><b>עסק חי</b><span>ההנחה שהחברה תמשיך לפעול. אם היא קורסת — כל הדוח נכתב אחרת לגמרי.</span></div>
+  </div>
+</section>
+
+<!-- ===== IAS 10 BASE ===== -->
+<section id="ias10-base" class="reveal">
+  <div class="sec-head"><span class="sec-num">2</span><h2>IAS 10 — הרעיון, החלון וציר הזמן</h2></div>
+
+  <p>כל סיפור של IAS 10 מתרחש בתוך <strong>"חלון"</strong> אחד: הזמן שבין מועד הדיווח (31.12) לבין מועד אישור הדוחות לפרסום. רק אירועים בתוך החלון הזה מעניינים את התקן. הנה זה ויזואלית:</p>
+
+  <div class="timeline">
+    <div class="tl-track">
+      <div class="tl-window"></div>
+      <div class="tl-mid">🪟 החלון של IAS 10</div>
+      <div class="tl-pt a"><div class="knob"></div><div class="lbl">31.12 · מועד הדיווח</div><div class="sub">רגע "הצילום" של החברה</div></div>
+      <div class="tl-pt b"><div class="knob"></div><div class="lbl">אישור הדוחות לפרסום</div><div class="sub">ההנהלה אומרת "מוכן לפרסום"</div></div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="head"><span class="dot a"></span>שלוש נקודות זמן — ושלוש תוצאות</div>
+    <p>אירוע <strong>לפני</strong> 31.12 ← כבר רשום בדוח כרגיל. אירוע <strong>בתוך החלון</strong> ← זה לב התקן, צריך למיין. אירוע <strong>אחרי</strong> אישור הדוחות ← מחוץ לתחום, אין לו כל ביטוי בדוחות השנה.</p>
+  </div>
+
+  <div class="standard">
+    <span class="tag">IAS 10.3 — ההגדרה</span>
+    <p>אירועים לאחר תקופת הדיווח הם אירועים — טובים או רעים — שמתרחשים בין תום תקופת הדיווח לבין מועד אישור הדוחות לפרסום. מבחינים בשניים: (א) אירועים <strong>המספקים ראָיה לנסיבות שהתקיימו</strong> בתום התקופה (מחייבי התאמה); (ב) אירועים <strong>המעידים על נסיבות שנוצרו אחרי</strong> תום התקופה (שאינם מחייבי התאמה).</p>
+  </div>
+
+  <div class="standard">
+    <span class="tag">IAS 10.4–7 — מתי "נסגר" החלון</span>
+    <p>מועד האישור הוא היום שבו הגורם המוסמך (לרוב הדירקטוריון) מאשר את הדוחות לפרסום — ולא היום שבו בעלי המניות מאשרים אותם בדיעבד באסיפה. זיהוי המועד הזה הוא שקובע אילו אירועים בכלל נכנסים לתחום התקן.</p>
+  </div>
+
+  <h3>עץ ההחלטה של IAS 10 — שלוש שאלות, לפי הסדר</h3>
+  <div class="flow">
+    <div class="node q">1️⃣ האם האירוע קרה בתוך החלון (בין 31.12 לאישור)?</div>
+    <div class="conn"></div>
+    <div class="arm">
+      <div class="branch"><span class="label">לא — מחוץ לחלון</span><div class="leaf gray">אין השפעה על דוחות השנה</div></div>
+      <div class="branch">
+        <span class="label">כן — בתוך החלון</span>
+        <div class="node q">2️⃣ האם המידע מאיר נסיבה שכבר התקיימה ב‑31.12?</div>
+        <div class="conn"></div>
+        <div class="arm">
+          <div class="branch"><span class="label">כן — מאיר את העבר</span><div class="leaf g">מחייב התאמה<br><small>מתקנים מספרים + גילוי אם מהותי</small></div></div>
+          <div class="branch"><span class="label">לא — נסיבה חדשה</span><div class="leaf b">אינו מחייב התאמה<br><small>רק גילוי, אם מהותי</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="plain">
+    <div class="h"><span class="emo">🧠</span>הטריק שפותר 90% מהשאלות</div>
+    <p>תשאלו את עצמכם שאלה אחת בלבד: <strong>"האם הסיבה לאירוע כבר הייתה קיימת ב‑31.12?"</strong><br>
+    • הלקוח פשט רגל בינואר, אבל היה במצוקה כספית כבר בדצמבר ← הסיבה הייתה קיימת ← <strong>מתקנים</strong>.<br>
+    • שרֵפה השמידה מחסן בפברואר ← השרֵפה היא חדשה לגמרי ← <strong>רק מגלים</strong>.</p>
+  </div>
+</section>
+
+<!-- ===== IAS 10 ADJUSTING ===== -->
+<section id="ias10-adj" class="reveal">
+  <div class="sec-head"><span class="sec-num">3</span><h2>אירועים מחייבי התאמה — "תתקן את התמונה"</h2></div>
+
+  <div class="standard">
+    <span class="tag">IAS 10.8 — הכלל</span>
+    <p>הישות <strong>תתאים</strong> (תתקן) את הסכומים שהוכרו בדוחותיה כדי לשקף אירועים מחייבי התאמה שלאחר תקופת הדיווח.</p>
+  </div>
+
+  <div class="plain">
+    <div class="h"><span class="emo">💡</span>למה בכלל מתקנים?</div>
+    <p>כי המידע החדש לא "ממציא" שום דבר — הוא רק <strong>מספר לנו טוב יותר</strong> משהו שכבר היה נכון ב‑31.12. אם הסכום שרשמנו אז התבסס על ניחוש, ועכשיו יש לנו תשובה ודאית על אותו מצב — חובה לעדכן. אחרת הדוח משקר.</p>
+  </div>
+
+  <h3>רשימת הדוגמאות הרשמית (IAS 10.9)</h3>
+  <div class="standard">
+    <span class="tag">IAS 10.9 — חמש דוגמאות מחייבות התאמה</span>
+    <p>התקן מונה מקרים מובהקים:</p>
+  </div>
+  <ol class="clean">
+    <li><strong>(א) הכרעת תביעה משפטית</strong> אחרי 31.12, שמאשרת שכבר ב‑31.12 הייתה לחברה מחויבות ← מעדכנים/יוצרים הפרשה (לפי IAS 37).</li>
+    <li><strong>(ב) מידע שמגלה שנכס היה פגום כבר ב‑31.12</strong>:
+      <ul class="clean">
+        <li><span class="pill">קלאסי</span> לקוח פשט רגל אחרי 31.12 — בדרך כלל מאשר שהחוב כבר היה אבוד בתום השנה.</li>
+        <li>מכירת מלאי אחרי 31.12 במחיר נמוך — מספקת ראיה ששווי המימוש (NRV) כבר היה נמוך מהעלות בתום השנה.</li>
+      </ul>
+    </li>
+    <li><strong>(ג) קביעה סופית של מחיר</strong> נכס שנקנה או נמכר <em>לפני</em> 31.12, אך הסכום הסופי נקבע אחריו.</li>
+    <li><strong>(ד) קביעת בונוס/השתתפות ברווח</strong> אחרי 31.12, כשהמחויבות לשלם כבר הייתה קיימת בתום השנה.</li>
+    <li><strong>(ה) גילוי תרמית או טעות</strong> שמראה שהדוחות שגויים ← מתקנים לפי כללי הטעויות של IAS 8.</li>
+  </ol>
+
+  <div class="callout key">
+    <div class="head"><span class="dot g"></span>כלל אצבע מנצח</div>
+    <p>אם <strong>האירוע/הנסיבה שהוליד את ההשפעה כבר התרחש לפני 31.12</strong> (התביעה הוגשה, החוב נוצר, המלאי הופק) והמידע המאוחר רק <em>מדייק</em> — זה מחייב התאמה. גם אם הסכום הסופי התגלה רק בפברואר.</p>
+  </div>
+
+  <div class="why">
+    <div class="h"><span>🔍</span>איך נזכרים שזה "מחייב התאמה"?</div>
+    <p>חישבו על המילה <strong>"ראיה"</strong>. אירוע מחייב התאמה הוא תמיד <em>ראיה על משהו ישן</em>. אם המידע הוא ראיה — תתקן. אם המידע הוא אירוע חדש בפני עצמו — רק תגלה.</p>
+  </div>
+</section>
+
+<!-- ===== IAS 10 NON-ADJUSTING ===== -->
+<section id="ias10-non" class="reveal">
+  <div class="sec-head"><span class="sec-num">4</span><h2>אירועים שאינם מחייבי התאמה — "אל תיגע, רק תכתוב ביאור"</h2></div>
+
+  <div class="standard blue">
+    <span class="tag">IAS 10.10 — הכלל</span>
+    <p>הישות <strong>לא תתאים</strong> את הסכומים שהוכרו, כדי לשקף אירועים שאינם מחייבי התאמה.</p>
+  </div>
+
+  <div class="standard blue">
+    <span class="tag">IAS 10.11 — הדוגמה המרכזית</span>
+    <p>ירידה בשווי ההוגן של השקעות בין 31.12 למועד האישור — היא <strong>אינה</strong> קשורה למצב ההשקעות בתום השנה אלא לנסיבות שנוצרו אחריו, ולכן אין מתאימים.</p>
+  </div>
+
+  <div class="standard blue">
+    <span class="tag">IAS 10.21–22 — מה מגלים</span>
+    <p>אם האירוע מהותי — נותנים גילוי ל‑(א) מהות האירוע ו‑(ב) אומדן ההשפעה הכספית (או הצהרה שאי אפשר לאמוד). דוגמאות מהתקן: צירוף עסקים/מכירת חברה‑בת מהותית; הפסקת פעילות; רכישות/מכירות נכסים גדולות; הרס מתקן עיקרי בשרֵפה; ארגון מחדש מהותי; הנפקה/עסקאות מהותיות במניות; שינויי שערי חליפין חריגים; שינויי שיעורי מס שנחקקו אחרי התקופה; ערבויות והתחייבויות חדשות; ופתיחת הליך משפטי הנובע <em>רק</em> מאירוע שלאחר תום התקופה.</p>
+  </div>
+
+  <div class="callout trap">
+    <div class="head"><span class="dot r"></span>המלכודת הכי נפוצה במבחן: אותו תאריך, מיון הפוך</div>
+    <p>שני אירועים בפברואר — מיון מנוגד:<br>
+    🔥 <strong>שרֵפה</strong> שמשמידה מפעל ← נסיבה חדשה ← <span class="verdict nonadj" style="margin:0">גילוי בלבד</span><br>
+    💸 <strong>פשיטת רגל של לקוח</strong> ← ראיה שהחוב כבר היה אבוד ב‑31.12 ← <span class="verdict adj" style="margin:0">מחייב התאמה</span><br>
+    התאריך זהה — אבל השאלה היחידה היא: <strong>האם הסיבה קדמה ל‑31.12?</strong></p>
+  </div>
+
+  <div class="cards">
+    <div class="card g"><div class="pic">⚖️</div><h4>מחייב התאמה</h4><p>פסיקה על תביעה ישנה · פשיטת רגל לקוח · מכירת מלאי שמגלה NRV · גילוי טעות/תרמית</p></div>
+    <div class="card b"><div class="pic">📝</div><h4>גילוי בלבד</h4><p>שרֵפה · ירידת שווי השקעות · הנפקת מניות · רכישת חברה · שינוי שער מס שנחקק אחרי · דיבידנד שהוכרז אחרי</p></div>
+  </div>
+</section>
+
+<!-- ===== IAS 10 SPECIAL ===== -->
+<section id="ias10-special" class="reveal">
+  <div class="sec-head"><span class="sec-num">5</span><h2>שני מקרים מיוחדים: דיבידנד ועסק חי</h2></div>
+
+  <h3>1. דיבידנד שהוכרז אחרי תום השנה</h3>
+  <div class="plain">
+    <div class="h"><span class="emo">💰</span>בשפה פשוטה</div>
+    <p>אם הדירקטוריון הכריז על דיבידנד רק ב‑10 בפברואר — אז ב‑31.12 <strong>עדיין לא הייתה</strong> שום התחייבות לשלם. אי אפשר לרשום התחייבות שלא הייתה קיימת. לכן: לא רושמים, רק מגלים בביאור.</p>
+  </div>
+  <div class="standard blue">
+    <span class="tag">IAS 10.12–13</span>
+    <p>דיבידנדים שהוכרזו <strong>אחרי</strong> תום התקופה אינם מוכרים כהתחייבות ב‑31.12, כי באותו מועד לא הייתה מחויבות. ניתן עליהם גילוי בלבד.</p>
+  </div>
+
+  <h3>2. עסק חי — החריג ששובר את כל הדוחות</h3>
+  <div class="plain">
+    <div class="h"><span class="emo">🚨</span>בשפה פשוטה</div>
+    <p>אם אחרי 31.12 מתברר שהחברה הולכת להיסגר / להתפרק ואין לה דרך אחרת — זה <strong>לא "תיקון של סעיף אחד"</strong>. כל הדוח כולו נכתב מחדש על בסיס אחר (למשל, כמה שווה כל נכס אם פשוט מוכרים אותו מהר). זה האירוע היחיד שיכול "להפיל" את כל הדוח.</p>
+  </div>
+  <div class="standard red">
+    <span class="tag">IAS 10.14–15</span>
+    <p>אם ההנהלה קובעת, לאחר תום התקופה, שבכוונתה לפרק את הישות או להפסיק פעילות (או שאין חלופה מעשית) — הדוחות <strong>לא יוכנו על בסיס עסק חי</strong>. הידרדרות בתוצאות לאחר התקופה עשויה להצביע על צורך לבחון מחדש את הנחת העסק החי.</p>
+  </div>
+  <div class="callout key">
+    <div class="head"><span class="dot g"></span>נקודה שנבחנת שוב ושוב</div>
+    <p>קריסת עסק חי = <strong>שינוי בסיס ההכנה של כל הדוח</strong>, לא אירוע מחייב התאמה "רגיל". זה החריג‑על.</p>
+  </div>
+
+  <h3>גילויים כלליים</h3>
+  <ul class="clean">
+    <li><strong>IAS 10.17</strong> — מגלים את מועד אישור הדוחות ומי אישר אותם.</li>
+    <li><strong>IAS 10.19–20</strong> — אם מתקבל מידע על נסיבות שהתקיימו בתום התקופה, מעדכנים את הגילויים בהתאם.</li>
+  </ul>
+</section>
+
+<!-- ===== IAS 10 QUESTIONS ===== -->
+<section id="ias10-q" class="reveal">
+  <div class="sec-head"><span class="sec-num">6</span><h2>שאלות IAS 10 — מהקל לקשה</h2></div>
+  <p class="muted">נסו לפתור לבד. תקועים? לחצו על "רמז" — נחשפים בהדרגה. רק בסוף פתחו את הפתרון המלא.</p>
+
+  <!-- Q1 basic dividend -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 1 · הכרזת דיבידנד אחרי השנה</h4><span class="lvl basic">קל</span></div>
+    <div class="qbody">
+      <p>הדירקטוריון הכריז ב‑10.2.2025, לפני אישור דוחות 2024, על דיבידנד של 500,000 ₪.</p>
+      <p class="req">נדרש: האם רושמים התחייבות בדוחות 31.12.2024?</p>
+    </div>
+    <div class="hintbar">
+      <button class="hintbtn" data-h="h1a">רמז 1</button>
+      <button class="hintbtn" data-h="h1b">רמז 2</button>
+    </div>
+    <div class="hint" id="h1a">שאלו: ב‑31.12.2024 — האם כבר הייתה מחויבות לשלם? מתי "נולדה" ההתחייבות?</div>
+    <div class="hint" id="h1b">ההכרזה היא ב‑2025. לפני ההכרזה אין חובה משפטית לשלם דיבידנד.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict nonadj">אינו מחייב התאמה — גילוי בלבד</span>
+      <p>לפי IAS 10.12–13, ב‑31.12.2024 לא הייתה מחויבות (ההכרזה רק ב‑2025). לכן אין רושמים התחייבות; נותנים גילוי בביאור על ההכרזה וסכומה. ההתחייבות תיווצר בספרי 2025.</p>
+    </div></details>
+  </div>
+
+  <!-- Q2 basic bankruptcy -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 2 · לקוח שפשט רגל</h4><span class="lvl basic">קל</span></div>
+    <div class="qbody">
+      <p>יתרת לקוח 80,000 ₪ ב‑31.12.2024. הלקוח פשט רגל ב‑2.2.2025. מתברר שמצבו הכספי הידרדר כבר במהלך הרבעון האחרון של 2024.</p>
+      <p class="req">נדרש: כיצד מטפלים בדוחות 2024?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="h2a">רמז 1</button><button class="hintbtn" data-h="h2b">רמז 2</button></div>
+    <div class="hint" id="h2a">פשיטת הרגל קרתה בפברואר — אבל המצוקה הכספית כבר הייתה בדצמבר.</div>
+    <div class="hint" id="h2b">האם המידע החדש "מאיר" את מצב החוב שכבר היה קיים ב‑31.12?</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict adj">מחייב התאמה</span>
+      <p>לפי IAS 10.9(ב), פשיטת הרגל היא ראיה שהחוב כבר היה אבוד ב‑31.12.2024 (המצוקה הייתה קיימת אז). יש להכיר בירידת ערך החוב בדוחות 2024 — מפחיתים את יתרת הלקוח ומכירים בהפסד/הוצאה בגין חוב מסופק‑אבוד.</p>
+    </div></details>
+  </div>
+
+  <!-- Q3 basic fire -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 3 · שרֵפה במחסן</h4><span class="lvl basic">קל</span></div>
+    <div class="qbody">
+      <p>ב‑5.2.2025 פרצה שרֵפה והשמידה מחסן ומלאי בעלות 300,000 ₪. הדוחות ל‑2024 טרם אושרו.</p>
+      <p class="req">נדרש: האם מתאימים את ערך המלאי בדוחות 2024?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="h3a">רמז 1</button></div>
+    <div class="hint" id="h3a">השרֵפה היא אירוע חדש לגמרי — ב‑31.12.2024 המלאי היה קיים ושלם.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict nonadj">אינו מחייב התאמה — גילוי בלבד</span>
+      <p>השרֵפה היא נסיבה חדשה שנוצרה אחרי תום התקופה. ב‑31.12.2024 המלאי היה קיים ושמיש, ולכן ערכו בדוחות 2024 נשאר ללא שינוי. בהיותו אירוע מהותי — ניתן גילוי לפי IAS 10.22 (הרס מתקן/מלאי בשרֵפה): מהות האירוע ואומדן ההשפעה הכספית.</p>
+    </div></details>
+  </div>
+
+  <!-- Q4 mid court 10000 -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 4 · תיקון הפרשה בעקבות פסיקה</h4><span class="lvl mid">בינוני</span></div>
+    <div class="qbody">
+      <p>ב‑1.4.2021 הוגשה תביעה נגד חברה על 15,000 ₪. החברה העריכה אחריות של 9,000 ₪, אך רשמה ב‑31.12.2021 הפרשה של 15,000 ₪ "מטעמי שמרנות". ב‑1.2.2022, טרם אישור הדוחות, פסק בית המשפט 10,000 ₪.</p>
+      <p class="req">נדרש: האם לתקן את ההפרשה ולאיזה סכום?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="h4a">רמז 1</button><button class="hintbtn" data-h="h4b">רמז 2</button></div>
+    <div class="hint" id="h4a">התביעה הוגשה ב‑2021 (לפני מועד הדיווח). הפסיקה מאירה נסיבה ישנה.</div>
+    <div class="hint" id="h4b">"שמרנות" אינה תקן. בין 9,000 (ניחוש) ל‑10,000 (ודאות) — מה מהימן יותר?</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict adj">מחייב התאמה — לתקן ל‑10,000 ₪</span>
+      <ol class="steps">
+        <li>התביעה והעילה קדמו ל‑31.12.2021 ← הפסיקה מאירה נסיבה קיימת ← IAS 10.9(א), מחייב התאמה.</li>
+        <li>15,000 "שמרנות" — לא תקין; אין מנפחים התחייבות.</li>
+        <li>הפסיקה (10,000) היא הראיה המהימנה ביותר על המחויבות שהייתה ב‑31.12. גוברת על אומדן היועצים (9,000).</li>
+        <li>מתקנים את ההפרשה ל‑10,000 ₪; מעדכנים גם את הגילוי בדבר התביעה.</li>
+      </ol>
+      <div class="callout trap"><div class="head"><span class="dot r"></span>אל תיפלו ל‑9,000</div><p>הפסיקה מאוחרת ומהימנה יותר מהאומדן המוקדם — היא גוברת.</p></div>
+    </div></details>
+  </div>
+
+  <!-- Q5 mid inventory NRV -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 5 · מלאי שנמכר בהפסד + שרֵפה</h4><span class="lvl mid">בינוני</span></div>
+    <div class="qbody">
+      <p>מלאי נרשם ב‑31.12.2023 בעלות 200,000 ₪. בין 1.1.2024 ל‑20.2.2024 (אישור הדוחות) נמכר חלקו ב‑140,000 ₪, בעקבות ירידת ביקוש שכבר החלה ברבעון האחרון של 2023. בנפרד, מחסן אחר נשרף ב‑5.2.2024 (מלאי בעלות 80,000 ₪).</p>
+      <p class="req">נדרש: טפלו בכל אחד מהאירועים.</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="h5a">רמז 1</button><button class="hintbtn" data-h="h5b">רמז 2</button></div>
+    <div class="hint" id="h5a">המכירה מספקת ראיה על שווי המימוש (NRV) שכבר היה קיים ב‑31.12.2023 (הירידה החלה אז).</div>
+    <div class="hint" id="h5b">השרֵפה — נסיבה חדשה; המלאי היה שלם ב‑31.12.2023.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <p><span class="verdict adj">מכירת המלאי — מחייב התאמה</span></p>
+      <p>IAS 10.9(ב) + IAS 2: המכירה ב‑140,000 מוכיחה ש‑NRV היה נמוך מהעלות כבר ב‑31.12.2023 (הירידה החלה ב‑Q4). מפחיתים את המלאי לשווי המימוש נטו ומכירים בהפסד בדוחות 2023.</p>
+      <p><span class="verdict nonadj">השרֵפה — אינו מחייב התאמה</span></p>
+      <p>נסיבה חדשה (5.2.2024). ערך המלאי ב‑31.12.2023 נשאר. אם מהותי — גילוי לפי IAS 10.22.</p>
+    </div></details>
+  </div>
+
+  <!-- Q6 mid tax rate -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 6 · שינוי שיעור מס שנחקק אחרי השנה</h4><span class="lvl mid">בינוני</span></div>
+    <div class="qbody">
+      <p>ב‑15.1.2025, טרם אישור דוחות 2024, נחקק חוק שמעלה את מס החברות מ‑23% ל‑25% החל מ‑2025.</p>
+      <p class="req">נדרש: לפי איזה שיעור נמדדים המסים הנדחים ב‑31.12.2024?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="h6a">רמז 1</button></div>
+    <div class="hint" id="h6a">החוק נחקק ב‑2025 — האם זו נסיבה שהתקיימה ב‑31.12.2024, או נסיבה חדשה?</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict nonadj">אינו מחייב התאמה — גילוי בלבד</span>
+      <p>IAS 10.22: חקיקת שיעור מס לאחר תום התקופה היא נסיבה חדשה. המסים הנדחים ב‑31.12.2024 נמדדים לפי השיעור שהיה בתוקף/נחקק <em>עד</em> תום השנה (23%). אם מהותי — גילוי לאומדן ההשפעה.</p>
+      <div class="callout trap"><div class="head"><span class="dot r"></span>מלכודת</div><p>אל תמדדו מסים נדחים של 2024 לפי 25% — השיעור נחקק אחרי תום התקופה.</p></div>
+    </div></details>
+  </div>
+
+  <!-- Q7 mid fraud -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 7 · תרמית שהתגלתה אחרי השנה</h4><span class="lvl mid">בינוני</span></div>
+    <div class="qbody">
+      <p>ב‑20.1.2025 התגלה שעובד מעל בכספי החברה במהלך 2024 בסך 250,000 ₪, וכי הרישומים החשבונאיים של 2024 שגויים בשל כך. הדוחות ל‑2024 טרם אושרו.</p>
+      <p class="req">נדרש: כיצד מטפלים?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="h7a">רמז 1</button><button class="hintbtn" data-h="h7b">רמז 2</button></div>
+    <div class="hint" id="h7a">התרמית בוצעה ב‑2024 — היא מראה שהדוחות שכבר נערכו שגויים.</div>
+    <div class="hint" id="h7b">זה גם נושא של IAS 10 וגם מפעיל את כללי הטעויות של IAS 8.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict adj">מחייב התאמה (וגם תיקון טעות לפי IAS 8)</span>
+      <p>IAS 10.9(ה): גילוי תרמית/טעות שמראה שהדוחות שגויים = אירוע מחייב התאמה. מתקנים את דוחות 2024 כדי לשקף את ההשפעה האמיתית של המעילה. אם התרמית נגעה גם לתקופות קודמות שכבר פורסמו — מתקנים אותן בהצגה מחדש למפרע לפי IAS 8.42.</p>
+    </div></details>
+  </div>
+
+  <!-- Q8 council going concern -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 8 · קריסת עסק חי לאחר השנה</h4><span class="lvl council">מועצה</span></div>
+    <div class="qbody">
+      <p>חברה הציגה דוחות 2024 על בסיס עסק חי. ב‑1.3.2025, לפני אישור הדוחות, איבדה החברה את לקוחה היחיד שהיווה 95% מהכנסותיה, הבנקים העמידו לפירעון מיידי את כל אשראיה, וההנהלה הסיקה שאין דרך מעשית להמשיך לפעול ושתתפרק.</p>
+      <p class="req">נדרש: כיצד משפיע האירוע על דוחות 2024? האם מדובר באירוע מחייב התאמה רגיל?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="h8a">רמז 1</button><button class="hintbtn" data-h="h8b">רמז 2</button></div>
+    <div class="hint" id="h8a">זה לא "סעיף אחד" שצריך לתקן — זה משפיע על האופן שבו כל הדוח נכתב.</div>
+    <div class="hint" id="h8b">חפשו את המילים "בסיס הכנה" ו‑IAS 10.14.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict gray">חריג‑על: שינוי בסיס ההכנה של כל הדוחות</span>
+      <ol class="steps">
+        <li>לפי IAS 10.14–15, כשההנהלה קובעת אחרי תום התקופה שאין חלופה מעשית והחברה תתפרק — <strong>הדוחות לא יוכנו על בסיס עסק חי</strong>.</li>
+        <li>אין מדובר באירוע מחייב התאמה "רגיל" שמתקן סעיף אחד, אלא בשינוי <strong>בסיס המדידה הכולל</strong> — נכסים נמדדים, למשל, לפי ערכי מימוש; התחייבויות עשויות לעבור לזמן קצר; וכו'.</li>
+        <li>ניתן גילוי נרחב לעובדה ולסיבות לאי‑שימוש בהנחת העסק החי.</li>
+      </ol>
+      <div class="callout key"><div class="head"><span class="dot g"></span>המסר</div><p>עסק חי הוא היחיד שיכול "להפיל" את כל הדוח. זה לא תיקון — זו כתיבה מחדש.</p></div>
+    </div></details>
+  </div>
+
+  <!-- Q9 council constructive -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 9 · מחויבות לשיקום סביבה — בלי חוק ובלי חוזה</h4><span class="lvl council">מועצה</span></div>
+    <div class="qbody">
+      <p>חברה הצהירה שנים בפרסום נרחב על מחויבות לסביבה, ועובדים ציינו זאת כסיבה לעבוד בה. ב‑2022 גרמה לנזק סביבתי משמעותי. בתום 2022 לא רשמה הפרשה לשיקום, בטענה (הנכונה עובדתית) שאין חוק ואין חוזה. ב‑15.1.2023, טרם אישור הדוחות, החליטה החברה לבצע את כל פעולות השיקום.</p>
+      <p class="req">נדרש: האם זהו אירוע מחייב התאמה לדוחות 2022? התייחסו לטענת רואה החשבון.</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="h9a">רמז 1</button><button class="hintbtn" data-h="h9b">רמז 2</button></div>
+    <div class="hint" id="h9a">חובה יכולה לנבוע לא רק מחוק/חוזה אלא גם מהתנהגות שיוצרת ציפייה אצל אחרים.</div>
+    <div class="hint" id="h9b">חפשו "מחויבות משתמעת" (constructive obligation) ב‑IAS 37.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict adj">מחייב התאמה — להכיר בהתחייבות כבר ב‑2022</span>
+      <p>למרות שאין חוק/חוזה, החברה יצרה בהתנהגותה ובהצהרותיה <strong>ציפייה תקֵפה</strong> אצל צדדים אחרים שתשקם — זוהי <strong>מחויבות משתמעת</strong> (IAS 37.10), המוכרת כהתחייבות לכל דבר. הנזק (העילה) אירע ב‑2022; ההחלטה מ‑15.1.2023 מאשרת שהמחויבות הייתה קיימת בתום 2022. לכן מכירים בהתחייבות בדוחות 2022.</p>
+      <p><strong>לעניין טענת רוה"ח:</strong> הטענה ש"אין חוק ואין חוזה" נכונה עובדתית אך אינה מספקת — מחויבות משתמעת אינה דורשת חוק או חוזה.</p>
+    </div></details>
+  </div>
+
+  <!-- Q10 council four-paragraph -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 10 · שאלת "ארבע פסקאות" אינטגרטיבית</h4><span class="lvl council">מועצה</span></div>
+    <div class="qbody">
+      <p>לדוחות 31.12.2024 (אישור 15.3.2025):</p>
+      <ol class="clean">
+        <li>(1) ב‑2.1.2025 פשט לקוח גדול את הרגל; מצבו הידרדר כבר ב‑Q4/2024.</li>
+        <li>(2) ב‑20.1.2025 התגלתה שגיאת חישוב פחת מ‑2022 שניפחה רווחים.</li>
+        <li>(3) ב‑1.2.2025 ירד שווי תיק ני"ע סחירים ב‑30% עקב משבר גיאופוליטי חדש.</li>
+        <li>(4) ב‑10.2.2025 שינתה ההנהלה את הפרשת החובות המסופקים מ‑3% ל‑5% על בסיס מגמת גבייה מתעדכנת.</li>
+      </ol>
+      <p class="req">נדרש: מיינו כל סעיף וקבעו טיפול.</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="h10a">רמז 1</button></div>
+    <div class="hint" id="h10a">עברו אחד‑אחד ושאלו: נסיבה ישנה או חדשה? אומדן או טעות?</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <p><span class="verdict adj">(1) מחייב התאמה</span> — פשיטת רגל המאשרת חוב אבוד שכבר היה ב‑31.12.2024 (IAS 10.9(ב)). מכירים בירידת ערך החוב ב‑2024.</p>
+      <p><span class="verdict err">(2) תיקון טעות</span> — שגיאת חישוב 2022 (IAS 8.41). הצגה מחדש למפרע (8.42); הגילוי הוא גם אירוע מחייב התאמה לפי IAS 10.9(ה).</p>
+      <p><span class="verdict nonadj">(3) אינו מחייב התאמה</span> — ירידת שווי ני"ע מנסיבה חדשה (IAS 10.11). אין התאמה; גילוי אם מהותי.</p>
+      <p><span class="verdict est">(4) שינוי אומדן</span> — עדכון הפרשה לפי מגמה (IAS 8.34) ← מכאן ולהבא. <strong>שימו לב לניסוח</strong>: אם השינוי משקף את מצב הגבייה שכבר היה ב‑31.12 — ייתכן מידע מחייב התאמה המדייק אומדן; אם משקף מגמה שהתפתחה ב‑2025 — מכאן ולהבא בלבד.</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ===== IAS 8 BASE ===== -->
+<section id="ias8-base" class="reveal">
+  <div class="sec-head"><span class="sec-num">7</span><h2>IAS 8 — שלושה דברים שונים שלא לבלבל</h2></div>
+
+  <p class="big-lead">IAS 8 עוסק בשלוש "חיות" שונות לגמרי. הטעות הגדולה של סטודנטים היא לערבב ביניהן. בואו נכיר אותן עם דוגמה מהחיים:</p>
+
+  <div class="plain">
+    <div class="h"><span class="emo">🚗</span>משל המכונית</div>
+    <p>קניתם מכונית והחלטתם שתשרת אתכם <strong>10 שנים</strong>.<br>
+    • <strong>"כל מכונית מופחתת בקו ישר"</strong> — זו <span style="color:var(--accent-4);font-weight:800">מדיניות</span> (הכלל/השיטה).<br>
+    • <strong>"10 שנים"</strong> — זה <span style="color:var(--accent-3);font-weight:800">אומדן</span> (ניחוש מושכל). אחרי 3 שנים אולי תגלו שתחזיק רק 7.<br>
+    • <strong>שכחתם בכלל לרשום פחת שנה שלמה</strong> — זו <span style="color:var(--accent);font-weight:800">טעות</span>.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card b"><div class="pic">📘</div><h4>מדיניות</h4><p>השיטה / הכלל למדידה (FIFO, שווי הוגן, קו ישר). שינוי ← <strong>למפרע</strong> (אחורה).</p></div>
+    <div class="card a"><div class="pic">🎯</div><h4>אומדן</h4><p>מספר שמעריכים כי אי אפשר לדעת בוודאות. שינוי ← <strong>מכאן ולהבא</strong> (קדימה).</p></div>
+    <div class="card"><div class="pic">❌</div><h4>טעות</h4><p>שגיאה אמיתית — מידע שהתעלמנו ממנו / טעות חישוב. תיקון ← <strong>למפרע</strong> (אחורה).</p></div>
+  </div>
+
+  <table class="tbl-zebra">
+    <thead><tr><th>הסוג</th><th>מה זה (IAS 8.5)</th><th>איך מטפלים</th><th>מספרי השוואה?</th></tr></thead>
+    <tbody>
+      <tr><td>מדיניות</td><td>העקרונות, הבסיסים והכללים שבהם מודדים ומציגים.</td><td>למפרע (Retrospective)</td><td>כן — מתקנים</td></tr>
+      <tr><td>אומדן</td><td>עדכון ערך נכס/התחייבות לפי מידע/התפתחות חדשים.</td><td>מכאן ולהבא (Prospective)</td><td>לא — לא נוגעים</td></tr>
+      <tr><td>טעות</td><td>השמטה/מצג שגוי מאי‑שימוש במידע מהימן שהיה זמין.</td><td>הצגה מחדש למפרע (Restatement)</td><td>כן — מתקנים</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout key">
+    <div class="head"><span class="dot g"></span>השאלה היחידה שמפרידה אומדן מטעות</div>
+    <p>שאלו: <strong>"האם המידע היה זמין כבר אז?"</strong><br>
+    • הגיע <em>מידע חדש</em> שלא היה קיים ← <span class="verdict est" style="margin:0">אומדן</span> (קדימה).<br>
+    • <em>התעלמנו ממידע שהיה לנו</em> ← <span class="verdict err" style="margin:0">טעות</span> (אחורה).</p>
+  </div>
+
+  <div class="why">
+    <div class="h"><span>🎓</span>למה ההבחנה כל כך חשובה?</div>
+    <p>כי היא קובעת אם משנים את מספרי השנה שעברה. "למפרע" משנה את ההיסטוריה המוצגת בדוח (ומשפיע על הרושם של המשקיע מהמגמה). "מכאן ולהבא" משאיר את העבר כמו שהיה. בלבול בין השניים = תשובה שגויה לחלוטין במבחן.</p>
+  </div>
+</section>
+
+<!-- ===== IAS 8 POLICY ===== -->
+<section id="ias8-policy" class="reveal">
+  <div class="sec-head"><span class="sec-num">8</span><h2>מדיניות חשבונאית — בחירה ושינוי</h2></div>
+
+  <h3>איך בוחרים מדיניות מלכתחילה?</h3>
+  <div class="standard blue">
+    <span class="tag">IAS 8.7 + 8.10–12 — היררכיה</span>
+    <p>(8.7) אם יש תקן שחל ספציפית — הולכים לפיו, נקודה. (8.10–12) אם <strong>אין</strong> תקן ספציפי — ההנהלה מפעילה שיקול דעת לבחור מדיניות <strong>רלוונטית ומהימנה</strong>, לפי הסדר: (א) תקנים בנושאים דומים; (ב) ההגדרות במסגרת המושגית; ואז ניתן להיעזר בפרסומים של גופי תקינה אחרים, ספרות חשבונאית ונהלים מקובלים בענף.</p>
+  </div>
+
+  <h3>מתי בכלל מותר לשנות מדיניות? — "משוכת ההצדקה"</h3>
+  <div class="plain">
+    <div class="h"><span class="emo">🚧</span>בשפה פשוטה</div>
+    <p>אסור להחליף שיטת מדידה סתם כי בא לנו או כי זה מייפה את הרווח. מותר לשנות רק בשני מצבים: (1) <strong>תקן חדש מחייב</strong>; (2) השינוי גורם לכך שהדוחות <strong>אמינים ורלוונטיים יותר</strong>. זו "משוכה" גבוהה במכוון.</p>
+  </div>
+  <div class="standard blue">
+    <span class="tag">IAS 8.14</span>
+    <p>ישות תשנה מדיניות חשבונאית <strong>אך ורק</strong> אם: (א) השינוי נדרש על‑ידי תקן/פרשנות; או (ב) השינוי גורם לכך שהדוחות יספקו מידע <strong>מהימן ורלוונטי יותר</strong>.</p>
+  </div>
+
+  <h3>שימו לב — מה <em>אינו</em> שינוי מדיניות</h3>
+  <div class="standard blue">
+    <span class="tag">IAS 8.16</span>
+    <p>אינם שינוי מדיניות: <strong>(א)</strong> יישום מדיניות לעסקאות/אירועים/נסיבות <strong>השונים במהותם</strong> מאלו שהיו קודם; <strong>(ב)</strong> יישום מדיניות חדשה לעסקאות שלא התרחשו קודם או שהיו לא מהותיות. (זה בדיוק מה שפותר את "שאלת המלכודת" בהמשך.)</p>
+  </div>
+
+  <h3>איך מטפלים בשינוי מדיניות — יישום למפרע</h3>
+  <div class="standard blue">
+    <span class="tag">IAS 8.19–22</span>
+    <p>מתקנים <strong>אחורה</strong>: מתאימים את היתרה הפותחת של ההון לתקופה המוקדמת ביותר המוצגת, ומתקנים את כל מספרי ההשוואה — כאילו המדיניות החדשה יושמה <em>מאז ומעולם</em>. אם לתקן הספציפי יש הוראות מעבר — פועלים לפיהן.</p>
+  </div>
+  <div class="standard blue">
+    <span class="tag">IAS 8.23–25 — כשאי אפשר לתקן אחורה</span>
+    <p>אם יישום למפרע אינו מעשי (impracticable) — מיישמים מהתקופה המוקדמת ביותר שלגביה הדבר מעשי, ואם בלתי אפשרי לכל התקופות — מכאן ולהבא. <strong>במבחן: ברירת המחדל היא שהיישום מעשי</strong>, אלא אם נכתב אחרת.</p>
+  </div>
+
+  <div class="callout tip">
+    <div class="head"><span class="dot a"></span>שימו לב — שיטת פחת היא אומדן, לא מדיניות!</div>
+    <p>החלפת שיטת הפחת (למשל מקו ישר ליתרה פוחתת) מטופלת לפי IAS 16 כ<strong>שינוי אומדן</strong> (היא משקפת שינוי בדפוס צריכת ההטבות) — ולא כשינוי מדיניות. זו מלכודת קלאסית. לעומת זאת, מעבר מ‑FIFO לממוצע משוקלל במלאי <em>הוא</em> שינוי מדיניות.</p>
+  </div>
+</section>
+
+<!-- ===== IAS 8 ESTIMATE ===== -->
+<section id="ias8-est" class="reveal">
+  <div class="sec-head"><span class="sec-num">9</span><h2>שינוי אומדן — "מכאן ולהבא בלבד"</h2></div>
+
+  <div class="plain">
+    <div class="h"><span class="emo">🎯</span>בשפה פשוטה</div>
+    <p>אומדן זה ניחוש מושכל על משהו שאי אפשר לדעת בוודאות (כמה זמן תחזיק מכונה, כמה חובות לא ייגבו). כשמקבלים מידע חדש, מעדכנים את הניחוש — אבל <strong>לא חוזרים אחורה לתקן</strong>, כי לא טעינו אז: פשוט לא ידענו. מתקנים רק מהיום קדימה.</p>
+  </div>
+  <div class="standard amber">
+    <span class="tag">IAS 8.34 + 8.36</span>
+    <p>(8.34) שינוי אומדן נדרש כשמשתנות הנסיבות, מתקבל מידע חדש או נצבר ניסיון. (8.36) השינוי מוכר <strong>מכאן ולהבא</strong> — בתקופת השינוי ובתקופות העתידיות המושפעות. <strong>אין מתקנים מספרי השוואה.</strong></p>
+  </div>
+
+  <p><strong>דוגמאות נפוצות לאומדן:</strong> חובות מסופקים/אבודים, התיישנות וירידת ערך מלאי, אורך חיים שימושיים, ערך שייר, מחויבויות אחריות (warranty), שווי הוגן.</p>
+
+  <div class="standard amber">
+    <span class="tag">IAS 8.35 — שובר השוויון</span>
+    <p>כשקשה להבחין אם זה שינוי מדיניות או שינוי אומדן — מטפלים בו כ<strong>שינוי אומדן</strong>.</p>
+  </div>
+
+  <div class="callout key">
+    <div class="head"><span class="dot g"></span>הכלל שצריך לזכור</div>
+    <p>אומדן = קדימה בלבד. שינוי תקופת הפחתה, ערך שייר, שיעור הפרשה לחובות, שיטת פחת — כולם אומדן. בספק? IAS 8.35 דוחף אתכם לאומדן.</p>
+  </div>
+</section>
+
+<!-- ===== IAS 8 ERRORS ===== -->
+<section id="ias8-err" class="reveal">
+  <div class="sec-head"><span class="sec-num">10</span><h2>תיקון טעויות — "תחזור אחורה ותתקן"</h2></div>
+
+  <div class="plain">
+    <div class="h"><span class="emo">❌</span>בשפה פשוטה</div>
+    <p>טעות זה כשבאמת פישלנו — היה לנו מידע ולא השתמשנו בו, או טעינו בחשבון. כיוון שהדוחות של פעם היו פשוט שגויים, חובה לחזור אחורה <strong>ולתקן את ההיסטוריה כפי שמוצגת בדוח</strong>, כדי שהמשקיע לא יוטעה. וחשוב: <strong>לא זורקים את התיקון לרווח של השנה הנוכחית</strong>.</p>
+  </div>
+  <div class="standard red">
+    <span class="tag">IAS 8.42 — הכלל</span>
+    <p>טעות מהותית של תקופה קודמת מתוקנת <strong>למפרע</strong>, בדוחות הראשונים שאושרו לאחר גילויה: (א) הצגה מחדש של מספרי ההשוואה לתקופות שבהן אירעה הטעות; או (ב) אם אירעה לפני התקופה המוקדמת ביותר המוצגת — הצגה מחדש של היתרות הפותחות של נכסים, התחייבויות והון.</p>
+  </div>
+  <div class="standard red">
+    <span class="tag">IAS 8.45–46</span>
+    <p>תיקון טעות של תקופה קודמת <strong>אינו</strong> נכלל ברווח‑והפסד של התקופה שבה התגלתה. מבחינים בין טעות שוטפת (מתוקנת בשוטף) לטעות של תקופה קודמת (הצגה מחדש).</p>
+  </div>
+  <div class="standard red">
+    <span class="tag">IAS 8.49 — גילוי</span>
+    <p>מגלים: מהות הטעות; סכום התיקון לכל פריט מושפע ולכל תקופה מוצגת (וכן לרווח למניה אם רלוונטי); סכום התיקון בתחילת התקופה המוקדמת ביותר; ואם הצגה מחדש אינה מעשית — את הסיבה ואת אופן התיקון.</p>
+  </div>
+
+  <h3>עץ ההחלטה המלא של IAS 8</h3>
+  <div class="flow">
+    <div class="node q">מה הסיבה לשינוי?</div>
+    <div class="conn"></div>
+    <div class="arm">
+      <div class="branch"><span class="label">מידע/התפתחות חדשים</span><div class="leaf a">שינוי אומדן<br><small>מכאן ולהבא · 8.36</small></div></div>
+      <div class="branch"><span class="label">התעלמנו ממידע שהיה זמין</span><div class="leaf r">תיקון טעות<br><small>הצגה מחדש למפרע · 8.42</small></div></div>
+      <div class="branch">
+        <span class="label">שינוי בעקרון המדידה</span>
+        <div class="node q" style="font-size:.9rem">עברנו את "משוכת ההצדקה" (8.14)?</div>
+        <div class="conn"></div>
+        <div class="arm">
+          <div class="branch"><span class="label">כן</span><div class="leaf b">שינוי מדיניות · למפרע 8.19</div></div>
+          <div class="branch"><span class="label">לא</span><div class="leaf gray">אסור לשנות</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IAS 8 QUESTIONS ===== -->
+<section id="ias8-q" class="reveal">
+  <div class="sec-head"><span class="sec-num">11</span><h2>שאלות IAS 8 — מהקל לקשה</h2></div>
+
+  <!-- Q11 basic useful life -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 11 · קיצור אורך חיים של מכונה</h4><span class="lvl basic">קל</span></div>
+    <div class="qbody">
+      <p>מכונה נרשמה ב‑2022 עם אורך חיים מוערך של 10 שנים. בתחילת 2025, על בסיס נתוני שחיקה חדשים שהצטברו, קובעת ההנהלה שאורך החיים הכולל הוא 7 שנים בלבד.</p>
+      <p class="req">נדרש: סוג השינוי? כיצד מטפלים?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq11a">רמז 1</button></div>
+    <div class="hint" id="hq11a">"נתונים חדשים שהצטברו" = מידע חדש. לא טעינו אז — פשוט לא ידענו.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict est">שינוי אומדן — מכאן ולהבא</span>
+      <p>מידע/ניסיון חדש (IAS 8.34) ← שינוי אומדן. מפחיתים את הערך בספרים בתחילת 2025 על פני יתרת אורך החיים החדש (4 שנים נוספות). <strong>אין מתקנים מספרי השוואה.</strong></p>
+    </div></details>
+  </div>
+
+  <!-- Q12 basic bad debt -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 12 · עדכון שיעור הפרשה לחובות מסופקים</h4><span class="lvl basic">קל</span></div>
+    <div class="qbody">
+      <p>החברה נהגה להפריש 3% מיתרת הלקוחות לחובות מסופקים. השנה, לאור החמרה בקצב הגבייה, עדכנה ל‑5%.</p>
+      <p class="req">נדרש: סוג השינוי וטיפול?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq12a">רמז 1</button></div>
+    <div class="hint" id="hq12a">ההפרשה לחובות מסופקים היא ניחוש מושכל = אומדן קלאסי.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict est">שינוי אומדן — מכאן ולהבא</span>
+      <p>הפרשה לחובות מסופקים היא אומדן (IAS 8.5). העדכון ל‑5% מבוסס על מידע חדש ← מכאן ולהבא בתקופת השינוי. ההשפעה נזקפת לרווח‑והפסד השוטף; אין נוגעים בהשוואות.</p>
+    </div></details>
+  </div>
+
+  <!-- Q13 mid depreciation method -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 13 · החלפת שיטת פחת (מלכודת!)</h4><span class="lvl mid">בינוני</span></div>
+    <div class="qbody">
+      <p>החברה החליפה את שיטת הפחת של ציוד מקו ישר לשיטת יתרה פוחתת, כי דפוס השימוש בציוד התברר כריכוז גבוה בשנים הראשונות.</p>
+      <p class="req">נדרש: האם זה שינוי מדיניות או שינוי אומדן?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq13a">רמז 1</button><button class="hintbtn" data-h="hq13b">רמז 2</button></div>
+    <div class="hint" id="hq13a">אמנם "שיטה" נשמע כמו מדיניות — אבל מה אומר IAS 16 על שיטת פחת?</div>
+    <div class="hint" id="hq13b">שיטת הפחת משקפת את דפוס צריכת ההטבות — שינוי בה הוא שינוי אומדן.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict est">שינוי אומדן — מכאן ולהבא</span>
+      <p>זו מלכודת: למרות שמדובר ב"שיטה", לפי IAS 16 שיטת הפחת משקפת את <strong>דפוס צריכת ההטבות הכלכליות</strong> מהנכס, ולכן שינויה מטופל כ<strong>שינוי אומדן</strong> — מכאן ולהבא. <strong>אין</strong> מתקנים למפרע. (לעומת זאת, מעבר FIFO↔ממוצע במלאי = שינוי מדיניות, למפרע.)</p>
+    </div></details>
+  </div>
+
+  <!-- Q14 mid FIFO->avg numeric -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 14 · מעבר מ‑FIFO לממוצע משוקלל (מספרי)</h4><span class="lvl mid">בינוני</span></div>
+    <div class="qbody">
+      <p>חברה עברה ב‑2024 מ‑FIFO לעלות ממוצעת לכל המלאי, בנימוק שזה משקף טוב יותר את עלות המכר. השפעת המעבר: מלאי הסגירה ל‑31.12.2023 היה נמוך ב‑40,000 ₪ לפי השיטה החדשה. הדוחות מציגים 2024 מול 2023. שיעור מס 25%.</p>
+      <p class="req">נדרש: סוג השינוי וכיצד באות לידי ביטוי ההתאמות?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq14a">רמז 1</button><button class="hintbtn" data-h="hq14b">רמז 2</button></div>
+    <div class="hint" id="hq14a">שיטת תמחיר מלאי = מדיניות. שינוי שמשפר מהימנות/רלוונטיות מותר (8.14).</div>
+    <div class="hint" id="hq14b">מדיניות ← למפרע. מלאי סגירה נמוך יותר ב‑2023 ← רווח 2023 נמוך יותר.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict est" style="background:var(--accent-4)">שינוי מדיניות — יישום למפרע</span>
+      <ol class="steps">
+        <li>תמחיר מלאי הוא מדיניות; המעבר עבר את משוכת ההצדקה (8.14) ← שינוי מדיניות.</li>
+        <li>יישום למפרע (8.19): מתקנים את מספרי ההשוואה של 2023 כאילו תמיד היה ממוצע.</li>
+        <li>מלאי 31.12.2023 קטֵן ב‑40,000 ← עלות המכר של 2023 גדלה ב‑40,000 ← הרווח לפני מס של 2023 קטֵן ב‑40,000.</li>
+        <li>השפעת מס: 40,000×25% = 10,000 ← הרווח הנקי של 2023 קטֵן ב‑30,000.</li>
+        <li>היתרה הפותחת של העודפים ל‑1.1.2024 מותאמת בהקטנה של 30,000 (נטו ממס).</li>
+      </ol>
+      <div class="calc">
+        <table>
+          <tr><th>פריט</th><th>השפעה על השוואת 2023</th></tr>
+          <tr><td>מלאי סגירה</td><td>‑40,000</td></tr>
+          <tr><td>עלות המכר</td><td>+40,000</td></tr>
+          <tr><td>רווח לפני מס</td><td>‑40,000</td></tr>
+          <tr><td>הוצאות מס (25%)</td><td>‑10,000</td></tr>
+          <tr><td><b>רווח נקי</b></td><td><b>‑30,000</b></td></tr>
+          <tr><td>יתרת עודפים פותחת 1.1.2024</td><td>‑30,000</td></tr>
+        </table>
+      </div>
+      <p>בנוסף — גילוי לפי IAS 8.28 לטיב השינוי ולסיבתו.</p>
+    </div></details>
+  </div>
+
+  <!-- Q15 mid error omitted depreciation -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 15 · הפחתה שהושמטה בגלל שגיאת קידוד</h4><span class="lvl mid">בינוני</span></div>
+    <div class="qbody">
+      <p>התגלה שעלויות פיתוח שהוונו לנכס לפני 3 שנים (תקין) לא הופחתו כלל, עקב שגיאת קידוד טכני בהנהלת החשבונות. היה ברור שצריך להפחית על פני 3 שנים.</p>
+      <p class="req">נדרש: סוג האירוע וטיפול (התגלה לפני מועד הדיווח של השנה השלישית)?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq15a">רמז 1</button></div>
+    <div class="hint" id="hq15a">לא מידע חדש (תמיד היה ברור שצריך להפחית), ולא שינוי שיטה. מה נשאר?</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict err">תיקון טעות — הצגה מחדש למפרע</span>
+      <p>שגיאה ביישום (IAS 8.41) מבוססת על מידע שהיה זמין ← טעות. מטפלים לפי 8.42: מתקנים את ההפחתה לכל התקופות שהושמטו ומתאימים את היתרה הפותחת של ההון לתקופה המוקדמת ביותר המוצגת. ההשפעה אינה נזקפת לרווח‑והפסד של שנת הגילוי (8.45). מתקנים את הצבר ההפחתה ואת ערך הנכס בספרים.</p>
+    </div></details>
+  </div>
+
+  <!-- Q16 mid error expense as asset numeric -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 16 · הוצאה שנרשמה בטעות כנכס (מספרי)</h4><span class="lvl mid">בינוני</span></div>
+    <div class="qbody">
+      <p>בתחילת 2025 התגלה שהוצאות שכר של 2023 בסך 60,000 ₪ נרשמו בטעות כנכס. שיעור מס 25%. הדוחות מציגים 2024 מול 2023.</p>
+      <p class="req">נדרש: תארו את ההתאמות בהצגה מחדש.</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq16a">רמז 1</button></div>
+    <div class="hint" id="hq16a">נכס שהיה צריך להיות הוצאה ← הרווח של 2023 היה מנופח.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict err">תיקון טעות — הצגה מחדש למפרע</span>
+      <ul class="clean">
+        <li>בהשוואת 2023: הגדלת הוצאות שכר ב‑60,000, ביטול הנכס, והקטנת הוצאות המס ב‑15,000 (60,000×25%). הרווח הנקי המוצג ל‑2023 קטֵן ב‑45,000.</li>
+        <li>יתרת העודפים הפותחת ל‑1.1.2024 מותאמת בהקטנה של 45,000.</li>
+        <li>ההשפעה <strong>אינה</strong> נזקפת לרווח‑והפסד של 2024/2025 (8.45).</li>
+        <li>גילוי לפי 8.49: מהות הטעות וסכום התיקון לכל פריט ותקופה.</li>
+      </ul>
+    </div></details>
+  </div>
+
+  <!-- Q17 council estimate vs error -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 17 · אותו מספר — אומדן או טעות?</h4><span class="lvl council">מועצה</span></div>
+    <div class="qbody">
+      <p>מכונה נרשמה ב‑2022 עם אורך חיים מוערך 10 שנים. <strong>גרסה א':</strong> ב‑2025 קובעת ההנהלה, על בסיס נתוני שחיקה חדשים, שאורך החיים 7 שנים. <strong>גרסה ב':</strong> מתברר שכבר ב‑2022 היו זמינים נתוני יצרן ברורים שאורך החיים 7 שנים, אך הם לא נלקחו בחשבון בטעות.</p>
+      <p class="req">נדרש: סווגו וטפלו בכל גרסה.</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq17a">רמז 1</button><button class="hintbtn" data-h="hq17b">רמז 2</button></div>
+    <div class="hint" id="hq17a">אותו מספר (7), אבל ההבדל הוא: האם המידע היה זמין כבר ב‑2022?</div>
+    <div class="hint" id="hq17b">זמין אז = טעות (אחורה). הגיע עכשיו = אומדן (קדימה).</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <p><span class="verdict est">גרסה א' — שינוי אומדן</span></p>
+      <p>נתונים חדשים (8.34) ← מכאן ולהבא (8.36): פורסים את הערך בספרים על יתרת אורך החיים. אין תיקון השוואות.</p>
+      <p><span class="verdict err">גרסה ב' — תיקון טעות</span></p>
+      <p>המידע היה זמין כבר ב‑2022 והושמט (8.41) ← הצגה מחדש למפרע (8.42): מתקנים את ההפחתה מ‑2022 ואת היתרה הפותחת של ההון.</p>
+      <div class="callout key"><div class="head"><span class="dot g"></span>זו הסכין</div><p>אותו 7. שני טיפולים הפוכים. ההבדל היחיד: זמינות המידע אז.</p></div>
+    </div></details>
+  </div>
+
+  <!-- Q18 council substance change -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 18 · נכס שהפך להוצאה — לא מדיניות, לא אומדן</h4><span class="lvl council">מועצה</span></div>
+    <div class="qbody">
+      <p>חברה שינתה טיפול בנכס שנוצר מעלויות מו"פ: בעבר הופחת על פני 24 חודשים, אך כעת — לאור שינוי קיצוני בדפוס הצריכה הטכנולוגי, המשקף תנאים נפרדים לחלוטין והשפעות שאינן דומות כלל למקור — זקפה החברה את כל העלויות מיידית לרווח והפסד.</p>
+      <p class="req">נדרש: האם הטיפול ראוי (הנח שהנסיבות מצדיקות)? סוג השינוי?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq18a">רמז 1</button><button class="hintbtn" data-h="hq18b">רמז 2</button></div>
+    <div class="hint" id="hq18a">המהות של הפריט השתנתה לחלוטין — לא רק "מספר אחר". חפשו IAS 8.16(א).</div>
+    <div class="hint" id="hq18b">אם המהות שונה במהותה ← זה יישום מדיניות חדשה, לא "שינוי מדיניות".</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict gray">לא מדיניות, לא אומדן — יישום מדיניות חדשה (8.16(א))</span>
+      <p><strong>הדילמה:</strong> שינוי בדפוס צריכה נשמע כמו אומדן; מעבר מנכס מופחת לזקיפה מיידית נשמע כמו מדיניות.</p>
+      <div class="standard red"><span class="tag">IAS 8.16(א)</span><p>יישום מדיניות לעסקאות/נסיבות <strong>השונים במהותם</strong> מאלו שהיו קודם — אינו "שינוי מדיניות".</p></div>
+      <p><strong>ההכרעה:</strong> כשמהות הפריט הנמדד משתנה עד שמשתנה לחלוטין אופי ההטבות (נכס שהופך להוצאה לא בגלל החלטה חשבונאית "מותרת" אלא כי השירות שונה לגמרי) — זהו <strong>יישום מדיניות חדשה</strong> על נסיבה שונה במהותה, ולכן הוראות היישום למפרע של IAS 8 <strong>אינן חלות</strong>. מיישמים מכאן ולהבא, כיישום ראשון. בהינתן שהנסיבות מצדיקות — הטיפול ראוי.</p>
+    </div></details>
+  </div>
+
+  <!-- Q19 mid voluntary policy -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 19 · "בא לנו לשנות שיטה"</h4><span class="lvl mid">בינוני</span></div>
+    <div class="qbody">
+      <p>מנכ"ל מבקש לעבור משיטת מדידת נדל"ן להשקעה בעלות לשיטת השווי ההוגן, "כי המתחרים עושים כך וזה ייראה טוב יותר למשקיעים".</p>
+      <p class="req">נדרש: האם מותר? באילו תנאים?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq19a">רמז 1</button></div>
+    <div class="hint" id="hq19a">משוכת ההצדקה (8.14): "כי המתחרים" / "ייראה טוב" — מספיק?</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict est" style="background:var(--accent-4)">מותר רק אם מספק מידע מהימן ורלוונטי יותר</span>
+      <p>לפי IAS 8.14(ב), שינוי מדיניות מרצון מותר רק אם הוא מוביל למידע <strong>מהימן ורלוונטי יותר</strong>. "כי המתחרים" או "ייראה טוב למשקיעים" אינם נימוק קביל כשלעצמם. אם מעבר לשווי הוגן אכן משקף טוב יותר את מצב הנכסים (וזה ההיגיון של מודל השווי ההוגן ב‑IAS 40) — מותר, ואז מיישמים למפרע + גילוי. אחרת — אסור לשנות.</p>
+    </div></details>
+  </div>
+
+  <!-- Q20 council full restatement numeric -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 20 · הצגה מחדש מלאה — חישוב מקיף</h4><span class="lvl council">מועצה</span></div>
+    <div class="qbody">
+      <p>בתחילת 2025 התגלה שהחברה לא הכירה בהוצאות אחריות (warranty) לאורך 2023 ו‑2024. ההפרשה הנכונה: 50,000 ₪ ב‑2023 ו‑30,000 ₪ נוספים ב‑2024. שיעור מס 25%. הדוחות מציגים 2024 מול 2023.</p>
+      <p class="req">נדרש: סווגו, וחשבו את ההתאמות לכל תקופה ולעודפים הפותחים.</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq20a">רמז 1</button><button class="hintbtn" data-h="hq20b">רמז 2</button></div>
+    <div class="hint" id="hq20a">אי‑הכרה בהוצאה שהייתה צריכה להירשם = טעות (לא אומדן — היה צריך להכיר).</div>
+    <div class="hint" id="hq20b">פצלו את ההשפעה: כמה שייך ל‑2023, כמה ל‑2024, ומה היתרה המצטברת.</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict err">תיקון טעות — הצגה מחדש למפרע</span>
+      <div class="calc">
+        <table>
+          <tr><th>פריט</th><th>2023</th><th>2024</th><th>מצטבר ל‑31.12.2024</th></tr>
+          <tr><td>הוצאת אחריות נוספת</td><td>50,000</td><td>30,000</td><td>80,000</td></tr>
+          <tr><td>חיסכון מס (25%)</td><td>12,500</td><td>7,500</td><td>20,000</td></tr>
+          <tr><td><b>הקטנת רווח נקי</b></td><td><b>37,500</b></td><td><b>22,500</b></td><td><b>60,000</b></td></tr>
+        </table>
+      </div>
+      <ol class="steps">
+        <li>השוואת 2023: רווח נקי קטֵן ב‑37,500; מוצגת הפרשת אחריות 50,000 והתאמת מס נדחה 12,500.</li>
+        <li>יתרת העודפים הפותחת ל‑1.1.2024 קטֵנה ב‑37,500 (השפעת 2023 בלבד).</li>
+        <li>בדוח 2024 (המתוקן): הוצאה נוספת 30,000, רווח נקי קטֵן ב‑22,500.</li>
+        <li>במאזן 31.12.2024: הפרשה לאחריות 80,000, נכס מס נדחה 20,000.</li>
+        <li>גילוי לפי 8.49: מהות הטעות, סכומי התיקון לכל פריט/תקופה, השפעה על העודפים הפותחים.</li>
+      </ol>
+      <div class="callout trap"><div class="head"><span class="dot r"></span>מלכודת</div><p>אל תזרקו את כל ה‑80,000 לרווח 2024. רק 30,000 שייך ל‑2024; 50,000 שייך ל‑2023 ומתוקן בהשוואות ובעודפים הפותחים.</p></div>
+    </div></details>
+  </div>
+
+  <!-- Q21 council change in estimate within asset -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 21 · עדכון אורך חיים — חישוב מספרי</h4><span class="lvl council">מועצה</span></div>
+    <div class="qbody">
+      <p>מכונה נרכשה ב‑1.1.2022 ב‑1,000,000 ₪, אורך חיים 10 שנים, ללא ערך שייר, פחת קו ישר. ב‑1.1.2025 עודכן אורך החיים הכולל ל‑8 שנים (מידע חדש).</p>
+      <p class="req">נדרש: מהו הפחת השנתי החל מ‑2025?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq21a">רמז 1</button><button class="hintbtn" data-h="hq21b">רמז 2</button></div>
+    <div class="hint" id="hq21a">שינוי אומדן ← מכאן ולהבא. קחו את הערך בספרים ב‑1.1.2025 ופרסו על יתרת השנים.</div>
+    <div class="hint" id="hq21b">פחת שנתי מקורי 100,000. צברתם 3 שנים. כמה שנים נותרו לפי 8 שנים?</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict est">שינוי אומדן — מכאן ולהבא</span>
+      <ol class="steps">
+        <li>פחת שנתי מקורי: 1,000,000 ÷ 10 = 100,000.</li>
+        <li>פחת שנצבר 2022–2024 (3 שנים): 300,000. ערך בספרים ב‑1.1.2025: 700,000.</li>
+        <li>אורך חיים כולל חדש 8 שנים ← נותרו 8 − 3 = 5 שנים.</li>
+        <li>פחת שנתי חדש: 700,000 ÷ 5 = <strong>140,000 ₪</strong> לשנה החל מ‑2025.</li>
+      </ol>
+      <p><strong>אין</strong> מתקנים את הפחת של 2022–2024 (היו 100,000 כל שנה) — זה שינוי אומדן, מכאן ולהבא בלבד.</p>
+    </div></details>
+  </div>
+
+  <!-- Q22 council impracticable -->
+  <div class="qa">
+    <div class="qhead"><h4>שאלה 22 · כשאי אפשר לתקן אחורה</h4><span class="lvl council">מועצה</span></div>
+    <div class="qbody">
+      <p>חברה גילתה טעות מהותית בתמחיר מלאי שראשיתה ב‑2019, אך רישומי הכמויות והעלויות מאותן שנים אבדו, ואי אפשר לאמוד באופן מהימן את ההשפעה על התקופות המוקדמות.</p>
+      <p class="req">נדרש: כיצד מטפלים?</p>
+    </div>
+    <div class="hintbar"><button class="hintbtn" data-h="hq22a">רמז 1</button></div>
+    <div class="hint" id="hq22a">ברירת המחדל היא הצגה מחדש למפרע — אבל מה קורה כשזה "בלתי מעשי"?</div>
+    <details class="sol"><summary>פתרון מלא</summary><div class="solbody">
+      <span class="verdict err">תיקון טעות — בכפוף למגבלת המעשיוּת</span>
+      <p>הכלל הוא הצגה מחדש למפרע (8.42), אך לפי 8.43–48, כאשר קביעת ההשפעה על תקופות מוקדמות אינה מעשית — מתקנים את היתרות מהתקופה המוקדמת ביותר שלגביה התיקון <strong>כן</strong> מעשי (ייתכן שזו התקופה השוטפת). מגלים את העובדה שהתיקון לתקופות מוקדמות אינו מעשי ואת אופן וממועד התיקון בפועל (8.49). <strong>הערה למבחן:</strong> "בלתי מעשי" הוא חריג נדיר — אל תניחו אותו אלא אם השאלה אומרת זאת במפורש (כאן: אבדן הרישומים).</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ===== TRAPS ===== -->
+<section id="traps" class="reveal">
+  <div class="sec-head"><span class="sec-num">12</span><h2>מלכודות נפוצות — שמרו לרגע לפני המבחן</h2></div>
+  <div class="cards">
+    <div class="card"><div class="pic">⚠️</div><h4>שמרנות אינה תקן</h4><p>הפרשה "מנופחת לזהירות" אינה תקינה. מודדים לפי האומדן הטוב ביותר.</p></div>
+    <div class="card g"><div class="pic">🔄</div><h4>אותו תאריך, מיון הפוך</h4><p>פשיטת רגל לקוח = התאמה; שרֵפה / ירידת ני"ע = גילוי. שאלו: הסיבה קדמה ל‑31.12?</p></div>
+    <div class="card b"><div class="pic">💰</div><h4>דיבידנד אחרי השנה</h4><p>אינו התחייבות ב‑31.12 (IAS 10.12). גילוי בלבד.</p></div>
+    <div class="card"><div class="pic">⚖️</div><h4>ערעור לא פוטר מהפרשה</h4><p>פסיקה מאששת מחויבות — מכירים מלא, גם אם הוגש ערעור.</p></div>
+    <div class="card a"><div class="pic">🎯</div><h4>אומדן ≠ טעות</h4><p>מידע חדש = אומדן (קדימה); השמטת מידע זמין = טעות (אחורה).</p></div>
+    <div class="card a"><div class="pic">🛠️</div><h4>שיטת פחת = אומדן</h4><p>החלפת שיטת פחת מטופלת כשינוי אומדן (IAS 16), לא מדיניות.</p></div>
+    <div class="card"><div class="pic">🧩</div><h4>מהות שונה לגמרי</h4><p>IAS 8.16(א): יישום מדיניות חדשה לנסיבה שונה במהותה — IAS 8 לא חל.</p></div>
+    <div class="card g"><div class="pic">🚨</div><h4>עסק חי = חריג‑על</h4><p>קריסתו משנה את בסיס ההכנה של כל הדוח, לא "מתקנת סעיף".</p></div>
+    <div class="card b"><div class="pic">🧾</div><h4>שיעור מס שנחקק אחרי</h4><p>גילוי בלבד; אין למדוד מסים נדחים לפי השיעור החדש (IAS 10.22).</p></div>
+    <div class="card"><div class="pic">📍</div><h4>תיקון טעות ≠ רווח שוטף</h4><p>השפעת תיקון טעות לא נזקפת לרווח‑והפסד של שנת הגילוי (IAS 8.45).</p></div>
+  </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section id="quiz" class="reveal">
+  <div class="sec-head"><span class="sec-num">13</span><h2>מבחן עצמי — בדקו את עצמכם</h2></div>
+  <p class="muted">15 שאלות אמריקאיות. בחרו תשובה — היא תיצבע והסבר ייפתח. המונה למעלה סופר נכונות.</p>
+  <div class="quiz">
+    <div class="scorebar"><span>הניקוד שלך:</span><span class="score" id="score">0 / 0</span></div>
+    <div id="quizbody"></div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><strong>המדריך המלא — IAS 10 ו‑IAS 8 · רמת מתחילים עד מועצת רואי חשבון.</strong> נועד ללמידה ואינו תחליף לקריאת התקנים המקוריים. ציטוטי הסעיפים מנוסחים בלשון מתומצתת לצורכי הוראה. בהצלחה במבחן! 🎓</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- nav: JS smooth scroll (fixes broken anchors in sandbox) ---------- */
+document.querySelectorAll('#toc a[data-go]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const el=document.getElementById(a.dataset.go);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+/* ---------- progress bar ---------- */
+const bar=document.getElementById('progress');
+function updateBar(){
+  const h=document.documentElement;
+  const sc=h.scrollTop||document.body.scrollTop;
+  const max=(h.scrollHeight-h.clientHeight)||1;
+  bar.style.width=(sc/max*100)+'%';
+}
+window.addEventListener('scroll',updateBar,{passive:true});updateBar();
+
+/* ---------- reveal on scroll ---------- */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(s=>io.observe(s));
+
+/* ---------- active nav highlight ---------- */
+const navLinks=[...document.querySelectorAll('#toc a[data-go]')];
+const secObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      navLinks.forEach(l=>l.classList.toggle('active',l.dataset.go===en.target.id));
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>secObserver.observe(s));
+
+/* ---------- hints ---------- */
+document.querySelectorAll('.hintbtn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const t=document.getElementById(b.dataset.h);
+    if(!t) return;
+    t.classList.toggle('show');
+    b.style.opacity=t.classList.contains('show')?'.55':'1';
+  });
+});
+
+/* ---------- quiz ---------- */
+const QUESTIONS=[
+  {q:"חברה הכריזה על דיבידנד ב‑5.2, אחרי תום השנה, טרם אישור הדוחות. הטיפול?",
+   o:["מכירים בהתחייבות ב‑31.12","גילוי בלבד; אין התחייבות ב‑31.12","מתקנים את ההון למפרע","מכירים כהוצאה שוטפת"],c:1,
+   e:"IAS 10.12–13: אין מחויבות בתום השנה ← אינו מחייב התאמה, גילוי בלבד."},
+  {q:"לקוח פשט רגל ב‑10.1, כשמצבו הידרדר כבר ברבעון האחרון של שנת הדיווח. הסיווג?",
+   o:["אינו מחייב התאמה — גילוי","מחייב התאמה — מכירים בירידת ערך","שינוי מדיניות","אין השפעה"],c:1,
+   e:"IAS 10.9(ב): פשיטת הרגל מאששת שהחוב כבר היה אבוד בתום השנה ← מחייב התאמה."},
+  {q:"שווי תיק ני\"ע סחירים ירד ב‑25% בין תום השנה לאישור, עקב משבר חדש. הטיפול?",
+   o:["מתאימים את ערך התיק ל‑31.12","גילוי בלבד אם מהותי","תיקון טעות","שינוי אומדן"],c:1,
+   e:"IAS 10.11: ירידת שווי השקעות אחרי התקופה = נסיבה חדשה ← אינו מחייב התאמה."},
+  {q:"שרֵפה השמידה מחסן ב‑5.2, אחרי תום השנה. הטיפול בערך המלאי בדוחות?",
+   o:["מתאימים את ערך המלאי ל‑31.12","אינו מחייב התאמה — גילוי אם מהותי","תיקון טעות","מכירים בהפסד בשנה הקודמת"],c:1,
+   e:"השרֵפה נסיבה חדשה; המלאי היה שלם ב‑31.12 ← גילוי בלבד (IAS 10.22)."},
+  {q:"התגלתה שגיאת חישוב פחת מלפני שנתיים שניפחה רווחים. כיצד מתקנים?",
+   o:["מכאן ולהבא","הצגה מחדש למפרע","זוקפים לרווח‑והפסד של שנת הגילוי","אין צורך לתקן"],c:1,
+   e:"IAS 8.42: תיקון טעות בהצגה מחדש למפרע; ההשפעה אינה ברווח‑והפסד של שנת הגילוי (8.45)."},
+  {q:"ההנהלה עדכנה אורך חיים של מכונה מ‑10 ל‑7 שנים לפי נתוני שחיקה חדשים. הסיווג?",
+   o:["שינוי אומדן — מכאן ולהבא","תיקון טעות — למפרע","שינוי מדיניות — למפרע","אירוע מחייב התאמה"],c:0,
+   e:"מידע חדש (IAS 8.34) ← שינוי אומדן, מכאן ולהבא, ללא תיקון השוואות."},
+  {q:"חברה החליפה שיטת פחת מקו ישר ליתרה פוחתת בעקבות דפוס שימוש חדש. הסיווג?",
+   o:["שינוי מדיניות — למפרע","שינוי אומדן — מכאן ולהבא","תיקון טעות","אסור לשנות"],c:1,
+   e:"לפי IAS 16, שיטת הפחת היא אומדן (דפוס צריכת ההטבות) ← שינוי אומדן."},
+  {q:"מעבר מ‑FIFO לעלות ממוצעת בתמחיר מלאי. הסיווג?",
+   o:["שינוי אומדן","שינוי מדיניות — למפרע","תיקון טעות","אינו מחייב התאמה"],c:1,
+   e:"תמחיר מלאי = מדיניות ← יישום למפרע (אם עבר את משוכת 8.14)."},
+  {q:"חוק שמעלה מס חברות נחקק ב‑20.1, אחרי תום השנה. לפי איזה שיעור מודדים מסים נדחים ב‑31.12?",
+   o:["לפי השיעור החדש","לפי השיעור שהיה/נחקק עד תום השנה; גילוי בלבד","ממוצע","אין מסים נדחים"],c:1,
+   e:"IAS 10.22: שינוי שנחקק אחרי התקופה אינו מחייב התאמה ← מדידה לפי השיעור עד תום השנה."},
+  {q:"כשקשה להבחין אם שינוי הוא מדיניות או אומדן, התקן מורה:",
+   o:["לטפל כמדיניות","לטפל כאומדן","לטפל כטעות","לא לבצע שינוי"],c:1,
+   e:"IAS 8.35: בספק — מטפלים כשינוי אומדן (מכאן ולהבא)."},
+  {q:"נכס מו\"פ שהופחת על 24 חודשים נזקף כעת מיידית להוצאה כי מהות ההטבות השתנתה לחלוטין. הסיווג?",
+   o:["שינוי מדיניות — למפרע","שינוי אומדן","יישום מדיניות חדשה לנסיבה השונה במהותה — IAS 8 לא חל","תיקון טעות"],c:2,
+   e:"IAS 8.16(א): נסיבה שונה במהותה ← יישום מדיניות חדשה; אין יישום למפרע."},
+  {q:"ההנהלה קבעה אחרי תום השנה שתפרק את החברה ללא חלופה מעשית. ההשלכה?",
+   o:["התאמת סעיף בודד","גילוי בלבד","הדוחות לא יוכנו על בסיס עסק חי — שינוי בסיס הכנה","אין השפעה"],c:2,
+   e:"IAS 10.14–15: קריסת עסק חי = שינוי בסיס ההכנה של כל הדוח."},
+  {q:"מתי מותר לשנות מדיניות מרצון (לא בעקבות תקן)?",
+   o:["תמיד, לפי שיקול דעת","רק אם מוביל למידע מהימן ורלוונטי יותר","רק אם רוה\"ח מאשר","אסור בכלל"],c:1,
+   e:"IAS 8.14(ב): שינוי מרצון מותר רק אם מספק מידע מהימן ורלוונטי יותר."},
+  {q:"פסיקת בית משפט אחרי תום השנה קבעה פיצוי על תביעה שהוגשה לפני תום השנה. הטיפול?",
+   o:["גילוי בלבד","מחייב התאמה — מעדכנים ההפרשה לסכום הפסיקה","אין השפעה","תיקון טעות"],c:1,
+   e:"IAS 10.9(א): הפסיקה מאירה מחויבות שהייתה בתום השנה ← מחייב התאמה."},
+  {q:"התגלה שהוצאה של 60,000 (שנה קודמת) נרשמה בטעות כנכס. מה לא נכון לעשות?",
+   o:["להציג מחדש את השוואת השנה הקודמת","להתאים את העודפים הפותחים","לזקוף את כל ה‑60,000 לרווח השנה הנוכחית","לתת גילוי לפי 8.49"],c:2,
+   e:"זו טעות של תקופה קודמת ← אסור לזקוף לרווח השוטף (8.45); מתקנים למפרע."}
+];
+const body=document.getElementById('quizbody');
+const scoreEl=document.getElementById('score');
+let correct=0,answered=0;
+QUESTIONS.forEach((it,qi)=>{
+  const d=document.createElement('div');d.className='qitem';
+  d.innerHTML=`<div class="qtext">${qi+1}. ${it.q}</div>`;
+  const ex=document.createElement('div');ex.className='explain';ex.textContent=it.e;
+  it.o.forEach((opt,oi)=>{
+    const o=document.createElement('div');o.className='opt';o.textContent=opt;
+    o.addEventListener('click',()=>{
+      if(d.dataset.done)return;d.dataset.done='1';answered++;
+      d.querySelectorAll('.opt').forEach((el,idx)=>{
+        if(idx===it.c)el.classList.add('correct');
+        else if(idx===oi)el.classList.add('wrong');
+        el.style.cursor='default';
+      });
+      if(oi===it.c)correct++;
+      ex.classList.add('show');
+      scoreEl.textContent=correct+' / '+answered;
+    });
+    d.appendChild(o);
+  });
+  d.appendChild(ex);body.appendChild(d);
+});
+</script>
+</body>
+</html>
